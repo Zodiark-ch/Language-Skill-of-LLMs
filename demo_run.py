@@ -1,7 +1,7 @@
 import torch
 from args import DeepArgs
 from utils import set_gpu 
-from representation_vocb import assert_FFNandproduction_gpt2xl,show_each_layer_vocb,assert_attentionmlp_equal_output,assert_circuits_equal_output
+from representation_vocb import assert_FFNandproduction_gpt2xl,show_each_layer_vocb,assert_attentionmlp_equal_output,assert_circuits_equal_output,show_vocabulary_circuit
 from transformers import HfArgumentParser,AutoTokenizer,GPT2LMHeadModel
 
 
@@ -13,7 +13,7 @@ set_gpu(args.gpu)
 if args.task_name=='general_discovery':
     if args.model_name=='gpt2xl':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
-        input_text="When Mary and John went to the store, John gave a drink to" 
+        input_text="The Space Needle is in downtown" 
         inputs = tokenizer(input_text, return_tensors="pt")
         
         #run following functions to check the distance between FFN and matrix production
@@ -55,6 +55,12 @@ if args.task_name=='general_discovery':
         model=assert_circuits_equal_output(args)
         model(inputs)
         print('######### Check Completes. ########')
+        
+        #show each circuit's vocabulary mapping
+        print('######### Now showing the vocabulary of each circuit in each layer  ########')
+        model=show_vocabulary_circuit(args)
+        model(inputs)
+        print('######### Completes. ########')
         
         
         

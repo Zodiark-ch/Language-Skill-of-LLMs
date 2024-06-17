@@ -18,4 +18,18 @@ The first step: finish and observe the vocabulary mapping of output in each laye
     5, Are logits of stream equal to the original output logits in each layer? 
         Yes, we design a class 'assert_attentionmlp_equal_output' to show the vocab space of stream logits, which corresponds the logits from original representation from FFN. 
 
-    6, Are all circuits' addtion equal to the original output representation?  
+
+    6, Are all circuits' addtion equal to the original output representation? 
+        We design a class 'assert_circuits_equal_output' to show the decouplement of forward.  
+        All consists of 6 circuits, 
+        c1 represents the input self. 
+        c2 represents the attention-only circuits, showing the contribution of unique attention. 
+        c3 represents the MLP-only circuits, showing the contribution of unique MLP. 
+        c4 represents the attention+MLP circuits, showing the contribution of path through attention followed by mlp. 
+        c5 represents the synergistic circuits, showing the synergistic contribution of bias(Wmlp1) to residual and attention to mlp. 
+            It means when residual stream was decoupled into several circuits, the loss distribution caused by activation. 
+        c6 represents the translation circuits, it add a bias to vocabulary distribution. 
+
+        Their sum is equal to the original output representation. 
+
+    7, How does each circuit perform in vocabulary space?
