@@ -1,7 +1,7 @@
 import torch
 from args import DeepArgs
 from utils import set_gpu 
-from representation_vocb import assert_FFNandproduction_gpt2xl,show_each_layer_vocb,assert_attentionmlp_equal_output,assert_circuits_equal_output,show_vocabulary_circuit
+from demo_representation_vocb import assert_FFNandproduction_gpt2xl,show_each_layer_vocb,assert_attentionmlp_equal_output,assert_circuits_equal_output,show_vocabulary_circuit
 from transformers import HfArgumentParser,AutoTokenizer,GPT2LMHeadModel
 
 

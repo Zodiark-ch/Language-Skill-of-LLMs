@@ -33,3 +33,7 @@ The first step: finish and observe the vocabulary mapping of output in each laye
         Their sum is equal to the original output representation. 
 
     7, How does each circuit perform in vocabulary space?
+        Some has clear senmantic, showed in class show_vocabulary_circuit in details. 
+
+    8, A dataset-wise analysis for attention circuit (circuit 1 and 2):
+        

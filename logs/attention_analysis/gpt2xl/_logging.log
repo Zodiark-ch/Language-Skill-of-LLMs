@@ -1,0 +1,523 @@
+[2024-06-18 21:39:08,095][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 0-th layer
+[2024-06-18 21:39:08,151][circuit_into_ebeddingspace.py][line:242][INFO] ##0-th layer ##KLD##: The KL(C1||all) is 4.723435401916504
+[2024-06-18 21:39:08,151][circuit_into_ebeddingspace.py][line:243][INFO] ##0-th layer ##KLD##: The KL(C2||all) is 8.616436004638672
+[2024-06-18 21:39:08,151][circuit_into_ebeddingspace.py][line:245][INFO] ##0-th layer ##KLD##: The KL(H1||all) is 12.868058204650879
+[2024-06-18 21:39:08,151][circuit_into_ebeddingspace.py][line:246][INFO] ##0-th layer ##KLD##: The KL(H2||all) is 13.52878475189209
+[2024-06-18 21:39:08,151][circuit_into_ebeddingspace.py][line:247][INFO] ##0-th layer ##KLD##: The KL(H3||all) is 19.05883026123047
+[2024-06-18 21:39:08,151][circuit_into_ebeddingspace.py][line:248][INFO] ##0-th layer ##KLD##: The KL(H4||all) is 8.942604064941406
+[2024-06-18 21:39:08,151][circuit_into_ebeddingspace.py][line:249][INFO] ##0-th layer ##KLD##: The KL(H5||all) is 18.988500595092773
+[2024-06-18 21:39:08,152][circuit_into_ebeddingspace.py][line:250][INFO] ##0-th layer ##KLD##: The KL(H6||all) is 17.84433364868164
+[2024-06-18 21:39:08,152][circuit_into_ebeddingspace.py][line:251][INFO] ##0-th layer ##KLD##: The KL(H7||all) is 13.45247745513916
+[2024-06-18 21:39:08,152][circuit_into_ebeddingspace.py][line:252][INFO] ##0-th layer ##KLD##: The KL(H8||all) is 20.725614547729492
+[2024-06-18 21:39:08,152][circuit_into_ebeddingspace.py][line:253][INFO] ##0-th layer ##KLD##: The KL(H9||all) is 17.5338134765625
+[2024-06-18 21:39:08,152][circuit_into_ebeddingspace.py][line:254][INFO] ##0-th layer ##KLD##: The KL(H10||all) is 15.998708724975586
+[2024-06-18 21:39:08,152][circuit_into_ebeddingspace.py][line:255][INFO] ##0-th layer ##KLD##: The KL(H11||all) is 17.505056381225586
+[2024-06-18 21:39:08,152][circuit_into_ebeddingspace.py][line:256][INFO] ##0-th layer ##KLD##: The KL(H12||all) is 27.973846435546875
+[2024-06-18 21:39:08,152][circuit_into_ebeddingspace.py][line:257][INFO] ##0-th layer ##KLD##: The most minimal KLD head is head-4 with value 8.942604064941406
+[2024-06-18 21:39:08,168][circuit_into_ebeddingspace.py][line:277][INFO] ##0-th layer ##Token##: The top 10 tokens of all are  downtown revital town core redevelopment skyline street city Downtown skysc
+[2024-06-18 21:39:08,169][circuit_into_ebeddingspace.py][line:278][INFO] ##0-th layer ##Token##: The top 10 tokens of c1 are  downtown Downtown mathemat destro horizont challeng corridowntown Citiz arrang
+[2024-06-18 21:39:08,169][circuit_into_ebeddingspace.py][line:279][INFO] ##0-th layer ##Token##: The top 10 tokens of c2 are sw core center revital block fac j boost trade min
+[2024-06-18 21:39:08,169][circuit_into_ebeddingspace.py][line:280][INFO] ##0-th layer ##Token##: The top 10 tokens of h1 are FontSizeosauruswagondaleTextColorotleintoshaclevieros
+[2024-06-18 21:39:08,169][circuit_into_ebeddingspace.py][line:281][INFO] ##0-th layer ##Token##: The top 10 tokens of h2 are andiseruction scenearde hook sectionblastinated return brass
+[2024-06-18 21:39:08,169][circuit_into_ebeddingspace.py][line:282][INFO] ##0-th layer ##Token##: The top 10 tokens of h3 are  Turns Awareness Within Connection Ratio Acc To Chak Generator Over
+[2024-06-18 21:39:08,170][circuit_into_ebeddingspace.py][line:283][INFO] ##0-th layer ##Token##: The top 10 tokens of h4 are avoriteconservancythelesspai notor challeng mathematyout�awaru
+[2024-06-18 21:39:08,170][circuit_into_ebeddingspace.py][line:284][INFO] ##0-th layer ##Token##: The top 10 tokens of h5 are  successors oun�� revitalillsrafted conventions livest��� defunct
+[2024-06-18 21:39:08,170][circuit_into_ebeddingspace.py][line:285][INFO] ##0-th layer ##Token##: The top 10 tokens of h6 are agonists Recallpeakitution Scoutingitutesitutegroundspayerground
+[2024-06-18 21:39:08,170][circuit_into_ebeddingspace.py][line:286][INFO] ##0-th layer ##Token##: The top 10 tokens of h7 are weedーテhalla Brosroththelessaponvinelehem Sloan
+[2024-06-18 21:39:08,170][circuit_into_ebeddingspace.py][line:287][INFO] ##0-th layer ##Token##: The top 10 tokens of h8 are ッドエル TanzliojamIM Lip Hazッmine
+[2024-06-18 21:39:08,171][circuit_into_ebeddingspace.py][line:288][INFO] ##0-th layer ##Token##: The top 10 tokens of h9 are  guiActiveUn writTextColor "$:/iless interview itself attempt updateOTAL
+[2024-06-18 21:39:08,171][circuit_into_ebeddingspace.py][line:289][INFO] ##0-th layer ##Token##: The top 10 tokens of h10 are  hoodmer scanner generator processormin unit filter cameracomputer
+[2024-06-18 21:39:08,171][circuit_into_ebeddingspace.py][line:290][INFO] ##0-th layer ##Token##: The top 10 tokens of h11 are avingcolouritiallyexpressiongettablemaxctorAPIsw magn
+[2024-06-18 21:39:08,171][circuit_into_ebeddingspace.py][line:291][INFO] ##0-th layer ##Token##: The top 10 tokens of h12 are NetMessagetaboola��SELECTICO*/(APDWAYS conce certain
+[2024-06-18 21:39:08,175][circuit_into_ebeddingspace.py][line:339][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h1 are incial サーティワンChargessoever Gork Penalty Pwr DonationCNN Adjusted
+[2024-06-18 21:39:08,175][circuit_into_ebeddingspace.py][line:340][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h2 are andiseruedeeringarde Scheduleilagemastardingruction lieu
+[2024-06-18 21:39:08,175][circuit_into_ebeddingspace.py][line:341][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h3 are ��� opioahonconservancyisphereinoapert metic resil��
+[2024-06-18 21:39:08,175][circuit_into_ebeddingspace.py][line:342][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h4 are  challeng mathematconservancythelessyout notor condemavoriteinoa neighb
+[2024-06-18 21:39:08,176][circuit_into_ebeddingspace.py][line:343][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h5 are  successors ounenhagen�� revital livestrafted mosqu successorizzle
+[2024-06-18 21:39:08,176][circuit_into_ebeddingspace.py][line:344][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h6 are peakituteitutionagonistsitutes Recall disadvantages boostpayer Preferences
+[2024-06-18 21:39:08,176][circuit_into_ebeddingspace.py][line:345][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h7 are populationstreet neighborhoodfamilyserving NeighborhoodParty downtowntiny龍契士
+[2024-06-18 21:39:08,176][circuit_into_ebeddingspace.py][line:346][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h8 are  afarKindEs Innocent;;;;;;;;;;;;uve Exile Fant'士
+[2024-06-18 21:39:08,176][circuit_into_ebeddingspace.py][line:347][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h9 are conservancyaweibusters Tray depot Plaza challeng redes Macintosh oven
+[2024-06-18 21:39:08,177][circuit_into_ebeddingspace.py][line:348][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h10 are ��terness Foleyters Tall Neh Simpsonvierullah!--
+[2024-06-18 21:39:08,177][circuit_into_ebeddingspace.py][line:349][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h11 are analysis apparatusresearchdesigneducationimposed infrastructure cess system profile
+[2024-06-18 21:39:08,177][circuit_into_ebeddingspace.py][line:350][INFO] ##0-th layer ##Token##: The top 10 tokens of OV path in h12 are aer largeDownloadWARDoS ACTIONSfallaeznatureconservancy Vaultrh
+[2024-06-18 21:39:08,179][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 1-th layer
+[2024-06-18 21:39:08,186][circuit_into_ebeddingspace.py][line:242][INFO] ##1-th layer ##KLD##: The KL(C1||all) is 0.05120457708835602
+[2024-06-18 21:39:08,186][circuit_into_ebeddingspace.py][line:243][INFO] ##1-th layer ##KLD##: The KL(C2||all) is 9.46781063079834
+[2024-06-18 21:39:08,186][circuit_into_ebeddingspace.py][line:245][INFO] ##1-th layer ##KLD##: The KL(H1||all) is 15.518595695495605
+[2024-06-18 21:39:08,186][circuit_into_ebeddingspace.py][line:246][INFO] ##1-th layer ##KLD##: The KL(H2||all) is 14.035537719726562
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:247][INFO] ##1-th layer ##KLD##: The KL(H3||all) is 17.508106231689453
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:248][INFO] ##1-th layer ##KLD##: The KL(H4||all) is 12.590794563293457
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:249][INFO] ##1-th layer ##KLD##: The KL(H5||all) is 11.912158012390137
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:250][INFO] ##1-th layer ##KLD##: The KL(H6||all) is 15.51504135131836
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:251][INFO] ##1-th layer ##KLD##: The KL(H7||all) is 15.094742774963379
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:252][INFO] ##1-th layer ##KLD##: The KL(H8||all) is 11.930182456970215
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:253][INFO] ##1-th layer ##KLD##: The KL(H9||all) is 13.614069938659668
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:254][INFO] ##1-th layer ##KLD##: The KL(H10||all) is 13.03421401977539
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:255][INFO] ##1-th layer ##KLD##: The KL(H11||all) is 20.341297149658203
+[2024-06-18 21:39:08,187][circuit_into_ebeddingspace.py][line:256][INFO] ##1-th layer ##KLD##: The KL(H12||all) is 30.849641799926758
+[2024-06-18 21:39:08,188][circuit_into_ebeddingspace.py][line:257][INFO] ##1-th layer ##KLD##: The most minimal KLD head is head-5 with value 11.912158012390137
+[2024-06-18 21:39:08,189][circuit_into_ebeddingspace.py][line:277][INFO] ##1-th layer ##Token##: The top 10 tokens of all are  downtown redevelopment revital town plaza area street core mall park
+[2024-06-18 21:39:08,189][circuit_into_ebeddingspace.py][line:278][INFO] ##1-th layer ##Token##: The top 10 tokens of c1 are  downtown revital town core redevelopment skyline street city Downtown skysc
+[2024-06-18 21:39:08,189][circuit_into_ebeddingspace.py][line:279][INFO] ##1-th layer ##Token##: The top 10 tokens of c2 are  area Terminal today Prospect Outer Independence Citizen Bohem Ahead cavern
+[2024-06-18 21:39:08,189][circuit_into_ebeddingspace.py][line:280][INFO] ##1-th layer ##Token##: The top 10 tokens of h1 are  largeDownloadetheless Narc bloodstream suspense Im Unique Outer quint orbit
+[2024-06-18 21:39:08,190][circuit_into_ebeddingspace.py][line:281][INFO] ##1-th layer ##Token##: The top 10 tokens of h2 are iter Fortress tradition Valeessengone Explorer circuit Seventhender
+[2024-06-18 21:39:08,190][circuit_into_ebeddingspace.py][line:282][INFO] ##1-th layer ##Token##: The top 10 tokens of h3 are BuyableInstoreAndOnline awa redesiverpoolredientsvettesenalwine Hambドラ
+[2024-06-18 21:39:08,190][circuit_into_ebeddingspace.py][line:283][INFO] ##1-th layer ##Token##: The top 10 tokens of h4 are  circa nil nav neither Whit Page whatsoever torches scal Westminster
+[2024-06-18 21:39:08,190][circuit_into_ebeddingspace.py][line:284][INFO] ##1-th layer ##Token##: The top 10 tokens of h5 are },".) largeDownload congr)-- dev) Beir athletBG
+[2024-06-18 21:39:08,190][circuit_into_ebeddingspace.py][line:285][INFO] ##1-th layer ##Token##: The top 10 tokens of h6 are mun unfoldfleetbartboybizillaryvalespringbowl
+[2024-06-18 21:39:08,191][circuit_into_ebeddingspace.py][line:286][INFO] ##1-th layer ##Token##: The top 10 tokens of h7 are orah Ostillyoweundekillaryontilibich
+[2024-06-18 21:39:08,191][circuit_into_ebeddingspace.py][line:287][INFO] ##1-th layer ##Token##: The top 10 tokens of h8 are Tokens SmithsonianOHN Greenwood上GREENTextColorStretch++++++++PIN
+[2024-06-18 21:39:08,191][circuit_into_ebeddingspace.py][line:288][INFO] ##1-th layer ##Token##: The top 10 tokens of h9 are 'K "-*onga * S O M
+[2024-06-18 21:39:08,191][circuit_into_ebeddingspace.py][line:289][INFO] ##1-th layer ##Token##: The top 10 tokens of h10 are  ",の� K'fracturingperty the iPk
+[2024-06-18 21:39:08,191][circuit_into_ebeddingspace.py][line:290][INFO] ##1-th layer ##Token##: The top 10 tokens of h11 are ICEhurienICESharevectuaryiannopoulosICO Solar
+[2024-06-18 21:39:08,191][circuit_into_ebeddingspace.py][line:291][INFO] ##1-th layer ##Token##: The top 10 tokens of h12 are  skill gen physic Pastebin ail innate pertinent supplementaryć omission
+[2024-06-18 21:39:08,195][circuit_into_ebeddingspace.py][line:339][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h1 are #$ circles Rout rabbit fosslake Victoria Tul Burr vulnerable
+[2024-06-18 21:39:08,195][circuit_into_ebeddingspace.py][line:340][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h2 are  Dungeons terminals confines Fiestaliam banksfieldsindustinges settlements
+[2024-06-18 21:39:08,195][circuit_into_ebeddingspace.py][line:341][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h3 are BuyableInstoreAndOnlineiHUDⓘLuckMand Welshingengnu Hath  
+[2024-06-18 21:39:08,195][circuit_into_ebeddingspace.py][line:342][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h4 are  nil circa Whit nav\- brill Westminster presses torches sockets
+[2024-06-18 21:39:08,196][circuit_into_ebeddingspace.py][line:343][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h5 are dyl)--glomer suspicbryceebus)). Admission Cheongadj
+[2024-06-18 21:39:08,196][circuit_into_ebeddingspace.py][line:344][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h6 are hedon上hornrubyrdjoin�pointer:{�
+[2024-06-18 21:39:08,196][circuit_into_ebeddingspace.py][line:345][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h7 are  Parkingista Downtown downtown Halls occupancy dwellings Streetistashey
+[2024-06-18 21:39:08,196][circuit_into_ebeddingspace.py][line:346][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h8 are  downtown Lexington Downtownowntown Municipal storefront Omahazonaadena Parkway
+[2024-06-18 21:39:08,196][circuit_into_ebeddingspace.py][line:347][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h9 are eneggerrogen Freud Rousse dopingヴ Parenthoodizontidon reper
+[2024-06-18 21:39:08,197][circuit_into_ebeddingspace.py][line:348][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h10 are  Chandra protocols formatakuya Mirror Byte Deep playback summary categories
+[2024-06-18 21:39:08,197][circuit_into_ebeddingspace.py][line:349][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h11 are rienICOveictionICEICESLYborn ServIA
+[2024-06-18 21:39:08,197][circuit_into_ebeddingspace.py][line:350][INFO] ##1-th layer ##Token##: The top 10 tokens of OV path in h12 are ć skill gen Rowling demonstrated confessed Rahman narrated Metatron serum
+[2024-06-18 21:39:08,199][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 2-th layer
+[2024-06-18 21:39:08,205][circuit_into_ebeddingspace.py][line:242][INFO] ##2-th layer ##KLD##: The KL(C1||all) is 0.15872111916542053
+[2024-06-18 21:39:08,205][circuit_into_ebeddingspace.py][line:243][INFO] ##2-th layer ##KLD##: The KL(C2||all) is 4.421545028686523
+[2024-06-18 21:39:08,206][circuit_into_ebeddingspace.py][line:245][INFO] ##2-th layer ##KLD##: The KL(H1||all) is 21.987167358398438
+[2024-06-18 21:39:08,206][circuit_into_ebeddingspace.py][line:246][INFO] ##2-th layer ##KLD##: The KL(H2||all) is 2.3311655521392822
+[2024-06-18 21:39:08,206][circuit_into_ebeddingspace.py][line:247][INFO] ##2-th layer ##KLD##: The KL(H3||all) is 16.729530334472656
+[2024-06-18 21:39:08,206][circuit_into_ebeddingspace.py][line:248][INFO] ##2-th layer ##KLD##: The KL(H4||all) is 16.73893928527832
+[2024-06-18 21:39:08,206][circuit_into_ebeddingspace.py][line:249][INFO] ##2-th layer ##KLD##: The KL(H5||all) is 15.973684310913086
+[2024-06-18 21:39:08,206][circuit_into_ebeddingspace.py][line:250][INFO] ##2-th layer ##KLD##: The KL(H6||all) is 13.350007057189941
+[2024-06-18 21:39:08,206][circuit_into_ebeddingspace.py][line:251][INFO] ##2-th layer ##KLD##: The KL(H7||all) is 13.95568561553955
+[2024-06-18 21:39:08,206][circuit_into_ebeddingspace.py][line:252][INFO] ##2-th layer ##KLD##: The KL(H8||all) is 18.10068130493164
+[2024-06-18 21:39:08,206][circuit_into_ebeddingspace.py][line:253][INFO] ##2-th layer ##KLD##: The KL(H9||all) is 18.748926162719727
+[2024-06-18 21:39:08,207][circuit_into_ebeddingspace.py][line:254][INFO] ##2-th layer ##KLD##: The KL(H10||all) is 19.437280654907227
+[2024-06-18 21:39:08,207][circuit_into_ebeddingspace.py][line:255][INFO] ##2-th layer ##KLD##: The KL(H11||all) is 20.049650192260742
+[2024-06-18 21:39:08,207][circuit_into_ebeddingspace.py][line:256][INFO] ##2-th layer ##KLD##: The KL(H12||all) is 12.96036148071289
+[2024-06-18 21:39:08,207][circuit_into_ebeddingspace.py][line:257][INFO] ##2-th layer ##KLD##: The most minimal KLD head is head-2 with value 2.3311655521392822
+[2024-06-18 21:39:08,208][circuit_into_ebeddingspace.py][line:277][INFO] ##2-th layer ##Token##: The top 10 tokens of all are  downtown park town street redevelopment area city plaza revital mall
+[2024-06-18 21:39:08,208][circuit_into_ebeddingspace.py][line:278][INFO] ##2-th layer ##Token##: The top 10 tokens of c1 are  downtown redevelopment revital town plaza area street core mall park
+[2024-06-18 21:39:08,209][circuit_into_ebeddingspace.py][line:279][INFO] ##2-th layer ##Token##: The top 10 tokens of c2 are  park Park area Heights City city Waterloo Oregon Cemetery East
+[2024-06-18 21:39:08,209][circuit_into_ebeddingspace.py][line:280][INFO] ##2-th layer ##Token##: The top 10 tokens of h1 are  RomeoethelessDisclaimerReviewerComplFORE ®田 GuiltyTED
+[2024-06-18 21:39:08,209][circuit_into_ebeddingspace.py][line:281][INFO] ##2-th layer ##Token##: The top 10 tokens of h2 are  downtown Gardens Downtown amenitiesowntown Parking buildingsopolisesvillePortland
+[2024-06-18 21:39:08,209][circuit_into_ebeddingspace.py][line:282][INFO] ##2-th layer ##Token##: The top 10 tokens of h3 are llah midst vicinity CNBC latter guise stead manner form fashion
+[2024-06-18 21:39:08,209][circuit_into_ebeddingspace.py][line:283][INFO] ##2-th layer ##Token##: The top 10 tokens of h4 are sted Mail*/( Universitiesن 1953� Carnegiecms Contracts
+[2024-06-18 21:39:08,209][circuit_into_ebeddingspace.py][line:284][INFO] ##2-th layer ##Token##: The top 10 tokens of h5 are ou freecmsru swallwnoreyn Prest cre
+[2024-06-18 21:39:08,210][circuit_into_ebeddingspace.py][line:285][INFO] ##2-th layer ##Token##: The top 10 tokens of h6 are roundRound campaignenderigator round mountain Weekenduties weekend
+[2024-06-18 21:39:08,210][circuit_into_ebeddingspace.py][line:286][INFO] ##2-th layer ##Token##: The top 10 tokens of h7 are ).".).[]." thereof).".). trans etc."
+[2024-06-18 21:39:08,210][circuit_into_ebeddingspace.py][line:287][INFO] ##2-th layer ##Token##: The top 10 tokens of h8 are < exp\//acedts oftenires Usage|
+[2024-06-18 21:39:08,210][circuit_into_ebeddingspace.py][line:288][INFO] ##2-th layer ##Token##: The top 10 tokens of h9 are atoon Slugdeen Henderson alonepartsbourg regionleon Vert
+[2024-06-18 21:39:08,210][circuit_into_ebeddingspace.py][line:289][INFO] ##2-th layer ##Token##: The top 10 tokens of h10 are _>)</ concession Roveonym cul apolog convergenceiqueness recomp
+[2024-06-18 21:39:08,210][circuit_into_ebeddingspace.py][line:290][INFO] ##2-th layer ##Token##: The top 10 tokens of h11 are owlerusknatureconservancyueonseaspericobbiesperselaus
+[2024-06-18 21:39:08,211][circuit_into_ebeddingspace.py][line:291][INFO] ##2-th layer ##Token##: The top 10 tokens of h12 are idthisted Vide meets meet'hatciatingigiierre
+[2024-06-18 21:39:08,214][circuit_into_ebeddingspace.py][line:339][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h1 are  Refresh Berry RD Shuttle Sep Detrupenty Seed Tac
+[2024-06-18 21:39:08,214][circuit_into_ebeddingspace.py][line:340][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h2 are  downtown Parking DowntownowntownPortland parking sidewalks Albanyesville Waterloo
+[2024-06-18 21:39:08,214][circuit_into_ebeddingspace.py][line:341][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h3 are  numbered punct content squeezed slug choke rap cod gunned marks
+[2024-06-18 21:39:08,215][circuit_into_ebeddingspace.py][line:342][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h4 are  incorpor*/(allerycmswarnllularSPONSOREDrenciesfeaturesAFTA
+[2024-06-18 21:39:08,215][circuit_into_ebeddingspace.py][line:343][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h5 are  metab turbript Glasgow disproportion populous latitudelarge aspir Edinburgh
+[2024-06-18 21:39:08,215][circuit_into_ebeddingspace.py][line:344][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h6 are HERormansiNapmorexpr StanleyokéHSuary
+[2024-06-18 21:39:08,215][circuit_into_ebeddingspace.py][line:345][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h7 are ].")..).).[". thereof etc].}.%).
+[2024-06-18 21:39:08,215][circuit_into_ebeddingspace.py][line:346][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h8 are  con raceames · classification mag apart rele odds manifest
+[2024-06-18 21:39:08,216][circuit_into_ebeddingspace.py][line:347][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h9 are  pond].], Cain Nether]), villageolate town world
+[2024-06-18 21:39:08,216][circuit_into_ebeddingspace.py][line:348][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h10 are populationopolis Tomorrow itselfecooramaambaatten Means Wol
+[2024-06-18 21:39:08,216][circuit_into_ebeddingspace.py][line:349][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h11 are natureconservancyuratxualerennowleraxterolicyitivenessobbiesursday
+[2024-06-18 21:39:08,216][circuit_into_ebeddingspace.py][line:350][INFO] ##2-th layer ##Token##: The top 10 tokens of OV path in h12 are  Kampisted meetsetta meetiland governedierre, and
+[2024-06-18 21:39:08,218][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 3-th layer
+[2024-06-18 21:39:08,225][circuit_into_ebeddingspace.py][line:242][INFO] ##3-th layer ##KLD##: The KL(C1||all) is 0.16519224643707275
+[2024-06-18 21:39:08,225][circuit_into_ebeddingspace.py][line:243][INFO] ##3-th layer ##KLD##: The KL(C2||all) is 6.146240234375
+[2024-06-18 21:39:08,225][circuit_into_ebeddingspace.py][line:245][INFO] ##3-th layer ##KLD##: The KL(H1||all) is 12.179384231567383
+[2024-06-18 21:39:08,225][circuit_into_ebeddingspace.py][line:246][INFO] ##3-th layer ##KLD##: The KL(H2||all) is 12.911375999450684
+[2024-06-18 21:39:08,225][circuit_into_ebeddingspace.py][line:247][INFO] ##3-th layer ##KLD##: The KL(H3||all) is 14.55736255645752
+[2024-06-18 21:39:08,225][circuit_into_ebeddingspace.py][line:248][INFO] ##3-th layer ##KLD##: The KL(H4||all) is 13.185500144958496
+[2024-06-18 21:39:08,225][circuit_into_ebeddingspace.py][line:249][INFO] ##3-th layer ##KLD##: The KL(H5||all) is 19.372276306152344
+[2024-06-18 21:39:08,225][circuit_into_ebeddingspace.py][line:250][INFO] ##3-th layer ##KLD##: The KL(H6||all) is 12.119311332702637
+[2024-06-18 21:39:08,225][circuit_into_ebeddingspace.py][line:251][INFO] ##3-th layer ##KLD##: The KL(H7||all) is 16.413232803344727
+[2024-06-18 21:39:08,226][circuit_into_ebeddingspace.py][line:252][INFO] ##3-th layer ##KLD##: The KL(H8||all) is 24.786157608032227
+[2024-06-18 21:39:08,226][circuit_into_ebeddingspace.py][line:253][INFO] ##3-th layer ##KLD##: The KL(H9||all) is 11.495016098022461
+[2024-06-18 21:39:08,226][circuit_into_ebeddingspace.py][line:254][INFO] ##3-th layer ##KLD##: The KL(H10||all) is 18.343847274780273
+[2024-06-18 21:39:08,226][circuit_into_ebeddingspace.py][line:255][INFO] ##3-th layer ##KLD##: The KL(H11||all) is 24.528188705444336
+[2024-06-18 21:39:08,226][circuit_into_ebeddingspace.py][line:256][INFO] ##3-th layer ##KLD##: The KL(H12||all) is 13.636122703552246
+[2024-06-18 21:39:08,226][circuit_into_ebeddingspace.py][line:257][INFO] ##3-th layer ##KLD##: The most minimal KLD head is head-9 with value 11.495016098022461
+[2024-06-18 21:39:08,227][circuit_into_ebeddingspace.py][line:277][INFO] ##3-th layer ##Token##: The top 10 tokens of all are  downtown park area town city district plaza street redevelopment Manhattan
+[2024-06-18 21:39:08,228][circuit_into_ebeddingspace.py][line:278][INFO] ##3-th layer ##Token##: The top 10 tokens of c1 are  downtown park town street redevelopment area city plaza revital mall
+[2024-06-18 21:39:08,228][circuit_into_ebeddingspace.py][line:279][INFO] ##3-th layer ##Token##: The top 10 tokens of c2 are .......... PARKstand area Northtaboolavaleland Canyon hurry
+[2024-06-18 21:39:08,228][circuit_into_ebeddingspace.py][line:280][INFO] ##3-th layer ##Token##: The top 10 tokens of h1 are lihoodntitri Mic FedEx EDITウスEnlargeui MT
+[2024-06-18 21:39:08,228][circuit_into_ebeddingspace.py][line:281][INFO] ##3-th layer ##Token##: The top 10 tokens of h2 are ieldingilaterallyrangingrangeaziutics Quanabwezanogan
+[2024-06-18 21:39:08,228][circuit_into_ebeddingspace.py][line:282][INFO] ##3-th layer ##Token##: The top 10 tokens of h3 are speak deaf��ividualNetMessagehootingkj midst circles obe
+[2024-06-18 21:39:08,228][circuit_into_ebeddingspace.py][line:283][INFO] ##3-th layer ##Token##: The top 10 tokens of h4 are ouherhes molelinedutter frontgie NIC CN
+[2024-06-18 21:39:08,229][circuit_into_ebeddingspace.py][line:284][INFO] ##3-th layer ##Token##: The top 10 tokens of h5 are anoseticyles recreanshalla indirectly lovers's suddenly
+[2024-06-18 21:39:08,229][circuit_into_ebeddingspace.py][line:285][INFO] ##3-th layer ##Token##: The top 10 tokens of h6 are  Located seats Pavilion downtown PARK Museum Parkway Downtown Its Pione
+[2024-06-18 21:39:08,229][circuit_into_ebeddingspace.py][line:286][INFO] ##3-th layer ##Token##: The top 10 tokens of h7 are  Cummings character HigherericSubjectADVERTISEMENT Ambro Architect Crim composition
+[2024-06-18 21:39:08,229][circuit_into_ebeddingspace.py][line:287][INFO] ##3-th layer ##Token##: The top 10 tokens of h8 are theless conclud suspic mathemat comprompeat helicop prosecamorphacea
+[2024-06-18 21:39:08,229][circuit_into_ebeddingspace.py][line:288][INFO] ##3-th layer ##Token##: The top 10 tokens of h9 are ゴンadedrive�ster戦kh Ninja神roller
+[2024-06-18 21:39:08,230][circuit_into_ebeddingspace.py][line:289][INFO] ##3-th layer ##Token##: The top 10 tokens of h10 are  DC LDorialcells Craftlc- Arrowignment increments
+[2024-06-18 21:39:08,230][circuit_into_ebeddingspace.py][line:290][INFO] ##3-th layer ##Token##: The top 10 tokens of h11 are  silence inaction----------- VIDEOS-------------------- discrepancy delayWARE omission agree
+[2024-06-18 21:39:08,230][circuit_into_ebeddingspace.py][line:291][INFO] ##3-th layer ##Token##: The top 10 tokens of h12 are  Consolid Galiletnc conserv Tal Aram Kenn Khalid Marriott Lens
+[2024-06-18 21:39:08,233][circuit_into_ebeddingspace.py][line:339][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h1 are etheless PD environment方 Dolphin Metro facade town upgr convenience
+[2024-06-18 21:39:08,234][circuit_into_ebeddingspace.py][line:340][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h2 are dpougymromygyptiariesewspsydkmouth
+[2024-06-18 21:39:08,234][circuit_into_ebeddingspace.py][line:341][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h3 are speak slots bloodstream Invalid eyes Lucky lungs Texas Gore lucid
+[2024-06-18 21:39:08,234][circuit_into_ebeddingspace.py][line:342][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h4 are Availabilityellen Bound Skydragon opio Toll Sacred Afgh Rampage Lower
+[2024-06-18 21:39:08,234][circuit_into_ebeddingspace.py][line:343][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h5 are assoreroatobolatronaticallyanoainaateliar
+[2024-06-18 21:39:08,234][circuit_into_ebeddingspace.py][line:344][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h6 are opolis downtown Located seatsLocatedurban Downtown Pavilionowntown caf
+[2024-06-18 21:39:08,235][circuit_into_ebeddingspace.py][line:345][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h7 are stan largeDownload Estimatedhirelegal retribugshess Cassidycy
+[2024-06-18 21:39:08,235][circuit_into_ebeddingspace.py][line:346][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h8 are  Carthpoporate neighb eleph▬etheless Cirisepers
+[2024-06-18 21:39:08,235][circuit_into_ebeddingspace.py][line:347][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h9 are usraroletutorarylDerlusStoryFordccWAR
+[2024-06-18 21:39:08,235][circuit_into_ebeddingspace.py][line:348][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h10 are loreiste FargoukemiaElse MendVe Kamp Zimmer defense
+[2024-06-18 21:39:08,235][circuit_into_ebeddingspace.py][line:349][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h11 are  return--------------------------- ECO afterward delay resist-------------------- necessary accompany
+[2024-06-18 21:39:08,235][circuit_into_ebeddingspace.py][line:350][INFO] ##3-th layer ##Token##: The top 10 tokens of OV path in h12 are greeelegroundsutterstock areaainmenttnceret deterrencearrell
+[2024-06-18 21:39:08,237][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 4-th layer
+[2024-06-18 21:39:08,244][circuit_into_ebeddingspace.py][line:242][INFO] ##4-th layer ##KLD##: The KL(C1||all) is 0.7237287163734436
+[2024-06-18 21:39:08,244][circuit_into_ebeddingspace.py][line:243][INFO] ##4-th layer ##KLD##: The KL(C2||all) is 9.154380798339844
+[2024-06-18 21:39:08,244][circuit_into_ebeddingspace.py][line:245][INFO] ##4-th layer ##KLD##: The KL(H1||all) is 9.389772415161133
+[2024-06-18 21:39:08,244][circuit_into_ebeddingspace.py][line:246][INFO] ##4-th layer ##KLD##: The KL(H2||all) is 13.651378631591797
+[2024-06-18 21:39:08,244][circuit_into_ebeddingspace.py][line:247][INFO] ##4-th layer ##KLD##: The KL(H3||all) is 17.659120559692383
+[2024-06-18 21:39:08,244][circuit_into_ebeddingspace.py][line:248][INFO] ##4-th layer ##KLD##: The KL(H4||all) is 16.723846435546875
+[2024-06-18 21:39:08,244][circuit_into_ebeddingspace.py][line:249][INFO] ##4-th layer ##KLD##: The KL(H5||all) is 28.387161254882812
+[2024-06-18 21:39:08,245][circuit_into_ebeddingspace.py][line:250][INFO] ##4-th layer ##KLD##: The KL(H6||all) is 17.240524291992188
+[2024-06-18 21:39:08,245][circuit_into_ebeddingspace.py][line:251][INFO] ##4-th layer ##KLD##: The KL(H7||all) is 13.939398765563965
+[2024-06-18 21:39:08,245][circuit_into_ebeddingspace.py][line:252][INFO] ##4-th layer ##KLD##: The KL(H8||all) is 15.0766019821167
+[2024-06-18 21:39:08,245][circuit_into_ebeddingspace.py][line:253][INFO] ##4-th layer ##KLD##: The KL(H9||all) is 10.45922565460205
+[2024-06-18 21:39:08,245][circuit_into_ebeddingspace.py][line:254][INFO] ##4-th layer ##KLD##: The KL(H10||all) is 16.091259002685547
+[2024-06-18 21:39:08,245][circuit_into_ebeddingspace.py][line:255][INFO] ##4-th layer ##KLD##: The KL(H11||all) is 11.515913963317871
+[2024-06-18 21:39:08,245][circuit_into_ebeddingspace.py][line:256][INFO] ##4-th layer ##KLD##: The KL(H12||all) is 12.378056526184082
+[2024-06-18 21:39:08,245][circuit_into_ebeddingspace.py][line:257][INFO] ##4-th layer ##KLD##: The most minimal KLD head is head-1 with value 9.389772415161133
+[2024-06-18 21:39:08,247][circuit_into_ebeddingspace.py][line:277][INFO] ##4-th layer ##Token##: The top 10 tokens of all are  area park downtown plaza district city street town planning hall
+[2024-06-18 21:39:08,247][circuit_into_ebeddingspace.py][line:278][INFO] ##4-th layer ##Token##: The top 10 tokens of c1 are  downtown park area town city district plaza street redevelopment Manhattan
+[2024-06-18 21:39:08,247][circuit_into_ebeddingspace.py][line:279][INFO] ##4-th layer ##Token##: The top 10 tokens of c2 are  hurry formdirectionstand Fallon formation tentoctarial fray
+[2024-06-18 21:39:08,247][circuit_into_ebeddingspace.py][line:280][INFO] ##4-th layer ##Token##: The top 10 tokens of h1 are  clut bracket Desertplace lim cage place
+ territory –
+[2024-06-18 21:39:08,247][circuit_into_ebeddingspace.py][line:281][INFO] ##4-th layer ##Token##: The top 10 tokens of h2 are tncaaULLAssetwangmailThemeaurAATopic
+[2024-06-18 21:39:08,247][circuit_into_ebeddingspace.py][line:282][INFO] ##4-th layer ##Token##: The top 10 tokens of h3 are  Instrumentsancesgarsbaraersengins orchestrowsimates Ambro
+[2024-06-18 21:39:08,248][circuit_into_ebeddingspace.py][line:283][INFO] ##4-th layer ##Token##: The top 10 tokens of h4 are aunsinceanyumerousviron milandyexistingamina sidx
+[2024-06-18 21:39:08,248][circuit_into_ebeddingspace.py][line:284][INFO] ##4-th layer ##Token##: The top 10 tokens of h5 are estampismansedismsudenceuggestNoneNonQuote discern
+[2024-06-18 21:39:08,248][circuit_into_ebeddingspace.py][line:285][INFO] ##4-th layer ##Token##: The top 10 tokens of h6 are formanceden slackhesda minimanismforming reconnectbothutics
+[2024-06-18 21:39:08,248][circuit_into_ebeddingspace.py][line:286][INFO] ##4-th layer ##Token##: The top 10 tokens of h7 are  Slash Granger Shack Militia Moose Power GF Zin FG Malik
+[2024-06-18 21:39:08,248][circuit_into_ebeddingspace.py][line:287][INFO] ##4-th layer ##Token##: The top 10 tokens of h8 are  <-Ps rapestions warrantiesitalsbdaasionsounters mistakes
+[2024-06-18 21:39:08,249][circuit_into_ebeddingspace.py][line:288][INFO] ##4-th layer ##Token##: The top 10 tokens of h9 are central Sas Centralyiporescmobile KabCentral hosts paran
+[2024-06-18 21:39:08,249][circuit_into_ebeddingspace.py][line:289][INFO] ##4-th layer ##Token##: The top 10 tokens of h10 are  NOWundamma now oppositeyetolinorisigor anx
+[2024-06-18 21:39:08,249][circuit_into_ebeddingspace.py][line:290][INFO] ##4-th layer ##Token##: The top 10 tokens of h11 are  city${ charging fight justfighting.......... armed internally graduation
+[2024-06-18 21:39:08,249][circuit_into_ebeddingspace.py][line:291][INFO] ##4-th layer ##Token##: The top 10 tokens of h12 are �� foregroundgovtrackruby gravity Thieficerenced keynote Beir
+[2024-06-18 21:39:08,253][circuit_into_ebeddingspace.py][line:339][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h1 are SquareaturdayMerOSSactionDateSumater DumALSEICE
+[2024-06-18 21:39:08,253][circuit_into_ebeddingspace.py][line:340][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h2 are jahAugartejelagiudependingHubgallrade
+[2024-06-18 21:39:08,253][circuit_into_ebeddingspace.py][line:341][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h3 are artengamdeenensibly embattledathon Neal decoratedightonrenheit
+[2024-06-18 21:39:08,253][circuit_into_ebeddingspace.py][line:342][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h4 are  districts adjoiningviews areasey bridges adjacent populated Areas streets
+[2024-06-18 21:39:08,253][circuit_into_ebeddingspace.py][line:343][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h5 are  written afore interacted analyzed identifies playedetics analysedsoever empirical
+[2024-06-18 21:39:08,253][circuit_into_ebeddingspace.py][line:344][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h6 are  alikedenGBTinstannis agreeconganrug react
+[2024-06-18 21:39:08,254][circuit_into_ebeddingspace.py][line:345][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h7 are htakingicerlightlyatcheakuraujassicoghayneritz
+[2024-06-18 21:39:08,254][circuit_into_ebeddingspace.py][line:346][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h8 are  quit outweigh��seless Rebellocreacters flaw cra flair
+[2024-06-18 21:39:08,254][circuit_into_ebeddingspace.py][line:347][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h9 are  kiosinterstitialpop rooft rooftop pavapore towerCentral umbrella
+[2024-06-18 21:39:08,254][circuit_into_ebeddingspace.py][line:348][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h10 are Balt Elkhof AVGcaster Ajax desk Colo rall Volks
+[2024-06-18 21:39:08,254][circuit_into_ebeddingspace.py][line:349][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h11 are 版 screaming ­][/ prelim]'… paperwork …��
+[2024-06-18 21:39:08,255][circuit_into_ebeddingspace.py][line:350][INFO] ##4-th layer ##Token##: The top 10 tokens of OV path in h12 are area Downingheadmarginhessdos Noon periphery Hitlines
+[2024-06-18 21:39:08,256][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 5-th layer
+[2024-06-18 21:39:08,263][circuit_into_ebeddingspace.py][line:242][INFO] ##5-th layer ##KLD##: The KL(C1||all) is 0.3552631437778473
+[2024-06-18 21:39:08,263][circuit_into_ebeddingspace.py][line:243][INFO] ##5-th layer ##KLD##: The KL(C2||all) is 4.984410762786865
+[2024-06-18 21:39:08,263][circuit_into_ebeddingspace.py][line:245][INFO] ##5-th layer ##KLD##: The KL(H1||all) is 11.422676086425781
+[2024-06-18 21:39:08,263][circuit_into_ebeddingspace.py][line:246][INFO] ##5-th layer ##KLD##: The KL(H2||all) is 15.697872161865234
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:247][INFO] ##5-th layer ##KLD##: The KL(H3||all) is 14.563735961914062
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:248][INFO] ##5-th layer ##KLD##: The KL(H4||all) is 18.13486099243164
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:249][INFO] ##5-th layer ##KLD##: The KL(H5||all) is 15.487239837646484
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:250][INFO] ##5-th layer ##KLD##: The KL(H6||all) is 14.450305938720703
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:251][INFO] ##5-th layer ##KLD##: The KL(H7||all) is 9.81889820098877
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:252][INFO] ##5-th layer ##KLD##: The KL(H8||all) is 16.714677810668945
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:253][INFO] ##5-th layer ##KLD##: The KL(H9||all) is 17.659719467163086
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:254][INFO] ##5-th layer ##KLD##: The KL(H10||all) is 19.155080795288086
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:255][INFO] ##5-th layer ##KLD##: The KL(H11||all) is 4.426874160766602
+[2024-06-18 21:39:08,264][circuit_into_ebeddingspace.py][line:256][INFO] ##5-th layer ##KLD##: The KL(H12||all) is 36.75305938720703
+[2024-06-18 21:39:08,265][circuit_into_ebeddingspace.py][line:257][INFO] ##5-th layer ##KLD##: The most minimal KLD head is head-11 with value 4.426874160766602
+[2024-06-18 21:39:08,266][circuit_into_ebeddingspace.py][line:277][INFO] ##5-th layer ##Token##: The top 10 tokens of all are  downtown area park plaza district city town street Manhattan Chicago
+[2024-06-18 21:39:08,266][circuit_into_ebeddingspace.py][line:278][INFO] ##5-th layer ##Token##: The top 10 tokens of c1 are  area park downtown plaza district city street town planning hall
+[2024-06-18 21:39:08,266][circuit_into_ebeddingspace.py][line:279][INFO] ##5-th layer ##Token##: The top 10 tokens of c2 are  areabound where BoulevardNW Placegro Broadway SOM place
+[2024-06-18 21:39:08,266][circuit_into_ebeddingspace.py][line:280][INFO] ##5-th layer ##Token##: The top 10 tokens of h1 are  peaked claims paraph Retrieved translation rapp site tape weekday claim
+[2024-06-18 21:39:08,267][circuit_into_ebeddingspace.py][line:281][INFO] ##5-th layer ##Token##: The top 10 tokens of h2 are idel Dur sense Miss poss reading reads gunscc lines
+[2024-06-18 21:39:08,267][circuit_into_ebeddingspace.py][line:282][INFO] ##5-th layer ##Token##: The top 10 tokens of h3 are  therefore capsuleBG Tik de tipped however another further Nek
+[2024-06-18 21:39:08,267][circuit_into_ebeddingspace.py][line:283][INFO] ##5-th layer ##Token##: The top 10 tokens of h4 are  respectively Cummings$. Bauer Adin Cadillac. both Moff Darrell
+[2024-06-18 21:39:08,267][circuit_into_ebeddingspace.py][line:284][INFO] ##5-th layer ##Token##: The top 10 tokens of h5 are violenceRomRPGabs footstepshazardWill Sequinskidin
+[2024-06-18 21:39:08,267][circuit_into_ebeddingspace.py][line:285][INFO] ##5-th layer ##Token##: The top 10 tokens of h6 are  Fifth glitter Downs congr Wond feather pressing sketchements phosphate
+[2024-06-18 21:39:08,267][circuit_into_ebeddingspace.py][line:286][INFO] ##5-th layer ##Token##: The top 10 tokens of h7 are llahilleretheless ATsis jail Deutsche Gehomaspolit
+[2024-06-18 21:39:08,268][circuit_into_ebeddingspace.py][line:287][INFO] ##5-th layer ##Token##: The top 10 tokens of h8 are xtvertope tookyneuptverselyoreisecusp
+[2024-06-18 21:39:08,268][circuit_into_ebeddingspace.py][line:288][INFO] ##5-th layer ##Token##: The top 10 tokens of h9 are ══��ombatitelykef Kusverages Mong�urious
+[2024-06-18 21:39:08,268][circuit_into_ebeddingspace.py][line:289][INFO] ##5-th layer ##Token##: The top 10 tokens of h10 are Dialogueotomomskythiaxitchnologyaddonucklesenumoided
+[2024-06-18 21:39:08,268][circuit_into_ebeddingspace.py][line:290][INFO] ##5-th layer ##Token##: The top 10 tokens of h11 are owntown downtown streetsesh pedestrian Corridor corridor corridors Avenue Mall
+[2024-06-18 21:39:08,268][circuit_into_ebeddingspace.py][line:291][INFO] ##5-th layer ##Token##: The top 10 tokens of h12 are  allele20439 fitness paternity antibodies vaccine genetically serum flu cortisol
+[2024-06-18 21:39:08,272][circuit_into_ebeddingspace.py][line:339][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h1 are  vicinity residential downtown town southwest north shoot area southeast Mt
+[2024-06-18 21:39:08,272][circuit_into_ebeddingspace.py][line:340][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h2 are anganibrary Glasgow Savannah fracturing Notting datingmilo Auckland Greenwich
+[2024-06-18 21:39:08,272][circuit_into_ebeddingspace.py][line:341][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h3 are  nutshell precincts mode capacity horizontal vertical 1940 waters nost rather
+[2024-06-18 21:39:08,272][circuit_into_ebeddingspace.py][line:342][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h4 are  respectivelyraneanSPONSORED BuckleychestRen assorted Chong PsyNet�
+[2024-06-18 21:39:08,273][circuit_into_ebeddingspace.py][line:343][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h5 are  abruptlyyu promptly violentlysoonistries suddenlytrySac could
+[2024-06-18 21:39:08,273][circuit_into_ebeddingspace.py][line:344][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h6 are  Nationwide Cheong━ Michigan Khan Mall�mxド Wide
+[2024-06-18 21:39:08,273][circuit_into_ebeddingspace.py][line:345][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h7 are ind"},{"batsmunmiddlebellinesheadSundgrand
+[2024-06-18 21:39:08,273][circuit_into_ebeddingspace.py][line:346][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h8 are  Alexandriaicago PennsylvaniaDenver Damascus Wichita Denver Aberdeen TucsonWASHINGTON
+[2024-06-18 21:39:08,273][circuit_into_ebeddingspace.py][line:347][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h9 are  Elise Emirsafidable Fas TAMADRA RSelect FrançMine
+[2024-06-18 21:39:08,274][circuit_into_ebeddingspace.py][line:348][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h10 are asso Detectedievokiazmaniritojialdoizukies
+[2024-06-18 21:39:08,274][circuit_into_ebeddingspace.py][line:349][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h11 are  downtown Corridorowntown adjacentatown corridor adjoining Avenue District districts
+[2024-06-18 21:39:08,274][circuit_into_ebeddingspace.py][line:350][INFO] ##5-th layer ##Token##: The top 10 tokens of OV path in h12 are  antibodies genetically saliva serum worms tested genomes genetic genome flesh
+[2024-06-18 21:39:08,276][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 6-th layer
+[2024-06-18 21:39:08,282][circuit_into_ebeddingspace.py][line:242][INFO] ##6-th layer ##KLD##: The KL(C1||all) is 0.4428979456424713
+[2024-06-18 21:39:08,283][circuit_into_ebeddingspace.py][line:243][INFO] ##6-th layer ##KLD##: The KL(C2||all) is 10.196029663085938
+[2024-06-18 21:39:08,283][circuit_into_ebeddingspace.py][line:245][INFO] ##6-th layer ##KLD##: The KL(H1||all) is 12.181203842163086
+[2024-06-18 21:39:08,283][circuit_into_ebeddingspace.py][line:246][INFO] ##6-th layer ##KLD##: The KL(H2||all) is 12.091755867004395
+[2024-06-18 21:39:08,283][circuit_into_ebeddingspace.py][line:247][INFO] ##6-th layer ##KLD##: The KL(H3||all) is 15.875992774963379
+[2024-06-18 21:39:08,283][circuit_into_ebeddingspace.py][line:248][INFO] ##6-th layer ##KLD##: The KL(H4||all) is 12.93856143951416
+[2024-06-18 21:39:08,283][circuit_into_ebeddingspace.py][line:249][INFO] ##6-th layer ##KLD##: The KL(H5||all) is 9.927273750305176
+[2024-06-18 21:39:08,283][circuit_into_ebeddingspace.py][line:250][INFO] ##6-th layer ##KLD##: The KL(H6||all) is 23.165361404418945
+[2024-06-18 21:39:08,283][circuit_into_ebeddingspace.py][line:251][INFO] ##6-th layer ##KLD##: The KL(H7||all) is 33.06365966796875
+[2024-06-18 21:39:08,283][circuit_into_ebeddingspace.py][line:252][INFO] ##6-th layer ##KLD##: The KL(H8||all) is 11.23222541809082
+[2024-06-18 21:39:08,284][circuit_into_ebeddingspace.py][line:253][INFO] ##6-th layer ##KLD##: The KL(H9||all) is 13.313226699829102
+[2024-06-18 21:39:08,284][circuit_into_ebeddingspace.py][line:254][INFO] ##6-th layer ##KLD##: The KL(H10||all) is 15.37109661102295
+[2024-06-18 21:39:08,284][circuit_into_ebeddingspace.py][line:255][INFO] ##6-th layer ##KLD##: The KL(H11||all) is 7.575506210327148
+[2024-06-18 21:39:08,284][circuit_into_ebeddingspace.py][line:256][INFO] ##6-th layer ##KLD##: The KL(H12||all) is 16.027849197387695
+[2024-06-18 21:39:08,284][circuit_into_ebeddingspace.py][line:257][INFO] ##6-th layer ##KLD##: The most minimal KLD head is head-11 with value 7.575506210327148
+[2024-06-18 21:39:08,285][circuit_into_ebeddingspace.py][line:277][INFO] ##6-th layer ##Token##: The top 10 tokens of all are  downtown park area plaza Chicago Manhattan Atlanta city district Seattle
+[2024-06-18 21:39:08,285][circuit_into_ebeddingspace.py][line:278][INFO] ##6-th layer ##Token##: The top 10 tokens of c1 are  downtown area park plaza district city town street Manhattan Chicago
+[2024-06-18 21:39:08,286][circuit_into_ebeddingspace.py][line:279][INFO] ##6-th layer ##Token##: The top 10 tokens of c2 are  Parking Provides Repair Capacityucl Rem Dwight Downtown Quiet..........
+[2024-06-18 21:39:08,286][circuit_into_ebeddingspace.py][line:280][INFO] ##6-th layer ##Token##: The top 10 tokens of h1 are  itselfpres Pyramid its Sty Its Contains Boeing Serving Hydra
+[2024-06-18 21:39:08,286][circuit_into_ebeddingspace.py][line:281][INFO] ##6-th layer ##Token##: The top 10 tokens of h2 are  Queensstan gooseatus quotations appealed Goose suedunciation Odyssey
+[2024-06-18 21:39:08,286][circuit_into_ebeddingspace.py][line:282][INFO] ##6-th layer ##Token##: The top 10 tokens of h3 are  climate Ceres U Arctic global Trade Safety Climate speculative Bei
+[2024-06-18 21:39:08,286][circuit_into_ebeddingspace.py][line:283][INFO] ##6-th layer ##Token##: The top 10 tokens of h4 are ‎ Gw Zy Feldjer Sop Ashe Chomsky Flynn desks
+[2024-06-18 21:39:08,287][circuit_into_ebeddingspace.py][line:284][INFO] ##6-th layer ##Token##: The top 10 tokens of h5 are  downtownowntown ParkingdayName parking streetcar Downtown amenities welding PSU
+[2024-06-18 21:39:08,287][circuit_into_ebeddingspace.py][line:285][INFO] ##6-th layer ##Token##: The top 10 tokens of h6 are  spouse ones alikeaughs originals gain later responses then successes
+[2024-06-18 21:39:08,287][circuit_into_ebeddingspace.py][line:286][INFO] ##6-th layer ##Token##: The top 10 tokens of h7 are Reasonreason Innocent Loving Reason Explanealous Meaning Effecteworthy
+[2024-06-18 21:39:08,287][circuit_into_ebeddingspace.py][line:287][INFO] ##6-th layer ##Token##: The top 10 tokens of h8 are  refurb Shopping shopping planner PlansConstruction parkingINGTONendorビ
+[2024-06-18 21:39:08,287][circuit_into_ebeddingspace.py][line:288][INFO] ##6-th layer ##Token##: The top 10 tokens of h9 are urizedlined coloredlisted yet pureboundliest n twitch
+[2024-06-18 21:39:08,287][circuit_into_ebeddingspace.py][line:289][INFO] ##6-th layer ##Token##: The top 10 tokens of h10 are  PRODUCT---,...... photoc › CONTRComp Sep........
+[2024-06-18 21:39:08,288][circuit_into_ebeddingspace.py][line:290][INFO] ##6-th layer ##Token##: The top 10 tokens of h11 are roweradesh halfway
+zens northwest threemiddlereens southern
+[2024-06-18 21:39:08,288][circuit_into_ebeddingspace.py][line:291][INFO] ##6-th layer ##Token##: The top 10 tokens of h12 are  alsoSynopsislurexudialongLyngrotskyRen
+[2024-06-18 21:39:08,291][circuit_into_ebeddingspace.py][line:339][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h1 are  hub Triangle confinesfecture districtsaddonscroft Onion Settlement District
+[2024-06-18 21:39:08,291][circuit_into_ebeddingspace.py][line:340][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h2 are  sal areas版gieinside encl enclosed Inner Main mes
+[2024-06-18 21:39:08,292][circuit_into_ebeddingspace.py][line:341][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h3 are  Canadian Gen Canada seafood Bras Malaysia Portug Meridian Buenos tropical
+[2024-06-18 21:39:08,292][circuit_into_ebeddingspace.py][line:342][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h4 are accessiblerubyilies magnificationtalking largeDownloaditaire talks fillerdownload
+[2024-06-18 21:39:08,292][circuit_into_ebeddingspace.py][line:343][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h5 are  downtownowntown parking Downtown streetcar Parking sidewalks sidewalk storefront plaza
+[2024-06-18 21:39:08,292][circuit_into_ebeddingspace.py][line:344][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h6 are 20439 successfully successful result instantly vouchers spouse success invalid buyer
+[2024-06-18 21:39:08,292][circuit_into_ebeddingspace.py][line:345][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h7 are Trivia�DefAttributeRelated TrueRat Doctrine Object�
+[2024-06-18 21:39:08,293][circuit_into_ebeddingspace.py][line:346][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h8 are  metro downtownurban pedestrians tourist Downtown signageowntown metropolitan traffic
+[2024-06-18 21:39:08,293][circuit_into_ebeddingspace.py][line:347][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h9 are  tomorrow today meanwhile terminology 1890BUR accounting TODAY soon hurry
+[2024-06-18 21:39:08,293][circuit_into_ebeddingspace.py][line:348][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h10 are  Richmond Surreywest Jamaica metropolitan Metropolitancentral Westminster downtown Charlottesville
+[2024-06-18 21:39:08,293][circuit_into_ebeddingspace.py][line:349][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h11 are  northwest southwest northeast southeast campus east north midday township headquarters
+[2024-06-18 21:39:08,293][circuit_into_ebeddingspace.py][line:350][INFO] ##6-th layer ##Token##: The top 10 tokens of OV path in h12 are rouprouseobilepiringrexassadorsongyangographzziombat
+[2024-06-18 21:39:08,295][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 7-th layer
+[2024-06-18 21:39:08,302][circuit_into_ebeddingspace.py][line:242][INFO] ##7-th layer ##KLD##: The KL(C1||all) is 0.31202447414398193
+[2024-06-18 21:39:08,302][circuit_into_ebeddingspace.py][line:243][INFO] ##7-th layer ##KLD##: The KL(C2||all) is 9.88083267211914
+[2024-06-18 21:39:08,302][circuit_into_ebeddingspace.py][line:245][INFO] ##7-th layer ##KLD##: The KL(H1||all) is 11.067420959472656
+[2024-06-18 21:39:08,302][circuit_into_ebeddingspace.py][line:246][INFO] ##7-th layer ##KLD##: The KL(H2||all) is 8.6100435256958
+[2024-06-18 21:39:08,302][circuit_into_ebeddingspace.py][line:247][INFO] ##7-th layer ##KLD##: The KL(H3||all) is 13.079320907592773
+[2024-06-18 21:39:08,302][circuit_into_ebeddingspace.py][line:248][INFO] ##7-th layer ##KLD##: The KL(H4||all) is 31.000059127807617
+[2024-06-18 21:39:08,302][circuit_into_ebeddingspace.py][line:249][INFO] ##7-th layer ##KLD##: The KL(H5||all) is 13.895263671875
+[2024-06-18 21:39:08,302][circuit_into_ebeddingspace.py][line:250][INFO] ##7-th layer ##KLD##: The KL(H6||all) is 11.18008041381836
+[2024-06-18 21:39:08,303][circuit_into_ebeddingspace.py][line:251][INFO] ##7-th layer ##KLD##: The KL(H7||all) is 22.17244529724121
+[2024-06-18 21:39:08,303][circuit_into_ebeddingspace.py][line:252][INFO] ##7-th layer ##KLD##: The KL(H8||all) is 13.441835403442383
+[2024-06-18 21:39:08,303][circuit_into_ebeddingspace.py][line:253][INFO] ##7-th layer ##KLD##: The KL(H9||all) is 11.435897827148438
+[2024-06-18 21:39:08,303][circuit_into_ebeddingspace.py][line:254][INFO] ##7-th layer ##KLD##: The KL(H10||all) is 11.589156150817871
+[2024-06-18 21:39:08,303][circuit_into_ebeddingspace.py][line:255][INFO] ##7-th layer ##KLD##: The KL(H11||all) is 13.738574981689453
+[2024-06-18 21:39:08,303][circuit_into_ebeddingspace.py][line:256][INFO] ##7-th layer ##KLD##: The KL(H12||all) is 15.10293960571289
+[2024-06-18 21:39:08,303][circuit_into_ebeddingspace.py][line:257][INFO] ##7-th layer ##KLD##: The most minimal KLD head is head-2 with value 8.6100435256958
+[2024-06-18 21:39:08,305][circuit_into_ebeddingspace.py][line:277][INFO] ##7-th layer ##Token##: The top 10 tokens of all are  downtown Chicago Manhattan Atlanta Toronto Los park Seattle Denver Oakland
+[2024-06-18 21:39:08,305][circuit_into_ebeddingspace.py][line:278][INFO] ##7-th layer ##Token##: The top 10 tokens of c1 are  downtown park area plaza Chicago Manhattan Atlanta city district Seattle
+[2024-06-18 21:39:08,305][circuit_into_ebeddingspace.py][line:279][INFO] ##7-th layer ##Token##: The top 10 tokens of c2 are  refurb unlocked hangar Terminal locked tower box clut Sep window
+[2024-06-18 21:39:08,305][circuit_into_ebeddingspace.py][line:280][INFO] ##7-th layer ##Token##: The top 10 tokens of h1 are  Bay Junction Place mode Zone territory Alley HolevillePlace
+[2024-06-18 21:39:08,305][circuit_into_ebeddingspace.py][line:281][INFO] ##7-th layer ##Token##: The top 10 tokens of h2 are  Streets Rocksknsteel Market housing streetsconom Libraries Coll
+[2024-06-18 21:39:08,305][circuit_into_ebeddingspace.py][line:282][INFO] ##7-th layer ##Token##: The top 10 tokens of h3 are  Blanc Cob Olympoxy Brent Duc Gig Dalai dwarf 
+[2024-06-18 21:39:08,306][circuit_into_ebeddingspace.py][line:283][INFO] ##7-th layer ##Token##: The top 10 tokens of h4 are  thereofaboutsgt)].rinaicter++)ireninger�
+[2024-06-18 21:39:08,306][circuit_into_ebeddingspace.py][line:284][INFO] ##7-th layer ##Token##: The top 10 tokens of h5 are  already too Dek though unlike recogn tho Dep clearly currently
+[2024-06-18 21:39:08,306][circuit_into_ebeddingspace.py][line:285][INFO] ##7-th layer ##Token##: The top 10 tokens of h6 are  Coliseum Drive store storefront Headquarters HQ located Connect Campus headquarters
+[2024-06-18 21:39:08,306][circuit_into_ebeddingspace.py][line:286][INFO] ##7-th layer ##Token##: The top 10 tokens of h7 are essor ultras ranged voluntaryCategory tack activity unilateral Loving behaved
+[2024-06-18 21:39:08,306][circuit_into_ebeddingspace.py][line:287][INFO] ##7-th layer ##Token##: The top 10 tokens of h8 are  Locatedosate isuberty has awokewow reminds cannot enclave
+[2024-06-18 21:39:08,306][circuit_into_ebeddingspace.py][line:288][INFO] ##7-th layer ##Token##: The top 10 tokens of h9 are plate diameter protr wall plate Tilewn Statue Ike tower
+[2024-06-18 21:39:08,307][circuit_into_ebeddingspace.py][line:289][INFO] ##7-th layer ##Token##: The top 10 tokens of h10 are reetings Accessedwana Whale Qiaoestern Nguyen Heldvaticellaneous
+[2024-06-18 21:39:08,307][circuit_into_ebeddingspace.py][line:290][INFO] ##7-th layer ##Token##: The top 10 tokens of h11 are  Kod HTC Fib Mr Jiu Bundes Pub Volkswagen Wiley CrossRef
+[2024-06-18 21:39:08,307][circuit_into_ebeddingspace.py][line:291][INFO] ##7-th layer ##Token##: The top 10 tokens of h12 are  ringsglomerル76561aches misunderReviewerach nodd horns
+[2024-06-18 21:39:08,310][circuit_into_ebeddingspace.py][line:339][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h1 are villevale Bay Netherlands Bronx Heights suburbsboroborough City
+[2024-06-18 21:39:08,311][circuit_into_ebeddingspace.py][line:340][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h2 are  streets downtown surroundings sidewalks town vicinity parkingpark locationtown
+[2024-06-18 21:39:08,311][circuit_into_ebeddingspace.py][line:341][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h3 are  downtown OC grand imperial Kingston Marcos burg Downtown pacing rocking
+[2024-06-18 21:39:08,311][circuit_into_ebeddingspace.py][line:342][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h4 are  NCT sidxicyansomagnapy vaccinated imparticterhaps
+[2024-06-18 21:39:08,311][circuit_into_ebeddingspace.py][line:343][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h5 are  respectively where though which however levels◼ Pandora, suspic
+[2024-06-18 21:39:08,311][circuit_into_ebeddingspace.py][line:344][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h6 are iseum Stadiumopolis Civic Blvdgallery Coliseum Boulevard downtown campus
+[2024-06-18 21:39:08,312][circuit_into_ebeddingspace.py][line:345][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h7 are  voucher negotiatorAbilityicolAction ALSCrew fentanylirusaction
+[2024-06-18 21:39:08,312][circuit_into_ebeddingspace.py][line:346][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h8 are  located Located wherever headquartered locations Headquarters situated resides reside centers
+[2024-06-18 21:39:08,312][circuit_into_ebeddingspace.py][line:347][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h9 are  downtownarea cathedral Mecca homecity near contiguous metropolitan bustling
+[2024-06-18 21:39:08,312][circuit_into_ebeddingspace.py][line:348][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h10 are  Rae Chic cent elig IkeNESS wal predec Aval Sab
+[2024-06-18 21:39:08,312][circuit_into_ebeddingspace.py][line:349][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h11 are  downtown Downtown MartyowntownDIRMad Draper Merchant Street Tasman
+[2024-06-18 21:39:08,313][circuit_into_ebeddingspace.py][line:350][INFO] ##7-th layer ##Token##: The top 10 tokens of OV path in h12 are  interior federal general big local amateurrawdownloadcloneembedreportprint intellectual old front
+[2024-06-18 21:39:08,314][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 8-th layer
+[2024-06-18 21:39:08,321][circuit_into_ebeddingspace.py][line:242][INFO] ##8-th layer ##KLD##: The KL(C1||all) is 0.390802800655365
+[2024-06-18 21:39:08,321][circuit_into_ebeddingspace.py][line:243][INFO] ##8-th layer ##KLD##: The KL(C2||all) is 11.432120323181152
+[2024-06-18 21:39:08,321][circuit_into_ebeddingspace.py][line:245][INFO] ##8-th layer ##KLD##: The KL(H1||all) is 16.846620559692383
+[2024-06-18 21:39:08,321][circuit_into_ebeddingspace.py][line:246][INFO] ##8-th layer ##KLD##: The KL(H2||all) is 12.644968032836914
+[2024-06-18 21:39:08,321][circuit_into_ebeddingspace.py][line:247][INFO] ##8-th layer ##KLD##: The KL(H3||all) is 9.782651901245117
+[2024-06-18 21:39:08,321][circuit_into_ebeddingspace.py][line:248][INFO] ##8-th layer ##KLD##: The KL(H4||all) is 12.015785217285156
+[2024-06-18 21:39:08,322][circuit_into_ebeddingspace.py][line:249][INFO] ##8-th layer ##KLD##: The KL(H5||all) is 13.559492111206055
+[2024-06-18 21:39:08,322][circuit_into_ebeddingspace.py][line:250][INFO] ##8-th layer ##KLD##: The KL(H6||all) is 12.510425567626953
+[2024-06-18 21:39:08,322][circuit_into_ebeddingspace.py][line:251][INFO] ##8-th layer ##KLD##: The KL(H7||all) is 11.878472328186035
+[2024-06-18 21:39:08,322][circuit_into_ebeddingspace.py][line:252][INFO] ##8-th layer ##KLD##: The KL(H8||all) is 13.995437622070312
+[2024-06-18 21:39:08,322][circuit_into_ebeddingspace.py][line:253][INFO] ##8-th layer ##KLD##: The KL(H9||all) is 15.19674015045166
+[2024-06-18 21:39:08,322][circuit_into_ebeddingspace.py][line:254][INFO] ##8-th layer ##KLD##: The KL(H10||all) is 12.932138442993164
+[2024-06-18 21:39:08,322][circuit_into_ebeddingspace.py][line:255][INFO] ##8-th layer ##KLD##: The KL(H11||all) is 34.323875427246094
+[2024-06-18 21:39:08,322][circuit_into_ebeddingspace.py][line:256][INFO] ##8-th layer ##KLD##: The KL(H12||all) is 13.453466415405273
+[2024-06-18 21:39:08,322][circuit_into_ebeddingspace.py][line:257][INFO] ##8-th layer ##KLD##: The most minimal KLD head is head-3 with value 9.782651901245117
+[2024-06-18 21:39:08,324][circuit_into_ebeddingspace.py][line:277][INFO] ##8-th layer ##Token##: The top 10 tokens of all are  downtown Seattle Toronto Los Manhattan Denver Oakland Washington Atlanta Houston
+[2024-06-18 21:39:08,324][circuit_into_ebeddingspace.py][line:278][INFO] ##8-th layer ##Token##: The top 10 tokens of c1 are  downtown Chicago Manhattan Atlanta Toronto Los park Seattle Denver Oakland
+[2024-06-18 21:39:08,324][circuit_into_ebeddingspace.py][line:279][INFO] ##8-th layer ##Token##: The top 10 tokens of c2 are  SOM Toys Yards Mission Scorp Patch Minor inventory TTC Terminal
+[2024-06-18 21:39:08,324][circuit_into_ebeddingspace.py][line:280][INFO] ##8-th layer ##Token##: The top 10 tokens of h1 are  latter  Hydra incl  iability respectivelyadra afterwards Yor
+[2024-06-18 21:39:08,324][circuit_into_ebeddingspace.py][line:281][INFO] ##8-th layer ##Token##: The top 10 tokens of h2 are meticstay Delta referral fetch CB Pilot Bung jam plateau
+[2024-06-18 21:39:08,325][circuit_into_ebeddingspace.py][line:282][INFO] ##8-th layer ##Token##: The top 10 tokens of h3 are  AshevilleEnlarge Navajo ­ sunscreenPortland Southwest Costco BART ZIP
+[2024-06-18 21:39:08,325][circuit_into_ebeddingspace.py][line:283][INFO] ##8-th layer ##Token##: The top 10 tokens of h4 are  trillionsMars>>\ billions satellitesの� Interstellar astronomical armies stadiums
+[2024-06-18 21:39:08,325][circuit_into_ebeddingspace.py][line:284][INFO] ##8-th layer ##Token##: The top 10 tokens of h5 are  meanwhile only also justMil scen soon cru thanks blat
+[2024-06-18 21:39:08,325][circuit_into_ebeddingspace.py][line:285][INFO] ##8-th layer ##Token##: The top 10 tokens of h6 are  thanks bec Eug TODAY NOW Vog Bark courtesy now.
+[2024-06-18 21:39:08,325][circuit_into_ebeddingspace.py][line:286][INFO] ##8-th layer ##Token##: The top 10 tokens of h7 are OPLEundreds neighbourhoodanchesterdoicampusvernmentyond downtown studios
+[2024-06-18 21:39:08,326][circuit_into_ebeddingspace.py][line:287][INFO] ##8-th layer ##Token##: The top 10 tokens of h8 are  saddle shapehess shed possession recept contentionilated hole place
+[2024-06-18 21:39:08,326][circuit_into_ebeddingspace.py][line:288][INFO] ##8-th layer ##Token##: The top 10 tokens of h9 are  dockslocation location apartment parkingisphere docking relocation roofs residences
+[2024-06-18 21:39:08,326][circuit_into_ebeddingspace.py][line:289][INFO] ##8-th layer ##Token##: The top 10 tokens of h10 are  teaserランkm damageニ shotミdamage IL remake
+[2024-06-18 21:39:08,326][circuit_into_ebeddingspace.py][line:290][INFO] ##8-th layer ##Token##: The top 10 tokens of h11 are complpositiveMSspeciesritten�ifactβritocrates
+[2024-06-18 21:39:08,326][circuit_into_ebeddingspace.py][line:291][INFO] ##8-th layer ##Token##: The top 10 tokens of h12 are Spaceston Space Sound SpectSoundSTON Seymour ISS Stanton
+[2024-06-18 21:39:08,330][circuit_into_ebeddingspace.py][line:339][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h1 are  reportedly increasingly\. Reuters legislative</ London damning decidedlySources
+[2024-06-18 21:39:08,330][circuit_into_ebeddingspace.py][line:340][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h2 are  outside aside inside behind among in within abroad downtownbehind
+[2024-06-18 21:39:08,330][circuit_into_ebeddingspace.py][line:341][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h3 are Enlarge BARTCLOSE Asheville Philly downtown Calif — Interstate,''
+[2024-06-18 21:39:08,330][circuit_into_ebeddingspace.py][line:342][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h4 are  Sere Shroud Vale Tate Ashes Everett Bis Brentanse Peaks
+[2024-06-18 21:39:08,331][circuit_into_ebeddingspace.py][line:343][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h5 are SignILLE seenarezTyp convention Hollywood Swmain luxury
+[2024-06-18 21:39:08,331][circuit_into_ebeddingspace.py][line:344][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h6 are  worries renew Eug thanks braces dusk bec renewed renewal festive
+[2024-06-18 21:39:08,331][circuit_into_ebeddingspace.py][line:345][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h7 are  storefrontcampusanchester studios warehouses corridors campusesendor downtown rural
+[2024-06-18 21:39:08,331][circuit_into_ebeddingspace.py][line:346][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h8 are ville Junction Cityopolisongyang Heightsborough Plazacastlestadt
+[2024-06-18 21:39:08,331][circuit_into_ebeddingspace.py][line:347][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h9 are  downtownlocation residences locations parking streets Downtown location apartments metro
+[2024-06-18 21:39:08,331][circuit_into_ebeddingspace.py][line:348][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h10 are  ILkmacer damageissa graz Knot mappedIL map
+[2024-06-18 21:39:08,332][circuit_into_ebeddingspace.py][line:349][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h11 are ocideβMSidae virusritecompl Syndromeophen MMR
+[2024-06-18 21:39:08,332][circuit_into_ebeddingspace.py][line:350][INFO] ##8-th layer ##Token##: The top 10 tokens of OV path in h12 are  DowntownMayorowntown Mayor city MunicipalCity City mayor downtown
+[2024-06-18 21:39:08,333][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 9-th layer
+[2024-06-18 21:39:08,340][circuit_into_ebeddingspace.py][line:242][INFO] ##9-th layer ##KLD##: The KL(C1||all) is 0.545218288898468
+[2024-06-18 21:39:08,340][circuit_into_ebeddingspace.py][line:243][INFO] ##9-th layer ##KLD##: The KL(C2||all) is 21.112409591674805
+[2024-06-18 21:39:08,340][circuit_into_ebeddingspace.py][line:245][INFO] ##9-th layer ##KLD##: The KL(H1||all) is 21.125045776367188
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:246][INFO] ##9-th layer ##KLD##: The KL(H2||all) is 13.51814079284668
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:247][INFO] ##9-th layer ##KLD##: The KL(H3||all) is 20.22476577758789
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:248][INFO] ##9-th layer ##KLD##: The KL(H4||all) is 9.15572738647461
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:249][INFO] ##9-th layer ##KLD##: The KL(H5||all) is 14.841354370117188
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:250][INFO] ##9-th layer ##KLD##: The KL(H6||all) is 28.025068283081055
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:251][INFO] ##9-th layer ##KLD##: The KL(H7||all) is 22.302410125732422
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:252][INFO] ##9-th layer ##KLD##: The KL(H8||all) is 20.032299041748047
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:253][INFO] ##9-th layer ##KLD##: The KL(H9||all) is 17.651126861572266
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:254][INFO] ##9-th layer ##KLD##: The KL(H10||all) is 16.705169677734375
+[2024-06-18 21:39:08,341][circuit_into_ebeddingspace.py][line:255][INFO] ##9-th layer ##KLD##: The KL(H11||all) is 11.073692321777344
+[2024-06-18 21:39:08,342][circuit_into_ebeddingspace.py][line:256][INFO] ##9-th layer ##KLD##: The KL(H12||all) is 15.266136169433594
+[2024-06-18 21:39:08,342][circuit_into_ebeddingspace.py][line:257][INFO] ##9-th layer ##KLD##: The most minimal KLD head is head-4 with value 9.15572738647461
+[2024-06-18 21:39:08,343][circuit_into_ebeddingspace.py][line:277][INFO] ##9-th layer ##Token##: The top 10 tokens of all are  Seattle Toronto Los Houston Manhattan Washington Oakland Minneapolis Vancouver Dallas
+[2024-06-18 21:39:08,343][circuit_into_ebeddingspace.py][line:278][INFO] ##9-th layer ##Token##: The top 10 tokens of c1 are  downtown Seattle Toronto Los Manhattan Denver Oakland Washington Atlanta Houston
+[2024-06-18 21:39:08,343][circuit_into_ebeddingspace.py][line:279][INFO] ##9-th layer ##Token##: The top 10 tokens of c2 are  SpaceX NASA astronaut astronauts MoscowSpace Space ISS SoyNASA
+[2024-06-18 21:39:08,344][circuit_into_ebeddingspace.py][line:280][INFO] ##9-th layer ##Token##: The top 10 tokens of h1 are cape homeless Donation clotbestos ADAeminiffinHCR pedestrian
+[2024-06-18 21:39:08,344][circuit_into_ebeddingspace.py][line:281][INFO] ##9-th layer ##Token##: The top 10 tokens of h2 are ahu ®vik ($ (. 'axy lever (£ –
+[2024-06-18 21:39:08,344][circuit_into_ebeddingspace.py][line:282][INFO] ##9-th layer ##Token##: The top 10 tokens of h3 are  Spac istg spac space construction Space peg explorersConstruction Construction
+[2024-06-18 21:39:08,344][circuit_into_ebeddingspace.py][line:283][INFO] ##9-th layer ##Token##: The top 10 tokens of h4 are  Container Kitchen Shelter Museum Site Dock Shrine Paddock hangar Pool
+[2024-06-18 21:39:08,344][circuit_into_ebeddingspace.py][line:284][INFO] ##9-th layer ##Token##: The top 10 tokens of h5 are externalActionCodeFilmIsraeluellerpmwiki WatergateínGettyالSports
+[2024-06-18 21:39:08,344][circuit_into_ebeddingspace.py][line:285][INFO] ##9-th layer ##Token##: The top 10 tokens of h6 are AuthCIAPsych PsychologicalAnalyGenericelligenceanalyMisWrit
+[2024-06-18 21:39:08,345][circuit_into_ebeddingspace.py][line:286][INFO] ##9-th layer ##Token##: The top 10 tokens of h7 are  Space aquSpace space SPACEaqu Spaces dens Ald ther
+[2024-06-18 21:39:08,345][circuit_into_ebeddingspace.py][line:287][INFO] ##9-th layer ##Token##: The top 10 tokens of h8 are atelouver destroonte ~ oldperty�>(ascar
+[2024-06-18 21:39:08,345][circuit_into_ebeddingspace.py][line:288][INFO] ##9-th layer ##Token##: The top 10 tokens of h9 are  SpaceX NASA Moscow ISS astronaut astronauts Russians Russian Elon Soy
+[2024-06-18 21:39:08,345][circuit_into_ebeddingspace.py][line:289][INFO] ##9-th layer ##Token##: The top 10 tokens of h10 are  DeL Rev Malf Conc Starship Malt Scand Amar Jama Duc
+[2024-06-18 21:39:08,345][circuit_into_ebeddingspace.py][line:290][INFO] ##9-th layer ##Token##: The top 10 tokens of h11 are  likely currently spons NEED valued awaiting already describ favour tipped
+[2024-06-18 21:39:08,346][circuit_into_ebeddingspace.py][line:291][INFO] ##9-th layer ##Token##: The top 10 tokens of h12 are anton Madd paralle tyrpton Innocent surrogateantic Curiosity Kund
+[2024-06-18 21:39:08,349][circuit_into_ebeddingspace.py][line:339][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h1 are  art decorationemin pedestrian conc sculpture decor clot blockingfur
+[2024-06-18 21:39:08,349][circuit_into_ebeddingspace.py][line:340][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h2 are  big hugebigbyeギ bucket basically everything nutshell probably
+[2024-06-18 21:39:08,349][circuit_into_ebeddingspace.py][line:341][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h3 are  downtown Downtown urban Location scenery touristUrbanowntownurban amenities
+[2024-06-18 21:39:08,350][circuit_into_ebeddingspace.py][line:342][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h4 are boroughtownpark parkcastlewest townstadterville parks
+[2024-06-18 21:39:08,350][circuit_into_ebeddingspace.py][line:343][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h5 are IPSthumbnails SECTION • ●utsu In¶In SQ
+[2024-06-18 21:39:08,350][circuit_into_ebeddingspace.py][line:344][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h6 are SonyIntelAuth Cyborg LogicCIAMisTechnologyLearelligence
+[2024-06-18 21:39:08,350][circuit_into_ebeddingspace.py][line:345][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h7 are  downtown Downtownowntown city hometown cities mart McDonald streets Lou
+[2024-06-18 21:39:08,350][circuit_into_ebeddingspace.py][line:346][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h8 are vernment junior shortsJunnetflixmin Jun Junior older min
+[2024-06-18 21:39:08,351][circuit_into_ebeddingspace.py][line:347][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h9 are Toronto EdmontonDetroit Toronto Detroit Vancouver Winnipeg Calgary downtown Downtown
+[2024-06-18 21:39:08,351][circuit_into_ebeddingspace.py][line:348][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h10 are owntown conv DowntownJC marquDTReloaded downtownUST Ambro
+[2024-06-18 21:39:08,351][circuit_into_ebeddingspace.py][line:349][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h11 are  causing impacting helping affecting reinforcing benefiting liable sidx inflicting damaging
+[2024-06-18 21:39:08,351][circuit_into_ebeddingspace.py][line:350][INFO] ##9-th layer ##Token##: The top 10 tokens of OV path in h12 are  … [ …"... senate budget federal press president tweet
+[2024-06-18 21:39:08,353][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 10-th layer
+[2024-06-18 21:39:08,360][circuit_into_ebeddingspace.py][line:242][INFO] ##10-th layer ##KLD##: The KL(C1||all) is 0.24734681844711304
+[2024-06-18 21:39:08,360][circuit_into_ebeddingspace.py][line:243][INFO] ##10-th layer ##KLD##: The KL(C2||all) is 28.43980598449707
+[2024-06-18 21:39:08,360][circuit_into_ebeddingspace.py][line:245][INFO] ##10-th layer ##KLD##: The KL(H1||all) is 31.827030181884766
+[2024-06-18 21:39:08,360][circuit_into_ebeddingspace.py][line:246][INFO] ##10-th layer ##KLD##: The KL(H2||all) is 11.06529426574707
+[2024-06-18 21:39:08,360][circuit_into_ebeddingspace.py][line:247][INFO] ##10-th layer ##KLD##: The KL(H3||all) is 17.816776275634766
+[2024-06-18 21:39:08,360][circuit_into_ebeddingspace.py][line:248][INFO] ##10-th layer ##KLD##: The KL(H4||all) is 21.0349178314209
+[2024-06-18 21:39:08,360][circuit_into_ebeddingspace.py][line:249][INFO] ##10-th layer ##KLD##: The KL(H5||all) is 11.574335098266602
+[2024-06-18 21:39:08,360][circuit_into_ebeddingspace.py][line:250][INFO] ##10-th layer ##KLD##: The KL(H6||all) is 17.87875747680664
+[2024-06-18 21:39:08,360][circuit_into_ebeddingspace.py][line:251][INFO] ##10-th layer ##KLD##: The KL(H7||all) is 14.090960502624512
+[2024-06-18 21:39:08,361][circuit_into_ebeddingspace.py][line:252][INFO] ##10-th layer ##KLD##: The KL(H8||all) is 21.148845672607422
+[2024-06-18 21:39:08,361][circuit_into_ebeddingspace.py][line:253][INFO] ##10-th layer ##KLD##: The KL(H9||all) is 15.893450736999512
+[2024-06-18 21:39:08,361][circuit_into_ebeddingspace.py][line:254][INFO] ##10-th layer ##KLD##: The KL(H10||all) is 6.196143627166748
+[2024-06-18 21:39:08,361][circuit_into_ebeddingspace.py][line:255][INFO] ##10-th layer ##KLD##: The KL(H11||all) is 8.791648864746094
+[2024-06-18 21:39:08,361][circuit_into_ebeddingspace.py][line:256][INFO] ##10-th layer ##KLD##: The KL(H12||all) is 9.922151565551758
+[2024-06-18 21:39:08,361][circuit_into_ebeddingspace.py][line:257][INFO] ##10-th layer ##KLD##: The most minimal KLD head is head-10 with value 6.196143627166748
+[2024-06-18 21:39:08,362][circuit_into_ebeddingspace.py][line:277][INFO] ##10-th layer ##Token##: The top 10 tokens of all are  Seattle Houston Los Toronto Minneapolis Dallas Washington San Oakland Denver
+[2024-06-18 21:39:08,363][circuit_into_ebeddingspace.py][line:278][INFO] ##10-th layer ##Token##: The top 10 tokens of c1 are  Seattle Toronto Los Houston Manhattan Washington Oakland Minneapolis Vancouver Dallas
+[2024-06-18 21:39:08,363][circuit_into_ebeddingspace.py][line:279][INFO] ##10-th layer ##Token##: The top 10 tokens of c2 are  Space astronauts NASA SPACE astronautSpace SpaceXNASA ISS space
+[2024-06-18 21:39:08,363][circuit_into_ebeddingspace.py][line:280][INFO] ##10-th layer ##Token##: The top 10 tokens of h1 are  NASA astronautsSpace astronaut Space SpaceXNASA Astron ISS Martian
+[2024-06-18 21:39:08,363][circuit_into_ebeddingspace.py][line:281][INFO] ##10-th layer ##Token##: The top 10 tokens of h2 are soDeliveryDateaidaarovournalsengucomedfoliosphiamerce APPLIC
+[2024-06-18 21:39:08,363][circuit_into_ebeddingspace.py][line:282][INFO] ##10-th layer ##Token##: The top 10 tokens of h3 are  dexter specializes antioxid special restricted spectacular frontier explanatory western humid
+[2024-06-18 21:39:08,363][circuit_into_ebeddingspace.py][line:283][INFO] ##10-th layer ##Token##: The top 10 tokens of h4 are  guiNameigsFCaminsnatureconservancy glim mathematCVE pesticryu
+[2024-06-18 21:39:08,364][circuit_into_ebeddingspace.py][line:284][INFO] ##10-th layer ##Token##: The top 10 tokens of h5 are  needs needing Needs neededschild Needneeds needˈ FW
+[2024-06-18 21:39:08,364][circuit_into_ebeddingspace.py][line:285][INFO] ##10-th layer ##Token##: The top 10 tokens of h6 are  now today and*, here right, by TODAY all
+[2024-06-18 21:39:08,364][circuit_into_ebeddingspace.py][line:286][INFO] ##10-th layer ##Token##: The top 10 tokens of h7 are hyde holeways\":arted Zoomenneisuxsesome
+[2024-06-18 21:39:08,364][circuit_into_ebeddingspace.py][line:287][INFO] ##10-th layer ##Token##: The top 10 tokens of h8 are  WIelia LI PO FI pse letternat IM Bee
+[2024-06-18 21:39:08,364][circuit_into_ebeddingspace.py][line:288][INFO] ##10-th layer ##Token##: The top 10 tokens of h9 are �� exha��������極 thous���
+[2024-06-18 21:39:08,364][circuit_into_ebeddingspace.py][line:289][INFO] ##10-th layer ##Token##: The top 10 tokens of h10 are  it itsortium It Its thebris forilandylon
+[2024-06-18 21:39:08,365][circuit_into_ebeddingspace.py][line:290][INFO] ##10-th layer ##Token##: The top 10 tokens of h11 are  Westminster Assassins upside Uruguay Alberta ASCacon Internal ‎ Alec
+[2024-06-18 21:39:08,365][circuit_into_ebeddingspace.py][line:291][INFO] ##10-th layer ##Token##: The top 10 tokens of h12 are stadthofetskanwhilebuquerquechevactionDatesterdamongyangopolis
+[2024-06-18 21:39:08,368][circuit_into_ebeddingspace.py][line:339][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h1 are  capsule capsules Afgh UzbekRussSeattle Kabul Olympia Bolshe Moscow
+[2024-06-18 21:39:08,368][circuit_into_ebeddingspace.py][line:340][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h2 are  downtown centralhigh high Downtownowntownassetsadobeistasousel sky
+[2024-06-18 21:39:08,369][circuit_into_ebeddingspace.py][line:341][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h3 are  ninety eighty 140terday 90 [ 87 matt AT circulation
+[2024-06-18 21:39:08,369][circuit_into_ebeddingspace.py][line:342][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h4 are  downtown Toronto Downtown Winnipeg Calgary city OttawaTorontoipeg Vancouver
+[2024-06-18 21:39:08,369][circuit_into_ebeddingspace.py][line:343][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h5 are 
+
+ landsc fun redesigned iconic innovative nont)</ amateur Logged
+[2024-06-18 21:39:08,369][circuit_into_ebeddingspace.py][line:344][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h6 are  now currentlynow next already formerly meanwhile lately today recently
+[2024-06-18 21:39:08,369][circuit_into_ebeddingspace.py][line:345][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h7 are  cityMayor mayor CityCity Mayor downtowncity mayoral municipal
+[2024-06-18 21:39:08,370][circuit_into_ebeddingspace.py][line:346][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h8 are  pse WI seedsPIipesbia Seedswi Breath pow
+[2024-06-18 21:39:08,370][circuit_into_ebeddingspace.py][line:347][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h9 are  in [rage my …....[ []..
+[2024-06-18 21:39:08,370][circuit_into_ebeddingspace.py][line:348][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h10 are  Kitchen Shiva Sach Angelochwitzrake Larry David Shawn Eden
+[2024-06-18 21:39:08,370][circuit_into_ebeddingspace.py][line:349][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h11 are  GC y catlerice gu rCCC ted Raven
+[2024-06-18 21:39:08,370][circuit_into_ebeddingspace.py][line:350][INFO] ##10-th layer ##Token##: The top 10 tokens of OV path in h12 are  location plaza headquarters area hotel chapel studios depot malls Hotel
+[2024-06-18 21:39:08,372][circuit_into_ebeddingspace.py][line:63][INFO] Start to show the embedding space of attention in 11-th layer
+[2024-06-18 21:39:08,379][circuit_into_ebeddingspace.py][line:242][INFO] ##11-th layer ##KLD##: The KL(C1||all) is 1.0050849914550781
+[2024-06-18 21:39:08,379][circuit_into_ebeddingspace.py][line:243][INFO] ##11-th layer ##KLD##: The KL(C2||all) is 3.597764253616333
+[2024-06-18 21:39:08,379][circuit_into_ebeddingspace.py][line:245][INFO] ##11-th layer ##KLD##: The KL(H1||all) is 4.166099548339844
+[2024-06-18 21:39:08,379][circuit_into_ebeddingspace.py][line:246][INFO] ##11-th layer ##KLD##: The KL(H2||all) is 13.98713493347168
+[2024-06-18 21:39:08,379][circuit_into_ebeddingspace.py][line:247][INFO] ##11-th layer ##KLD##: The KL(H3||all) is 16.68208885192871
+[2024-06-18 21:39:08,379][circuit_into_ebeddingspace.py][line:248][INFO] ##11-th layer ##KLD##: The KL(H4||all) is 25.597314834594727
+[2024-06-18 21:39:08,380][circuit_into_ebeddingspace.py][line:249][INFO] ##11-th layer ##KLD##: The KL(H5||all) is 5.634737968444824
+[2024-06-18 21:39:08,380][circuit_into_ebeddingspace.py][line:250][INFO] ##11-th layer ##KLD##: The KL(H6||all) is 10.187891006469727
+[2024-06-18 21:39:08,380][circuit_into_ebeddingspace.py][line:251][INFO] ##11-th layer ##KLD##: The KL(H7||all) is 12.96261978149414
+[2024-06-18 21:39:08,380][circuit_into_ebeddingspace.py][line:252][INFO] ##11-th layer ##KLD##: The KL(H8||all) is 9.43386173248291
+[2024-06-18 21:39:08,380][circuit_into_ebeddingspace.py][line:253][INFO] ##11-th layer ##KLD##: The KL(H9||all) is 3.6245763301849365
+[2024-06-18 21:39:08,380][circuit_into_ebeddingspace.py][line:254][INFO] ##11-th layer ##KLD##: The KL(H10||all) is 5.228244781494141
+[2024-06-18 21:39:08,380][circuit_into_ebeddingspace.py][line:255][INFO] ##11-th layer ##KLD##: The KL(H11||all) is 18.231658935546875
+[2024-06-18 21:39:08,380][circuit_into_ebeddingspace.py][line:256][INFO] ##11-th layer ##KLD##: The KL(H12||all) is 3.695488214492798
+[2024-06-18 21:39:08,380][circuit_into_ebeddingspace.py][line:257][INFO] ##11-th layer ##KLD##: The most minimal KLD head is head-9 with value 3.6245763301849365
+[2024-06-18 21:39:08,382][circuit_into_ebeddingspace.py][line:277][INFO] ##11-th layer ##Token##: The top 10 tokens of all are  Seattle Los San Washington Houston Minneapolis Toronto Oakland Dallas,
+[2024-06-18 21:39:08,382][circuit_into_ebeddingspace.py][line:278][INFO] ##11-th layer ##Token##: The top 10 tokens of c1 are  Seattle Houston Los Toronto Minneapolis Dallas Washington San Oakland Denver
+[2024-06-18 21:39:08,382][circuit_into_ebeddingspace.py][line:279][INFO] ##11-th layer ##Token##: The top 10 tokens of c2 are , the and a. in to ( of-
+[2024-06-18 21:39:08,382][circuit_into_ebeddingspace.py][line:280][INFO] ##11-th layer ##Token##: The top 10 tokens of h1 are , and the.- a in to ( of
+[2024-06-18 21:39:08,382][circuit_into_ebeddingspace.py][line:281][INFO] ##11-th layer ##Token##: The top 10 tokens of h2 are saf �izu [&�raqinanceoliainguendix
+[2024-06-18 21:39:08,383][circuit_into_ebeddingspace.py][line:282][INFO] ##11-th layer ##Token##: The top 10 tokens of h3 are  prest D Emaret family S Rapid abundance lif R
+[2024-06-18 21:39:08,383][circuit_into_ebeddingspace.py][line:283][INFO] ##11-th layer ##Token##: The top 10 tokens of h4 are  Space spac astronaut SPACESpace spacecraft Spac astronauts spacespace
+[2024-06-18 21:39:08,383][circuit_into_ebeddingspace.py][line:284][INFO] ##11-th layer ##Token##: The top 10 tokens of h5 are  Ukrain condem exha mathemat contrace streng tiss Moroccan proble convol
+[2024-06-18 21:39:08,383][circuit_into_ebeddingspace.py][line:285][INFO] ##11-th layer ##Token##: The top 10 tokens of h6 are  Jindal GonzBerry Mell Valdリ Patel Jenner Passengeroro
+[2024-06-18 21:39:08,383][circuit_into_ebeddingspace.py][line:286][INFO] ##11-th layer ##Token##: The top 10 tokens of h7 are AFTAheimer landmark COUNTY��seasonooters�culosisributes
+[2024-06-18 21:39:08,383][circuit_into_ebeddingspace.py][line:287][INFO] ##11-th layer ##Token##: The top 10 tokens of h8 are  Alonso Walker Hav Ramseyiatus Laurentuta Olivier Ruttip
+[2024-06-18 21:39:08,384][circuit_into_ebeddingspace.py][line:288][INFO] ##11-th layer ##Token##: The top 10 tokens of h9 are  the,
+ a and in of to ( this
+[2024-06-18 21:39:08,384][circuit_into_ebeddingspace.py][line:289][INFO] ##11-th layer ##Token##: The top 10 tokens of h10 are �� GeneralARley Terra Zeselves Woman Toronto
+[2024-06-18 21:39:08,384][circuit_into_ebeddingspace.py][line:290][INFO] ##11-th layer ##Token##: The top 10 tokens of h11 are  Dalai Jindal Dill Diaz Davidson Mulcair Patel DUP Dru Devi
+[2024-06-18 21:39:08,384][circuit_into_ebeddingspace.py][line:291][INFO] ##11-th layer ##Token##: The top 10 tokens of h12 are ,
+. the and in a of to for
+[2024-06-18 21:39:08,388][circuit_into_ebeddingspace.py][line:339][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h1 are , the and.
+- " a to of
+[2024-06-18 21:39:08,388][circuit_into_ebeddingspace.py][line:340][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h2 are  prime customers Fargondra seniors Columb quarry premier Ethiop Pe
+[2024-06-18 21:39:08,388][circuit_into_ebeddingspace.py][line:341][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h3 are  Dynamo Rockets HoustonHoustonRog PatriarchThunder rub Harden​​
+[2024-06-18 21:39:08,388][circuit_into_ebeddingspace.py][line:342][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h4 are  Downtown downtown cityowntown CityMayor subwayCity cities streetcar
+[2024-06-18 21:39:08,388][circuit_into_ebeddingspace.py][line:343][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h5 are cosmingutedibraryossal […]olk ];ubaows
+[2024-06-18 21:39:08,389][circuit_into_ebeddingspace.py][line:344][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h6 are bia standrals live place building standing dwell Bucc stands
+[2024-06-18 21:39:08,389][circuit_into_ebeddingspace.py][line:345][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h7 are  RTén MontriqueèreromptRTVILLE TR upt
+[2024-06-18 21:39:08,389][circuit_into_ebeddingspace.py][line:346][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h8 are  city urban professional suburban downtown cities Rat Dil town municipal
+[2024-06-18 21:39:08,389][circuit_into_ebeddingspace.py][line:347][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h9 are , the- and her. in a this of
+[2024-06-18 21:39:08,389][circuit_into_ebeddingspace.py][line:348][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h10 are  nabagarready convictionurg seize convictionsict seized bust
+[2024-06-18 21:39:08,390][circuit_into_ebeddingspace.py][line:349][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h11 are  Burr snakesshrBur Dish Cul Birch drown McGr Wong
+[2024-06-18 21:39:08,390][circuit_into_ebeddingspace.py][line:350][INFO] ##11-th layer ##Token##: The top 10 tokens of OV path in h12 are  dead Valhalla rev generator power death Die Deaddead det
