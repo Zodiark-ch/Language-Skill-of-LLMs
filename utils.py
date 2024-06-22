@@ -1,7 +1,7 @@
 import pickle, json, decimal, math,os
 import numpy as np
 from typing import Union
-
+from dataset.ioi_dataset import IOIDataset
 
 
 def read_json(json_file):
@@ -39,3 +39,25 @@ def get_model_layer_num(model = None):
     if num_layer is None:
         raise ValueError(f'cannot get num_layer from model: {model} or model_name: {model_name}')
     return num_layer
+
+
+
+def get_datasets():
+    """from unity"""
+    batch_size = 500
+    orig = "When John and Mary went to the store, John gave a bottle of milk to Mary"
+    new = "When Alice and Bob went to the store, Charlie gave a bottle of milk to Mary"
+    prompts_orig = [
+        {"S": "John", "IO": "Mary", "TEMPLATE_IDX": -42, "text": orig}
+    ]  # TODO make ET dataset construction not need TEMPLATE_IDX
+    prompts_new = [{"S": "Alice", "IO": "Bob", "TEMPLATE_IDX": -42, "text": new}]
+    prompts_new[0]["text"] = new
+    dataset_orig = IOIDataset(
+        N=batch_size, prompt_type="mixed"
+    )  # TODO make ET dataset construction not need prompt_type
+    dataset_new = IOIDataset(
+        N=batch_size,
+        prompt_type="mixed",
+        manual_word_idx=dataset_orig.word_idx,
+    )
+    return dataset_new, dataset_orig

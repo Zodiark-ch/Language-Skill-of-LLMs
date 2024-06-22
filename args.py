@@ -10,6 +10,7 @@ FOLDER_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))+'/XAIo
 @dataclass
 class DeepArgs:
     task_name: str = "attention_analysis"#'general_discovery','attention_analysis'
+    case_type: str='ioidataset'#'case', or 'ioidataset'
     model_name: str = "gpt2xl"#"gptj""gpt2lmheadmodel","gpt1","gptneox"
     device: str = 'cuda:0'
     save_folder: str = os.path.join(FOLDER_ROOT, task_name,model_name)
