@@ -2,8 +2,9 @@ import torch
 from args import DeepArgs
 from utils import set_gpu,get_datasets
 from transformers import HfArgumentParser,AutoTokenizer,GPT2LMHeadModel
-from circuit_into_ebeddingspace import attention_circuit,ioi_attention_circuit
+from circuit_into_ebeddingspace import attention_circuit,ioi_attention_circuit,circuit_analysis
 import logging
+import json
 
 hf_parser = HfArgumentParser((DeepArgs,))
 args: DeepArgs = hf_parser.parse_args_into_dataclasses()[0]
@@ -73,4 +74,56 @@ if args.task_name=='attention_analysis':
             logger.info('The previous_weight matrix is {}'.format(previous_weight_all))
             logger.info('The name_weight matrix is {}'.format(Name_weight_all))
             
+
+if args.task_name=='circuit_analysis':
+    if args.model_name=='gpt2xl':
+        tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        if args.case_type=='srodataset':
+                   #srodataset provides visulization of circuits and traces
+            model=circuit_analysis(args)
+            
+            with open('dataset/srodataset.json','r') as f: 
+                data=json.load(f)
+            
+            cos_matrix_all=torch.zeros(12,6)  
+            top_cos_matrix_all=torch.zeros(12,6)  
+            mse_matrix_all=torch.zeros(12,6)  
+            top_mse_matrix_all=torch.zeros(12,6) 
+            ce_matrix_all=torch.zeros(12,6)  
+            top_ce_matrix_all=torch.zeros(12,6) 
+            jsd_matrix_all=torch.zeros(12,6)  
+            top_jsd_matrix_all=torch.zeros(12,6)  
+            i=0
+            for case in data:
+                i=i+1
+                print('To record {}-th case'.format(i))
+                input_text=case['prompt']
+                inputs = tokenizer(input_text, return_tensors="pt")
+                with torch.no_grad():
+                    cos_matrix,top_cos_matrix,mse_matrix,top_mse_matrix,ce_matrix,top_ce_matrix,jsd_matrix,top_jsd_matrix=model(inputs)
+                    cos_matrix_all=cos_matrix_all+cos_matrix
+                    top_cos_matrix_all=top_cos_matrix_all+top_cos_matrix
+                    mse_matrix_all=mse_matrix_all+mse_matrix
+                    top_mse_matrix_all=top_mse_matrix_all+top_mse_matrix
+                    ce_matrix_all=ce_matrix_all+ce_matrix
+                    top_ce_matrix_all=top_ce_matrix_all+top_ce_matrix
+                    jsd_matrix_all=jsd_matrix_all+jsd_matrix
+                    top_jsd_matrix_all=top_jsd_matrix_all+top_jsd_matrix
+            cos_matrix_all=cos_matrix_all/i        
+            top_cos_matrix_all=top_cos_matrix_all/i
+            mse_matrix_all=mse_matrix_all/i    
+            top_mse_matrix_all=top_mse_matrix_all/i
+            ce_matrix_all=ce_matrix_all/i    
+            top_ce_matrix_all=top_ce_matrix_all/i
+            jsd_matrix_all=jsd_matrix_all/i
+            top_jsd_matrix_all=top_jsd_matrix_all/i
+            logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+args.case_type+'_logging.log')
+            logger.info('The cos_matrix_all matrix is {}'.format(cos_matrix_all))
+            logger.info('The top_cos_matrix_all matrix is {}'.format(top_cos_matrix_all))
+            logger.info('The mse_matrix_all matrix is {}'.format(mse_matrix_all))
+            logger.info('The top_mse_matrix_all matrix is {}'.format(top_mse_matrix_all))
+            logger.info('The ce_matrix_all matrix is {}'.format(ce_matrix_all))
+            logger.info('The top_ce_matrix_all matrix is {}'.format(top_ce_matrix_all))
+            logger.info('The jsd_matrix_all matrix is {}'.format(jsd_matrix_all))
+            logger.info('The top_jsd_matrix_all matrix is {}'.format(top_jsd_matrix_all))
             
