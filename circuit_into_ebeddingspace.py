@@ -8,7 +8,7 @@ import logging
 
 
 
-class attention_circuit(nn.Module):
+class attention_circuit_check(nn.Module):
     def __init__(self,args):
         super().__init__()
         self.args=args
@@ -750,8 +750,9 @@ class circuit_analysis(nn.Module):
         position_ids = position_ids.unsqueeze(0)
         position_embeds = self.model.transformer.wpe(position_ids)
         hidden_states = inputs_embeds + position_embeds
-        logger = self.get_logger('logs/' +self.args.task_name+'/'+ self.args.model_name +'/'+self.tokenizer.decode(input_ids[0])+'_logging.log')
-        logger.info('Input text is:'+self.tokenizer.decode(input_ids[0])) 
+        if self.args.logs=='true':
+            logger = self.get_logger('logs/' +self.args.task_name+'/'+ self.args.model_name +'/'+self.tokenizer.decode(input_ids[0])+'_logging.log')
+            logger.info('Input text is:'+self.tokenizer.decode(input_ids[0])) 
         cos_matrix=torch.zeros((12,6))
         mse_matrix=torch.zeros((12,6))
         jsd_matrix=torch.zeros((12,6))
@@ -910,7 +911,8 @@ class circuit_analysis(nn.Module):
             ln_hidden_state=self.model.transformer.ln_f(circuit_sum)
             circuit_logits=self.model.lm_head(ln_hidden_state)[0][-1].unsqueeze(0)
             _,predicted_indices=torch.topk(circuit_logits,10)
-            logger.info('In {} layer output, max probability tokens of circuit_sum are:'.format(i)+self.tokenizer.decode(predicted_indices[0])) 
+            if self.args.logs=='true':
+                logger.info('In {} layer output, max probability tokens of circuit_sum are:'.format(i)+self.tokenizer.decode(predicted_indices[0])) 
             
             
             #get the cossim of each circuit 
@@ -937,216 +939,226 @@ top_kld_c1,top_kld_c2,top_kld_c3,top_kld_c4,top_kld_c5,top_kld_c6,top_kld_h1,top
             
             
             
-            
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C1 path are {}'.format(i,tokens_c1))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2 path are {}'.format(i,tokens_c2))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C3 path are {}'.format(i,tokens_c3))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C4 path are {}'.format(i,tokens_c4))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C5 path are {}'.format(i,tokens_c5))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C6 path are {}'.format(i,tokens_c6))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h1 path are {}'.format(i,tokens_c2h1))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h2 path are {}'.format(i,tokens_c2h2))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h3 path are {}'.format(i,tokens_c2h3))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h4 path are {}'.format(i,tokens_c2h4))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h5 path are {}'.format(i,tokens_c2h5))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h6 path are {}'.format(i,tokens_c2h6))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h7 path are {}'.format(i,tokens_c2h7))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h8 path are {}'.format(i,tokens_c2h8))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h9 path are {}'.format(i,tokens_c2h9))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h10 path are {}'.format(i,tokens_c2h10))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h11 path are {}'.format(i,tokens_c2h11))
-            logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h12 path are {}'.format(i,tokens_c2h12))
-            
-            logger.info('##{}-th layer ##Token##: The COSSIM of C1 path are {}'.format(i,cos_sim_c1))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2 path are {}'.format(i,cos_sim_c2))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C3 path are {}'.format(i,cos_sim_c3))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C4 path are {}'.format(i,cos_sim_c4))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C5 path are {}'.format(i,cos_sim_c5))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C6 path are {}'.format(i,cos_sim_c6))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H1 path are {}'.format(i,cos_sim_c2h1))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H2 path are {}'.format(i,cos_sim_c2h2))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H3 path are {}'.format(i,cos_sim_c2h3))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H4 path are {}'.format(i,cos_sim_c2h4))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H5 path are {}'.format(i,cos_sim_c2h5))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H6 path are {}'.format(i,cos_sim_c2h6))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H7 path are {}'.format(i,cos_sim_c2h7))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H8 path are {}'.format(i,cos_sim_c2h8))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H9 path are {}'.format(i,cos_sim_c2h9))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H10 path are {}'.format(i,cos_sim_c2h10))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H11 path are {}'.format(i,cos_sim_c2h11))
-            logger.info('##{}-th layer ##Token##: The COSSIM of C2H12 path are {}'.format(i,cos_sim_c2h12))
+            if self.args.logs=='true':
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C1 path are {}'.format(i,tokens_c1))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2 path are {}'.format(i,tokens_c2))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C3 path are {}'.format(i,tokens_c3))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C4 path are {}'.format(i,tokens_c4))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C5 path are {}'.format(i,tokens_c5))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C6 path are {}'.format(i,tokens_c6))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h1 path are {}'.format(i,tokens_c2h1))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h2 path are {}'.format(i,tokens_c2h2))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h3 path are {}'.format(i,tokens_c2h3))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h4 path are {}'.format(i,tokens_c2h4))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h5 path are {}'.format(i,tokens_c2h5))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h6 path are {}'.format(i,tokens_c2h6))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h7 path are {}'.format(i,tokens_c2h7))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h8 path are {}'.format(i,tokens_c2h8))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h9 path are {}'.format(i,tokens_c2h9))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h10 path are {}'.format(i,tokens_c2h10))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h11 path are {}'.format(i,tokens_c2h11))
+                logger.info('##{}-th layer ##Token##: The top 10 tokens of C2h12 path are {}'.format(i,tokens_c2h12))
+                
+                logger.info('##{}-th layer ##Token##: The COSSIM of C1 path are {}'.format(i,cos_sim_c1))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2 path are {}'.format(i,cos_sim_c2))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C3 path are {}'.format(i,cos_sim_c3))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C4 path are {}'.format(i,cos_sim_c4))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C5 path are {}'.format(i,cos_sim_c5))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C6 path are {}'.format(i,cos_sim_c6))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H1 path are {}'.format(i,cos_sim_c2h1))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H2 path are {}'.format(i,cos_sim_c2h2))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H3 path are {}'.format(i,cos_sim_c2h3))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H4 path are {}'.format(i,cos_sim_c2h4))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H5 path are {}'.format(i,cos_sim_c2h5))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H6 path are {}'.format(i,cos_sim_c2h6))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H7 path are {}'.format(i,cos_sim_c2h7))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H8 path are {}'.format(i,cos_sim_c2h8))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H9 path are {}'.format(i,cos_sim_c2h9))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H10 path are {}'.format(i,cos_sim_c2h10))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H11 path are {}'.format(i,cos_sim_c2h11))
+                logger.info('##{}-th layer ##Token##: The COSSIM of C2H12 path are {}'.format(i,cos_sim_c2h12))
             cos_sim_list=[cos_sim_c1,cos_sim_c2,cos_sim_c3,cos_sim_c4,cos_sim_c5,cos_sim_c6]
             cos_sim_max=cos_sim_list.index(max(cos_sim_list))
             cos_matrix[i][cos_sim_max]=1
             
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C1 path are {}'.format(i,top_cos_sim_c1))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2 path are {}'.format(i,top_cos_sim_c2))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C3 path are {}'.format(i,top_cos_sim_c3))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C4 path are {}'.format(i,top_cos_sim_c4))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C5 path are {}'.format(i,top_cos_sim_c5))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C6 path are {}'.format(i,top_cos_sim_c6))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H1 path are {}'.format(i,top_cos_sim_c2h1))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H2 path are {}'.format(i,top_cos_sim_c2h2))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H3 path are {}'.format(i,top_cos_sim_c2h3))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H4 path are {}'.format(i,top_cos_sim_c2h4))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H5 path are {}'.format(i,top_cos_sim_c2h5))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H6 path are {}'.format(i,top_cos_sim_c2h6))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H7 path are {}'.format(i,top_cos_sim_c2h7))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H8 path are {}'.format(i,top_cos_sim_c2h8))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H9 path are {}'.format(i,top_cos_sim_c2h9))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H10 path are {}'.format(i,top_cos_sim_c2h10))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H11 path are {}'.format(i,top_cos_sim_c2h11))
-            logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H12 path are {}'.format(i,top_cos_sim_c2h12))
+            if self.args.logs=='true':
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C1 path are {}'.format(i,top_cos_sim_c1))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2 path are {}'.format(i,top_cos_sim_c2))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C3 path are {}'.format(i,top_cos_sim_c3))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C4 path are {}'.format(i,top_cos_sim_c4))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C5 path are {}'.format(i,top_cos_sim_c5))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C6 path are {}'.format(i,top_cos_sim_c6))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H1 path are {}'.format(i,top_cos_sim_c2h1))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H2 path are {}'.format(i,top_cos_sim_c2h2))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H3 path are {}'.format(i,top_cos_sim_c2h3))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H4 path are {}'.format(i,top_cos_sim_c2h4))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H5 path are {}'.format(i,top_cos_sim_c2h5))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H6 path are {}'.format(i,top_cos_sim_c2h6))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H7 path are {}'.format(i,top_cos_sim_c2h7))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H8 path are {}'.format(i,top_cos_sim_c2h8))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H9 path are {}'.format(i,top_cos_sim_c2h9))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H10 path are {}'.format(i,top_cos_sim_c2h10))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H11 path are {}'.format(i,top_cos_sim_c2h11))
+                logger.info('##{}-th layer ##Token##: The COSSIM of TOP50-C2H12 path are {}'.format(i,top_cos_sim_c2h12))
             top_cos_sim_list=[top_cos_sim_c1,top_cos_sim_c2,top_cos_sim_c3,top_cos_sim_c4,top_cos_sim_c5,top_cos_sim_c6]
             top_cos_sim_max=top_cos_sim_list.index(max(top_cos_sim_list))
             top_cos_matrix[i][top_cos_sim_max]=1
             
-            logger.info('##{}-th layer ##Token##: The MSE of C1 path are {}'.format(i,mse_c1))
-            logger.info('##{}-th layer ##Token##: The MSE of C2 path are {}'.format(i,mse_c2))
-            logger.info('##{}-th layer ##Token##: The MSE of C3 path are {}'.format(i,mse_c3))
-            logger.info('##{}-th layer ##Token##: The MSE of C4 path are {}'.format(i,mse_c4))
-            logger.info('##{}-th layer ##Token##: The MSE of C5 path are {}'.format(i,mse_c5))
-            logger.info('##{}-th layer ##Token##: The MSE of C6 path are {}'.format(i,mse_c6))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H1 path are {}'.format(i,mse_c2h1))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H2 path are {}'.format(i,mse_c2h2))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H3 path are {}'.format(i,mse_c2h3))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H4 path are {}'.format(i,mse_c2h4))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H5 path are {}'.format(i,mse_c2h5))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H6 path are {}'.format(i,mse_c2h6))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H7 path are {}'.format(i,mse_c2h7))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H8 path are {}'.format(i,mse_c2h8))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H9 path are {}'.format(i,mse_c2h9))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H10 path are {}'.format(i,mse_c2h10))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H11 path are {}'.format(i,mse_c2h11))
-            logger.info('##{}-th layer ##Token##: The MSE of C2H12 path are {}'.format(i,mse_c2h12))
+            if self.args.logs=='true':
+                logger.info('##{}-th layer ##Token##: The MSE of C1 path are {}'.format(i,mse_c1))
+                logger.info('##{}-th layer ##Token##: The MSE of C2 path are {}'.format(i,mse_c2))
+                logger.info('##{}-th layer ##Token##: The MSE of C3 path are {}'.format(i,mse_c3))
+                logger.info('##{}-th layer ##Token##: The MSE of C4 path are {}'.format(i,mse_c4))
+                logger.info('##{}-th layer ##Token##: The MSE of C5 path are {}'.format(i,mse_c5))
+                logger.info('##{}-th layer ##Token##: The MSE of C6 path are {}'.format(i,mse_c6))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H1 path are {}'.format(i,mse_c2h1))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H2 path are {}'.format(i,mse_c2h2))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H3 path are {}'.format(i,mse_c2h3))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H4 path are {}'.format(i,mse_c2h4))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H5 path are {}'.format(i,mse_c2h5))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H6 path are {}'.format(i,mse_c2h6))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H7 path are {}'.format(i,mse_c2h7))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H8 path are {}'.format(i,mse_c2h8))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H9 path are {}'.format(i,mse_c2h9))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H10 path are {}'.format(i,mse_c2h10))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H11 path are {}'.format(i,mse_c2h11))
+                logger.info('##{}-th layer ##Token##: The MSE of C2H12 path are {}'.format(i,mse_c2h12))
             mse_list=[mse_c1,mse_c2,mse_c3,mse_c4,mse_c5,mse_c6]
             mse_max=mse_list.index(min(mse_list))
             mse_matrix[i][mse_max]=1
             
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C1 path are {}'.format(i,top_mse_c1))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2 path are {}'.format(i,top_mse_c2))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C3 path are {}'.format(i,top_mse_c3))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C4 path are {}'.format(i,top_mse_c4))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C5 path are {}'.format(i,top_mse_c5))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C6 path are {}'.format(i,top_mse_c6))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H1 path are {}'.format(i,top_mse_c2h1))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H2 path are {}'.format(i,top_mse_c2h2))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H3 path are {}'.format(i,top_mse_c2h3))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H4 path are {}'.format(i,top_mse_c2h4))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H5 path are {}'.format(i,top_mse_c2h5))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H6 path are {}'.format(i,top_mse_c2h6))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H7 path are {}'.format(i,top_mse_c2h7))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H8 path are {}'.format(i,top_mse_c2h8))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H9 path are {}'.format(i,top_mse_c2h9))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H10 path are {}'.format(i,top_mse_c2h10))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H11 path are {}'.format(i,top_mse_c2h11))
-            logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H12 path are {}'.format(i,top_mse_c2h12))
+            if self.args.logs=='true':
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C1 path are {}'.format(i,top_mse_c1))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2 path are {}'.format(i,top_mse_c2))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C3 path are {}'.format(i,top_mse_c3))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C4 path are {}'.format(i,top_mse_c4))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C5 path are {}'.format(i,top_mse_c5))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C6 path are {}'.format(i,top_mse_c6))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H1 path are {}'.format(i,top_mse_c2h1))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H2 path are {}'.format(i,top_mse_c2h2))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H3 path are {}'.format(i,top_mse_c2h3))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H4 path are {}'.format(i,top_mse_c2h4))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H5 path are {}'.format(i,top_mse_c2h5))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H6 path are {}'.format(i,top_mse_c2h6))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H7 path are {}'.format(i,top_mse_c2h7))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H8 path are {}'.format(i,top_mse_c2h8))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H9 path are {}'.format(i,top_mse_c2h9))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H10 path are {}'.format(i,top_mse_c2h10))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H11 path are {}'.format(i,top_mse_c2h11))
+                logger.info('##{}-th layer ##Token##: The MSE of TOP50-C2H12 path are {}'.format(i,top_mse_c2h12))
             top_mse_list=[top_mse_c1,top_mse_c2,top_mse_c3,top_mse_c4,top_mse_c5,top_mse_c6]
             top_mse_max=top_mse_list.index(min(top_mse_list))
             top_mse_matrix[i][top_mse_max]=1
             
-            logger.info('##{}-th layer ##Token##: The CE of C1 path are {}'.format(i,ce_c1))
-            logger.info('##{}-th layer ##Token##: The CE of C2 path are {}'.format(i,ce_c2))
-            logger.info('##{}-th layer ##Token##: The CE of C3 path are {}'.format(i,ce_c3))
-            logger.info('##{}-th layer ##Token##: The CE of C4 path are {}'.format(i,ce_c4))
-            logger.info('##{}-th layer ##Token##: The CE of C5 path are {}'.format(i,ce_c5))
-            logger.info('##{}-th layer ##Token##: The CE of C6 path are {}'.format(i,ce_c6))
-            logger.info('##{}-th layer ##Token##: The CE of C2H1 path are {}'.format(i,ce_c2h1))
-            logger.info('##{}-th layer ##Token##: The CE of C2H2 path are {}'.format(i,ce_c2h2))
-            logger.info('##{}-th layer ##Token##: The CE of C2H3 path are {}'.format(i,ce_c2h3))
-            logger.info('##{}-th layer ##Token##: The CE of C2H4 path are {}'.format(i,ce_c2h4))
-            logger.info('##{}-th layer ##Token##: The CE of C2H5 path are {}'.format(i,ce_c2h5))
-            logger.info('##{}-th layer ##Token##: The CE of C2H6 path are {}'.format(i,ce_c2h6))
-            logger.info('##{}-th layer ##Token##: The CE of C2H7 path are {}'.format(i,ce_c2h7))
-            logger.info('##{}-th layer ##Token##: The CE of C2H8 path are {}'.format(i,ce_c2h8))
-            logger.info('##{}-th layer ##Token##: The CE of C2H9 path are {}'.format(i,ce_c2h9))
-            logger.info('##{}-th layer ##Token##: The CE of C2H10 path are {}'.format(i,ce_c2h10))
-            logger.info('##{}-th layer ##Token##: The CE of C2H11 path are {}'.format(i,ce_c2h11))
-            logger.info('##{}-th layer ##Token##: The CE of C2H12 path are {}'.format(i,ce_c2h12))
+            if self.args.logs=='true':
+                logger.info('##{}-th layer ##Token##: The CE of C1 path are {}'.format(i,ce_c1))
+                logger.info('##{}-th layer ##Token##: The CE of C2 path are {}'.format(i,ce_c2))
+                logger.info('##{}-th layer ##Token##: The CE of C3 path are {}'.format(i,ce_c3))
+                logger.info('##{}-th layer ##Token##: The CE of C4 path are {}'.format(i,ce_c4))
+                logger.info('##{}-th layer ##Token##: The CE of C5 path are {}'.format(i,ce_c5))
+                logger.info('##{}-th layer ##Token##: The CE of C6 path are {}'.format(i,ce_c6))
+                logger.info('##{}-th layer ##Token##: The CE of C2H1 path are {}'.format(i,ce_c2h1))
+                logger.info('##{}-th layer ##Token##: The CE of C2H2 path are {}'.format(i,ce_c2h2))
+                logger.info('##{}-th layer ##Token##: The CE of C2H3 path are {}'.format(i,ce_c2h3))
+                logger.info('##{}-th layer ##Token##: The CE of C2H4 path are {}'.format(i,ce_c2h4))
+                logger.info('##{}-th layer ##Token##: The CE of C2H5 path are {}'.format(i,ce_c2h5))
+                logger.info('##{}-th layer ##Token##: The CE of C2H6 path are {}'.format(i,ce_c2h6))
+                logger.info('##{}-th layer ##Token##: The CE of C2H7 path are {}'.format(i,ce_c2h7))
+                logger.info('##{}-th layer ##Token##: The CE of C2H8 path are {}'.format(i,ce_c2h8))
+                logger.info('##{}-th layer ##Token##: The CE of C2H9 path are {}'.format(i,ce_c2h9))
+                logger.info('##{}-th layer ##Token##: The CE of C2H10 path are {}'.format(i,ce_c2h10))
+                logger.info('##{}-th layer ##Token##: The CE of C2H11 path are {}'.format(i,ce_c2h11))
+                logger.info('##{}-th layer ##Token##: The CE of C2H12 path are {}'.format(i,ce_c2h12))
             ce_list=[ce_c1,ce_c2,ce_c3,ce_c4,ce_c5,ce_c6]
             ce_max=ce_list.index(min(ce_list))
             ce_matrix[i][ce_max]=1
             
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C1 path are {}'.format(i,top_ce_c1))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2 path are {}'.format(i,top_ce_c2))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C3 path are {}'.format(i,top_ce_c3))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C4 path are {}'.format(i,top_ce_c4))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C5 path are {}'.format(i,top_ce_c5))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C6 path are {}'.format(i,top_ce_c6))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H1 path are {}'.format(i,top_ce_c2h1))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H2 path are {}'.format(i,top_ce_c2h2))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H3 path are {}'.format(i,top_ce_c2h3))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H4 path are {}'.format(i,top_ce_c2h4))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H5 path are {}'.format(i,top_ce_c2h5))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H6 path are {}'.format(i,top_ce_c2h6))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H7 path are {}'.format(i,top_ce_c2h7))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H8 path are {}'.format(i,top_ce_c2h8))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H9 path are {}'.format(i,top_ce_c2h9))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H10 path are {}'.format(i,top_ce_c2h10))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H11 path are {}'.format(i,top_ce_c2h11))
-            logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H12 path are {}'.format(i,top_ce_c2h12))
+            if self.args.logs=='true':
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C1 path are {}'.format(i,top_ce_c1))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2 path are {}'.format(i,top_ce_c2))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C3 path are {}'.format(i,top_ce_c3))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C4 path are {}'.format(i,top_ce_c4))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C5 path are {}'.format(i,top_ce_c5))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C6 path are {}'.format(i,top_ce_c6))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H1 path are {}'.format(i,top_ce_c2h1))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H2 path are {}'.format(i,top_ce_c2h2))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H3 path are {}'.format(i,top_ce_c2h3))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H4 path are {}'.format(i,top_ce_c2h4))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H5 path are {}'.format(i,top_ce_c2h5))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H6 path are {}'.format(i,top_ce_c2h6))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H7 path are {}'.format(i,top_ce_c2h7))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H8 path are {}'.format(i,top_ce_c2h8))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H9 path are {}'.format(i,top_ce_c2h9))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H10 path are {}'.format(i,top_ce_c2h10))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H11 path are {}'.format(i,top_ce_c2h11))
+                logger.info('##{}-th layer ##Token##: The CE of TOP50-C2H12 path are {}'.format(i,top_ce_c2h12))
             top_ce_list=[top_ce_c1,top_ce_c2,top_ce_c3,top_ce_c4,top_ce_c5,top_ce_c6]
             top_ce_max=top_ce_list.index(min(top_ce_list))
             top_ce_matrix[i][top_ce_max]=1
             
-            logger.info('##{}-th layer ##JSD##: The JSD(C1||all) is {}'.format(i,kld_c1))
-            logger.info('##{}-th layer ##JSD##: The JSD(C2||all) is {}'.format(i,kld_c2))
-            logger.info('##{}-th layer ##JSD##: The JSD(C3||all) is {}'.format(i,kld_c3))
-            logger.info('##{}-th layer ##JSD##: The JSD(C4||all) is {}'.format(i,kld_c4))
-            logger.info('##{}-th layer ##JSD##: The JSD(C5||all) is {}'.format(i,kld_c5))
-            logger.info('##{}-th layer ##JSD##: The JSD(C6||all) is {}'.format(i,kld_c6))
-            
-            logger.info('##{}-th layer ##JSD##: The JSD(H1||all) is {}'.format(i,kld_h1))
-            logger.info('##{}-th layer ##JSD##: The JSD(H2||all) is {}'.format(i,kld_h2))
-            logger.info('##{}-th layer ##JSD##: The JSD(H3||all) is {}'.format(i,kld_h3))
-            logger.info('##{}-th layer ##JSD##: The JSD(H4||all) is {}'.format(i,kld_h4))
-            logger.info('##{}-th layer ##JSD##: The JSD(H5||all) is {}'.format(i,kld_h5))
-            logger.info('##{}-th layer ##JSD##: The JSD(H6||all) is {}'.format(i,kld_h6))
-            logger.info('##{}-th layer ##JSD##: The JSD(H7||all) is {}'.format(i,kld_h7))
-            logger.info('##{}-th layer ##JSD##: The JSD(H8||all) is {}'.format(i,kld_h8))
-            logger.info('##{}-th layer ##JSD##: The JSD(H9||all) is {}'.format(i,kld_h9))
-            logger.info('##{}-th layer ##JSD##: The JSD(H10||all) is {}'.format(i,kld_h10))
-            logger.info('##{}-th layer ##JSD##: The JSD(H11||all) is {}'.format(i,kld_h11))
-            logger.info('##{}-th layer ##JSD##: The JSD(H12||all) is {}'.format(i,kld_h12))
-            logger.info('##{}-th layer ##JSD##: The most minimal JSD head is head{}'.format(i,kld_min_head+1))
+            if self.args.logs=='true':
+                logger.info('##{}-th layer ##JSD##: The JSD(C1||all) is {}'.format(i,kld_c1))
+                logger.info('##{}-th layer ##JSD##: The JSD(C2||all) is {}'.format(i,kld_c2))
+                logger.info('##{}-th layer ##JSD##: The JSD(C3||all) is {}'.format(i,kld_c3))
+                logger.info('##{}-th layer ##JSD##: The JSD(C4||all) is {}'.format(i,kld_c4))
+                logger.info('##{}-th layer ##JSD##: The JSD(C5||all) is {}'.format(i,kld_c5))
+                logger.info('##{}-th layer ##JSD##: The JSD(C6||all) is {}'.format(i,kld_c6))
+                
+                logger.info('##{}-th layer ##JSD##: The JSD(H1||all) is {}'.format(i,kld_h1))
+                logger.info('##{}-th layer ##JSD##: The JSD(H2||all) is {}'.format(i,kld_h2))
+                logger.info('##{}-th layer ##JSD##: The JSD(H3||all) is {}'.format(i,kld_h3))
+                logger.info('##{}-th layer ##JSD##: The JSD(H4||all) is {}'.format(i,kld_h4))
+                logger.info('##{}-th layer ##JSD##: The JSD(H5||all) is {}'.format(i,kld_h5))
+                logger.info('##{}-th layer ##JSD##: The JSD(H6||all) is {}'.format(i,kld_h6))
+                logger.info('##{}-th layer ##JSD##: The JSD(H7||all) is {}'.format(i,kld_h7))
+                logger.info('##{}-th layer ##JSD##: The JSD(H8||all) is {}'.format(i,kld_h8))
+                logger.info('##{}-th layer ##JSD##: The JSD(H9||all) is {}'.format(i,kld_h9))
+                logger.info('##{}-th layer ##JSD##: The JSD(H10||all) is {}'.format(i,kld_h10))
+                logger.info('##{}-th layer ##JSD##: The JSD(H11||all) is {}'.format(i,kld_h11))
+                logger.info('##{}-th layer ##JSD##: The JSD(H12||all) is {}'.format(i,kld_h12))
+                logger.info('##{}-th layer ##JSD##: The most minimal JSD head is head{}'.format(i,kld_min_head+1))
             jsd_list=[kld_c1,kld_c2,kld_c3,kld_c4,kld_c5,kld_c6]
             jsd_max=jsd_list.index(min(jsd_list))
             jsd_matrix[i][jsd_max]=1
             
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C1||all) is {}'.format(i,top_kld_c1))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C2||all) is {}'.format(i,top_kld_c2))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C3||all) is {}'.format(i,top_kld_c3))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C4||all) is {}'.format(i,top_kld_c4))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C5||all) is {}'.format(i,top_kld_c5))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C6||all) is {}'.format(i,top_kld_c6))
             
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H1||all) is {}'.format(i,top_kld_h1))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H2||all) is {}'.format(i,top_kld_h2))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H3||all) is {}'.format(i,top_kld_h3))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H4||all) is {}'.format(i,top_kld_h4))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H5||all) is {}'.format(i,top_kld_h5))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H6||all) is {}'.format(i,top_kld_h6))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H7||all) is {}'.format(i,top_kld_h7))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H8||all) is {}'.format(i,top_kld_h8))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H9||all) is {}'.format(i,top_kld_h9))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H10||all) is {}'.format(i,top_kld_h10))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H11||all) is {}'.format(i,top_kld_h11))
-            logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H12||all) is {}'.format(i,top_kld_h12))
-            logger.info('##{}-th layer ##JSD##: The most minimal TOP50 JSD head is head{}'.format(i,top_kld_min_head+1))
+            if self.args.logs=='true':
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C1||all) is {}'.format(i,top_kld_c1))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C2||all) is {}'.format(i,top_kld_c2))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C3||all) is {}'.format(i,top_kld_c3))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C4||all) is {}'.format(i,top_kld_c4))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C5||all) is {}'.format(i,top_kld_c5))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(C6||all) is {}'.format(i,top_kld_c6))
+                
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H1||all) is {}'.format(i,top_kld_h1))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H2||all) is {}'.format(i,top_kld_h2))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H3||all) is {}'.format(i,top_kld_h3))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H4||all) is {}'.format(i,top_kld_h4))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H5||all) is {}'.format(i,top_kld_h5))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H6||all) is {}'.format(i,top_kld_h6))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H7||all) is {}'.format(i,top_kld_h7))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H8||all) is {}'.format(i,top_kld_h8))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H9||all) is {}'.format(i,top_kld_h9))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H10||all) is {}'.format(i,top_kld_h10))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H11||all) is {}'.format(i,top_kld_h11))
+                logger.info('##{}-th layer ##JSD##: The TOP50 JSD(H12||all) is {}'.format(i,top_kld_h12))
+                logger.info('##{}-th layer ##JSD##: The most minimal TOP50 JSD head is head{}'.format(i,top_kld_min_head+1))
             top_jsd_list=[top_kld_c1,top_kld_c2,top_kld_c3,top_kld_c4,top_kld_c5,top_kld_c6]
             top_jsd_max=top_jsd_list.index(min(top_jsd_list))
             top_jsd_matrix[i][top_jsd_max]=1
+        
+        
+        if self.args.logs=='true':    
+            logger.info('The cos_matrix_all matrix is {}'.format(cos_matrix))
+            logger.info('The top_cos_matrix_all matrix is {}'.format(top_cos_matrix))
+            logger.info('The mse_matrix_all matrix is {}'.format(mse_matrix))
+            logger.info('The top_mse_matrix_all matrix is {}'.format(top_mse_matrix))
+            logger.info('The ce_matrix_all matrix is {}'.format(ce_matrix))
+            logger.info('The top_ce_matrix_all matrix is {}'.format(top_ce_matrix))
+            logger.info('The jsd_matrix_all matrix is {}'.format(jsd_matrix))
+            logger.info('The top_jsd_matrix_all matrix is {}'.format(top_jsd_matrix))
             
-        logger.info('The cos_matrix_all matrix is {}'.format(cos_matrix))
-        logger.info('The top_cos_matrix_all matrix is {}'.format(top_cos_matrix))
-        logger.info('The mse_matrix_all matrix is {}'.format(mse_matrix))
-        logger.info('The top_mse_matrix_all matrix is {}'.format(top_mse_matrix))
-        logger.info('The ce_matrix_all matrix is {}'.format(ce_matrix))
-        logger.info('The top_ce_matrix_all matrix is {}'.format(top_ce_matrix))
-        logger.info('The jsd_matrix_all matrix is {}'.format(jsd_matrix))
-        logger.info('The top_jsd_matrix_all matrix is {}'.format(top_jsd_matrix))
-            
-        logging.shutdown()
+            logging.shutdown()
         return cos_matrix,top_cos_matrix,mse_matrix,top_mse_matrix,ce_matrix,top_ce_matrix,jsd_matrix,top_jsd_matrix
             
     def _split_heads(self, tensor, num_heads, attn_head_size):
@@ -1186,7 +1198,7 @@ top_kld_c1,top_kld_c2,top_kld_c3,top_kld_c4,top_kld_c5,top_kld_c6,top_kld_h1,top
     def get_token_distance(self,circuit_logits,circuit_1,circuit_2,circuit_3,circuit_4,circuit_5,circuit_6,\
         head1_attn,head2_attn,head3_attn,head4_attn,head5_attn,head6_attn,head7_attn,head8_attn,head9_attn,head10_attn,head11_attn,head12_attn):
             #get top_50 of circuit_logits
-            top_circuit_logit,top_circuit_idx=torch.topk(circuit_logits,50)
+            top_circuit_logit,top_circuit_idx=torch.topk(circuit_logits,1)
             
             
             
@@ -1604,3 +1616,344 @@ kld_c1,kld_c2,kld_c3,kld_c4,kld_c5,kld_c6,kld_h1,kld_h2,kld_h3,kld_h4,kld_h5,kld
 top_kld_c1,top_kld_c2,top_kld_c3,top_kld_c4,top_kld_c5,top_kld_c6,top_kld_h1,top_kld_h2,top_kld_h3,top_kld_h4,top_kld_h5,top_kld_h6,top_kld_h7,\
     top_kld_h8,top_kld_h9,top_kld_h10,top_kld_h11,top_kld_h12, \
         kld_min_head,top_kld_min_head
+        
+        
+        
+        
+class tokens_extraction(nn.Module):
+    def __init__(self,args):
+        super().__init__()
+        self.args=args
+        self.model_name=args.model_name
+        self.task_name=args.task_name
+        self.model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
+        self.tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        self.Unembedding=self.model.lm_head.weight#[E,D]
+        self.layers=self.model.transformer.h
+        self.device=args.device
+            
+    @property
+    def device(self):
+        return self.model.device
+
+    @device.setter
+    def device(self, device):
+        print(f'Model: set device to {device}')
+        self.model = self.model.to(device)
+        self.layers = self.layers.to(device)
+
+
+        
+    
+            
+    def forward(self,inputs):
+        inputs=inputs.to(self.device)
+        attention_mask=inputs["attention_mask"]
+        input_ids=inputs['input_ids']
+        batch_size=attention_mask.size()[0]
+        if attention_mask is not None:
+            if batch_size <= 0:
+                raise ValueError("batch_size has to be defined and > 0")
+            attention_mask = attention_mask.view(batch_size, -1)
+            attention_mask = attention_mask[:, None, None, :]
+            attention_mask = attention_mask.to(dtype=torch.float32)  # fp16 compatibility
+            attention_mask = (1.0 - attention_mask) * torch.finfo(torch.float32).min
+        # we need to make broadcastable to [batch_size, num_heads, seq_length, seq_length]
+        head_mask = [None] * 12
+        input_shape = input_ids.size()
+        input_ids = input_ids.view(-1, input_shape[-1])
+        inputs_embeds = self.model.transformer.wte(input_ids)
+        past_length = 0
+        past_key_values = tuple([None] * len(self.layers))
+        position_ids = torch.arange(past_length, input_shape[-1] + past_length, dtype=torch.long, device=self.device)
+        position_ids = position_ids.unsqueeze(0)
+        position_embeds = self.model.transformer.wpe(position_ids)
+        hidden_states = inputs_embeds + position_embeds
+        
+        
+        top_token_matrix=torch.zeros(12,10)#top 10 tokens 
+        top_token_alltokens=torch.zeros(12,hidden_states.size(-2),1)
+        
+        for i, (block, layer_past) in enumerate(zip(self.layers, past_key_values)):
+            if layer_past is not None:
+                layer_past = tuple(past_state.to(self.device) for past_state in layer_past)
+            if attention_mask is not None:
+                attention_mask = attention_mask.to(self.device)
+            circuit_input=hidden_states
+            outputs = block(
+                hidden_states,
+                layer_past=layer_past,
+                attention_mask=attention_mask,
+                head_mask=head_mask[i],
+                encoder_hidden_states=None,
+                encoder_attention_mask=None,
+                use_cache=True,
+                output_attentions=False,
+            )
+            hidden_states = outputs[0]
+            
+
+            
+            #get top token_idx of circuit 1 in each layer:
+            
+            ln_hidden_state=self.model.transformer.ln_f(circuit_input)
+            circuit_logits=self.model.lm_head(ln_hidden_state)[0][-1].unsqueeze(0)
+            _,predicted_indices=torch.topk(circuit_logits,10)
+            top_token_matrix[i]=predicted_indices[0]
+            
+            circuit_logits_alltokens=self.model.lm_head(ln_hidden_state)[0]
+            _,predicted_indices_alltokens=torch.topk(circuit_logits_alltokens,1)
+            top_token_alltokens[i]=predicted_indices_alltokens
+        top_token_alltokens=top_token_alltokens.permute(2,1,0).int()
+        
+        token_sequence_all=[]
+        for i in range(top_token_alltokens.size()[-2]):
+            token_sequence_all.append(self.get_tokens(top_token_alltokens[0][i]))
+        return top_token_matrix,top_token_alltokens.permute(2,1,0),token_sequence_all
+            
+            
+            
+    def _split_heads(self, tensor, num_heads, attn_head_size):
+        """
+        Splits hidden_size dim into attn_head_size and num_heads
+        """
+        new_shape = tensor.size()[:-1] + (num_heads, attn_head_size)
+        tensor = tensor.view(new_shape)
+        return tensor.permute(1, 0, 2)  # (batch, head, seq_length, head_features)
+    
+    def get_tokens(self,predicted_indices):
+        token_list=[]
+        for i in range(12):
+            ids=predicted_indices[i]
+            token_list.append(self.tokenizer.decode(ids))
+        return token_list                   
+                       
+
+
+
+class residual_analysis(nn.Module):
+    def __init__(self,args):
+        super().__init__()
+        self.args=args
+        self.model_name=args.model_name
+        self.task_name=args.task_name
+        self.model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
+        self.tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        self.Unembedding=self.model.lm_head.weight#[E,D]
+        self.layers=self.model.transformer.h
+        self.device=args.device
+            
+    @property
+    def device(self):
+        return self.model.device
+
+    @device.setter
+    def device(self, device):
+        print(f'Model: set device to {device}')
+        self.model = self.model.to(device)
+        self.layers = self.layers.to(device)
+
+
+        
+    
+            
+    def forward(self,inputs,top_token_matrix):
+        inputs=inputs.to(self.device)
+        attention_mask=inputs["attention_mask"]
+        input_ids=inputs['input_ids']
+        batch_size=attention_mask.size()[0]
+        if attention_mask is not None:
+            if batch_size <= 0:
+                raise ValueError("batch_size has to be defined and > 0")
+            attention_mask = attention_mask.view(batch_size, -1)
+            attention_mask = attention_mask[:, None, None, :]
+            attention_mask = attention_mask.to(dtype=torch.float32)  # fp16 compatibility
+            attention_mask = (1.0 - attention_mask) * torch.finfo(torch.float32).min
+        # we need to make broadcastable to [batch_size, num_heads, seq_length, seq_length]
+        head_mask = [None] * 12
+        input_shape = input_ids.size()
+        input_ids = input_ids.view(-1, input_shape[-1])
+        inputs_embeds = self.model.transformer.wte(input_ids)
+        past_length = 0
+        past_key_values = tuple([None] * len(self.layers))
+        position_ids = torch.arange(past_length, input_shape[-1] + past_length, dtype=torch.long, device=self.device)
+        position_ids = position_ids.unsqueeze(0)
+        position_embeds = self.model.transformer.wpe(position_ids)
+        hidden_states = inputs_embeds + position_embeds
+        initial_token,emerge_token,predicted_token=self.token_split(top_token_matrix)
+        initial_token_recorder=torch.zeros((12,initial_token.size()[0]))
+        emerge_token_recorder=torch.zeros((12,emerge_token.size()[0]))
+        predicted_token_recorder=torch.zeros((12,predicted_token.size()[0]))
+        
+        
+        for i, (block, layer_past) in enumerate(zip(self.layers, past_key_values)):
+            if layer_past is not None:
+                layer_past = tuple(past_state.to(self.device) for past_state in layer_past)
+            if attention_mask is not None:
+                attention_mask = attention_mask.to(self.device)
+            circuit_input=hidden_states
+            outputs = block(
+                hidden_states,
+                layer_past=layer_past,
+                attention_mask=attention_mask,
+                head_mask=head_mask[i],
+                encoder_hidden_states=None,
+                encoder_attention_mask=None,
+                use_cache=True,
+                output_attentions=False,
+            )
+            hidden_states = outputs[0]
+            
+            #circuit_1 is the self path, only include itself
+            circuit_1=circuit_input
+
+
+            #get top token_idx of circuit 1 in each layer:
+            
+            ln_hidden_state=self.model.transformer.ln_f(circuit_1)
+            circuit_logits=self.model.lm_head(ln_hidden_state)[0][-1].unsqueeze(0).cpu()
+            initial_token_recorder[i]=circuit_logits.index_select(1,initial_token)
+            emerge_token_recorder[i]=circuit_logits.index_select(1,emerge_token)
+            predicted_token_recorder[i]=circuit_logits.index_select(1, predicted_token)
+        initial_token_recorder=initial_token_recorder.transpose(0,1)
+        emerge_token_recorder=emerge_token_recorder.transpose(0,1)
+        predicted_token_recorder=predicted_token_recorder.transpose(0,1)
+            
+        return initial_token,emerge_token,predicted_token,initial_token_recorder.numpy(),emerge_token_recorder.numpy(),predicted_token_recorder.numpy()
+            
+            
+        
+            
+            
+            
+    def _split_heads(self, tensor, num_heads, attn_head_size):
+        """
+        Splits hidden_size dim into attn_head_size and num_heads
+        """
+        new_shape = tensor.size()[:-1] + (num_heads, attn_head_size)
+        tensor = tensor.view(new_shape)
+        return tensor.permute(1, 0, 2)  # (batch, head, seq_length, head_features)
+    
+    def token_split(self,top_token_matrix):
+        initial_token=top_token_matrix[0].int()
+        predicted_token=top_token_matrix[-1].int()
+        all_token=top_token_matrix[1:-1].view(-1)
+        emerge_token=torch.tensor([999999999])
+        for i in range(all_token.size()[0]):
+            if torch.any(initial_token.eq(all_token[i])).item() or torch.any(predicted_token.eq(all_token[i])).item() or torch.any(emerge_token.eq(all_token[i])).item(): 
+                continue
+            else:
+                emerge_token=torch.cat((emerge_token,all_token[i:i+1]))
+        return initial_token,emerge_token[1:].int(),predicted_token
+                       
+                       
+class bias_analysis(nn.Module):
+    def __init__(self,args):
+        super().__init__()
+        self.args=args
+        self.model_name=args.model_name
+        self.task_name=args.task_name
+        self.model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
+        self.tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        self.Unembedding=self.model.lm_head.weight#[E,D]
+        self.layers=self.model.transformer.h
+        self.device=args.device
+            
+    @property
+    def device(self):
+        return self.model.device
+
+    @device.setter
+    def device(self, device):
+        print(f'Model: set device to {device}')
+        self.model = self.model.to(device)
+        self.layers = self.layers.to(device)
+
+
+        
+    
+            
+    def forward(self):
+        
+        past_key_values = tuple([None] * len(self.layers))
+        
+        
+        top_token_matrix=torch.zeros(12,50)#top 10 tokens 
+        top_token=[]
+        top_token_logits=torch.zeros(12,50)
+        
+        top_attn_matrix=torch.zeros(12,50)#top 10 tokens 
+        top_attn_token=[]
+        top_attn_logits=torch.zeros(12,50)
+        
+        top_mlp_matrix=torch.zeros(12,50)#top 10 tokens 
+        top_mlp_token=[]
+        top_mlp_logits=torch.zeros(12,50)
+        for i, (block, layer_past) in enumerate(zip(self.layers, past_key_values)):
+            
+            W_obias=block.attn.c_proj.bias#R^[d]=[768],but in practice, we used R=[N,768]
+            
+            W_mlp2bias=block.mlp.c_proj.bias #R^[d]=[768] 
+            
+            #circuit_1 is the self path, only include itself
+            circuit_6=W_obias+W_mlp2bias
+
+
+            #get top token_idx of circuit 1 in each layer:
+            
+            ln_hidden_state=self.model.transformer.ln_f(circuit_6)
+            circuit_logits=self.model.lm_head(ln_hidden_state).unsqueeze(0)
+            _,predicted_indices=torch.topk(circuit_logits,50)
+            top_token_matrix[i]=predicted_indices[0]
+            top_token.append(self.get_tokens(predicted_indices[0]))
+            top_token_logits[i]=circuit_logits.index_select(1,predicted_indices[0])
+            
+            ln_hidden_state_attn=self.model.transformer.ln_f(W_obias)
+            circuit_logits_attn=self.model.lm_head(ln_hidden_state_attn).unsqueeze(0)
+            _,predicted_indices_attn=torch.topk(circuit_logits_attn,50)
+            top_attn_matrix[i]=predicted_indices_attn[0]
+            top_attn_token.append(self.get_tokens(predicted_indices_attn[0]))
+            top_attn_logits[i]=circuit_logits_attn.index_select(1,predicted_indices_attn[0])
+            
+            ln_hidden_state_mlp=self.model.transformer.ln_f(W_mlp2bias)
+            circuit_logits_mlp=self.model.lm_head(ln_hidden_state_mlp).unsqueeze(0)
+            _,predicted_indices_mlp=torch.topk(circuit_logits_mlp,50)
+            top_mlp_matrix[i]=predicted_indices_mlp[0]
+            top_mlp_token.append(self.get_tokens(predicted_indices_mlp[0]))
+            top_mlp_logits[i]=circuit_logits_mlp.index_select(1,predicted_indices_mlp[0])
+            
+            
+            
+        return top_token_matrix,top_token,top_token_logits,top_attn_matrix,top_attn_token,top_attn_logits,top_mlp_matrix,top_mlp_token,top_mlp_logits
+            
+            
+        
+            
+            
+            
+    def _split_heads(self, tensor, num_heads, attn_head_size):
+        """
+        Splits hidden_size dim into attn_head_size and num_heads
+        """
+        new_shape = tensor.size()[:-1] + (num_heads, attn_head_size)
+        tensor = tensor.view(new_shape)
+        return tensor.permute(1, 0, 2)  # (batch, head, seq_length, head_features)
+    
+    def token_split(self,top_token_matrix):
+        initial_token=top_token_matrix[0].int()
+        predicted_token=top_token_matrix[-1].int()
+        all_token=top_token_matrix[1:-1].view(-1)
+        emerge_token=torch.tensor([999999999])
+        for i in range(all_token.size()[0]):
+            if torch.any(initial_token.eq(all_token[i])).item() or torch.any(predicted_token.eq(all_token[i])).item() or torch.any(emerge_token.eq(all_token[i])).item(): 
+                continue
+            else:
+                emerge_token=torch.cat((emerge_token,all_token[i:i+1]))
+        return initial_token,emerge_token[1:].int(),predicted_token
+    
+    def get_tokens(self,predicted_indices):
+        token_list=[]
+        for i in range(50):
+            ids=predicted_indices[i]
+            token_list.append(self.tokenizer.decode(ids))
+        return token_list  

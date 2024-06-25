@@ -1,8 +1,9 @@
 import torch
 from args import DeepArgs
-from utils import set_gpu,get_datasets
+from utils import set_gpu,get_datasets,generate_figure
 from transformers import HfArgumentParser,AutoTokenizer,GPT2LMHeadModel
-from circuit_into_ebeddingspace import attention_circuit,ioi_attention_circuit,circuit_analysis
+from circuit_into_ebeddingspace import attention_circuit_check,ioi_attention_circuit,circuit_analysis,tokens_extraction,residual_analysis,\
+    bias_analysis
 import logging
 import json
 
@@ -33,7 +34,7 @@ if args.task_name=='attention_analysis':
     if args.model_name=='gpt2xl':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
         if args.case_type=='case':
-            model=attention_circuit(args)
+            model=attention_circuit_check(args)
             input_text="The Space Needle is in downtown" 
             inputs = tokenizer(input_text, return_tensors="pt")
             model(inputs)
@@ -78,6 +79,52 @@ if args.task_name=='attention_analysis':
 if args.task_name=='circuit_analysis':
     if args.model_name=='gpt2xl':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        if args.case_type=='ioidataset':
+            #ioidataset provides visulization of function heads
+            model=circuit_analysis(args)
+            _,dataset_orig=get_datasets()
+            input_text=dataset_orig.sentences
+            
+            cos_matrix_all=torch.zeros(12,6)  
+            top_cos_matrix_all=torch.zeros(12,6)  
+            mse_matrix_all=torch.zeros(12,6)  
+            top_mse_matrix_all=torch.zeros(12,6) 
+            ce_matrix_all=torch.zeros(12,6)  
+            top_ce_matrix_all=torch.zeros(12,6) 
+            jsd_matrix_all=torch.zeros(12,6)  
+            top_jsd_matrix_all=torch.zeros(12,6)  
+            for i in range (len(input_text)):
+                input_case=input_text[i]
+                inputs = tokenizer(input_case, return_tensors="pt")
+                print('To record {}-th case'.format(i))
+                with torch.no_grad():
+                    cos_matrix,top_cos_matrix,mse_matrix,top_mse_matrix,ce_matrix,top_ce_matrix,jsd_matrix,top_jsd_matrix=model(inputs)
+                    cos_matrix_all=cos_matrix_all+cos_matrix
+                    top_cos_matrix_all=top_cos_matrix_all+top_cos_matrix
+                    mse_matrix_all=mse_matrix_all+mse_matrix
+                    top_mse_matrix_all=top_mse_matrix_all+top_mse_matrix
+                    ce_matrix_all=ce_matrix_all+ce_matrix
+                    top_ce_matrix_all=top_ce_matrix_all+top_ce_matrix
+                    jsd_matrix_all=jsd_matrix_all+jsd_matrix
+                    top_jsd_matrix_all=top_jsd_matrix_all+top_jsd_matrix
+            cos_matrix_all=cos_matrix_all/i        
+            top_cos_matrix_all=top_cos_matrix_all/i
+            mse_matrix_all=mse_matrix_all/i    
+            top_mse_matrix_all=top_mse_matrix_all/i
+            ce_matrix_all=ce_matrix_all/i    
+            top_ce_matrix_all=top_ce_matrix_all/i
+            jsd_matrix_all=jsd_matrix_all/i
+            top_jsd_matrix_all=top_jsd_matrix_all/i
+            logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+args.case_type+'_logging.log')
+            logger.info('The cos_matrix_all matrix is {}'.format(cos_matrix_all))
+            logger.info('The top_cos_matrix_all matrix is {}'.format(top_cos_matrix_all))
+            logger.info('The mse_matrix_all matrix is {}'.format(mse_matrix_all))
+            logger.info('The top_mse_matrix_all matrix is {}'.format(top_mse_matrix_all))
+            logger.info('The ce_matrix_all matrix is {}'.format(ce_matrix_all))
+            logger.info('The top_ce_matrix_all matrix is {}'.format(top_ce_matrix_all))
+            logger.info('The jsd_matrix_all matrix is {}'.format(jsd_matrix_all))
+            logger.info('The top_jsd_matrix_all matrix is {}'.format(top_jsd_matrix_all))
+                    
         if args.case_type=='srodataset':
                    #srodataset provides visulization of circuits and traces
             model=circuit_analysis(args)
@@ -127,3 +174,63 @@ if args.task_name=='circuit_analysis':
             logger.info('The jsd_matrix_all matrix is {}'.format(jsd_matrix_all))
             logger.info('The top_jsd_matrix_all matrix is {}'.format(top_jsd_matrix_all))
             
+            
+if args.task_name=='residual_analysis':
+    if args.model_name=='gpt2xl':
+        tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        if args.case_type=='srodataset':
+            extraction_model=tokens_extraction(args)
+            analysis_model=residual_analysis(args)
+            with open('dataset/srodataset.json','r') as f: 
+                data=json.load(f)
+            i=0
+            initial_token_all=[]
+            emerge_token_all=[]
+            predicted_token_all=[]
+            if args.logs=='true':
+                logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+args.case_type+'_logging.log')
+            for case in data:
+                i=i+1
+                print('To record {}-th case'.format(i))
+                input_text=case['prompt']
+                inputs = tokenizer(input_text, return_tensors="pt")
+                with torch.no_grad():
+                    top_token_matrix,top_token_alltokens,token_sequence=extraction_model(inputs)
+                    if args.logs=='true':
+                        logger.info('###new case###')
+                        for m in range(len(token_sequence)):
+                            logger.info('With source tokens ['+tokenizer.decode(inputs['input_ids'][0][:m+1])+'], predicted token with layer are: {}'.format(token_sequence[m]))
+                    initial_token,emerge_token,predicted_token,initial_token_recorder,emerge_token_recorder,predicted_token_recorder=analysis_model(inputs,top_token_matrix)
+                    initial_token_all.append(initial_token_recorder)
+                    emerge_token_all.append(emerge_token_recorder)
+                    predicted_token_all.append(predicted_token_recorder)
+            generate_figure(initial_token_all,emerge_token_all,predicted_token_all)
+                    
+                    
+                    # logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+args.case_type+'_logging.log')
+                    # logger.info('The top_token matrix is {}'.format(top_token_matrix))
+                    
+
+if args.task_name=='bias_analysis':
+    if args.model_name=='gpt2xl':
+        tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        if args.case_type=='srodataset':
+            model=bias_analysis(args)
+            with open('dataset/srodataset.json','r') as f: 
+                data=json.load(f)
+            i=0
+            if args.logs=='true':
+                logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+'logging.log')
+        
+            with torch.no_grad():
+                top_token_matrix,top_token,top_token_logits,top_attn_matrix,top_attn_token,top_attn_logits,top_mlp_matrix,top_mlp_token,top_mlp_logits=model()
+                if args.logs=='true':
+                    logger.info('###top_token_matrix is \n {}'.format(top_token_matrix))
+                    logger.info('###top_token is\n {}'.format(top_token))
+                    logger.info('###top_token_logits is \n {}'.format(top_token_logits))
+                    logger.info('###top_attn_matrix is \n {}'.format(top_attn_matrix))
+                    logger.info('###top_attn_token is\n {}'.format(top_attn_token))
+                    logger.info('###top_attn_logits is \n {}'.format(top_attn_logits))
+                    logger.info('###top_mlp_matrix is \n {}'.format(top_mlp_matrix))
+                    logger.info('###top_mlp_token is\n {}'.format(top_mlp_token))
+                    logger.info('###top_mlp_logits is \n {}'.format(top_mlp_logits))

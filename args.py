@@ -9,10 +9,11 @@ FOLDER_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))+'/XAIo
 
 @dataclass
 class DeepArgs:
-    task_name: str = "circuit_analysis"#'general_discovery','attention_analysis'，'circuit_analysis'
+    task_name: str = "bias_analysis"#['general_discovery','attention_analysis'，'circuit_analysis','residual_analysis','bias_analysis']
     case_type: str='srodataset'#'case', or 'ioidataset','srodataset'
     model_name: str = "gpt2xl"#"gptj""gpt2lmheadmodel","gpt1","gptneox"
     device: str = 'cuda:0'
+    logs: str='true'
     save_folder: str = os.path.join(FOLDER_ROOT, task_name,model_name)
 
 
@@ -20,7 +21,7 @@ class DeepArgs:
 
     def __post_init__(self):
         
-        assert self.task_name in ['general_discovery','attention_analysis','circuit_analysis']
+        assert self.task_name in ['general_discovery','attention_analysis','circuit_analysis','residual_analysis','bias_analysis']
         assert self.model_name in ["gpt2xl"]
         assert 'cuda:' in self.device
         self.gpu = int(self.device.split(':')[-1])
