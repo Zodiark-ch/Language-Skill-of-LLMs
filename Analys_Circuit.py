@@ -3,7 +3,7 @@ from args import DeepArgs
 from utils import set_gpu,get_datasets,generate_figure
 from transformers import HfArgumentParser,AutoTokenizer,GPT2LMHeadModel
 from circuit_into_ebeddingspace import attention_circuit_check,ioi_attention_circuit,circuit_analysis,tokens_extraction,residual_analysis,\
-    bias_analysis
+    bias_analysis,attention_analysis
 import logging
 import json
 
@@ -30,7 +30,7 @@ def get_logger(filename, verbosity=1, name=None):
 
         return logger
 
-if args.task_name=='attention_analysis':
+if args.task_name=='ioi_check':
     if args.model_name=='gpt2xl':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
         if args.case_type=='case':
@@ -216,9 +216,7 @@ if args.task_name=='bias_analysis':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
         if args.case_type=='srodataset':
             model=bias_analysis(args)
-            with open('dataset/srodataset.json','r') as f: 
-                data=json.load(f)
-            i=0
+            
             if args.logs=='true':
                 logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+'logging.log')
         
@@ -234,3 +232,29 @@ if args.task_name=='bias_analysis':
                     logger.info('###top_mlp_matrix is \n {}'.format(top_mlp_matrix))
                     logger.info('###top_mlp_token is\n {}'.format(top_mlp_token))
                     logger.info('###top_mlp_logits is \n {}'.format(top_mlp_logits))
+                    
+                    
+if args.task_name=='attention_analysis':
+    if args.model_name=='gpt2xl':
+        tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        if args.case_type=='srodataset':
+            model=attention_analysis(args)
+            with open('dataset/srodataset.json','r') as f: 
+                data=json.load(f)
+            i=0
+            
+            for case in data:
+                i=i+1
+                print('To record {}-th case'.format(i))
+                input_text=case['prompt']
+                inputs = tokenizer(input_text, return_tensors="pt")
+                # if args.logs=='true':
+                #     logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+input_text+'_logging.log')
+        
+                with torch.no_grad():
+                    orig_model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
+                    outputs = orig_model(**inputs, labels=inputs["input_ids"])
+                    _,predicted_indices=torch.topk(outputs.logits[0][-1],1)
+                    # if args.logs=='true':
+                    #     logger.info('max probability tokens are:'+ tokenizer.decode(predicted_indices))
+                    attention_weight_alllayer=model(inputs,predicted_indices)
