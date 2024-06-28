@@ -1,4 +1,6 @@
 import torch 
 import torch.nn.functional as F 
 
-kld=F.kl_div()
+a=torch.FloatTensor([1,2,3])
+print(F.softmax(a))
+print(F.softmax(a+a))

@@ -2372,4 +2372,439 @@ class attention_analysis(nn.Module):
         # logger.addHandler(sh)
 
         return logger
+    
+    
+class mlp_analysis(nn.Module):
+    def __init__(self,args):
+        super().__init__()
+        self.args=args
+        self.model_name=args.model_name
+        self.task_name=args.task_name
+        self.model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
+        self.tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        self.Unembedding=self.model.lm_head.weight#[E,D]
+        self.layers=self.model.transformer.h
+        self.device=args.device
+            
+    @property
+    def device(self):
+        return self.model.device
+
+    @device.setter
+    def device(self, device):
+        print(f'Model: set device to {device}')
+        self.model = self.model.to(device)
+        self.layers = self.layers.to(device)
+
+
+        
+    
+            
+    def forward(self,inputs,label_ids):
+        inputs=inputs.to(self.device)
+        label_ids=label_ids.to(self.device)
+        attention_mask=inputs["attention_mask"]
+        input_ids=inputs['input_ids']
+        batch_size=attention_mask.size()[0]
+        if attention_mask is not None:
+            if batch_size <= 0:
+                raise ValueError("batch_size has to be defined and > 0")
+            attention_mask = attention_mask.view(batch_size, -1)
+            attention_mask = attention_mask[:, None, None, :]
+            attention_mask = attention_mask.to(dtype=torch.float32)  # fp16 compatibility
+            attention_mask = (1.0 - attention_mask) * torch.finfo(torch.float32).min
+        # we need to make broadcastable to [batch_size, num_heads, seq_length, seq_length]
+        head_mask = [None] * 12
+        input_shape = input_ids.size()
+        input_ids = input_ids.view(-1, input_shape[-1])
+        inputs_embeds = self.model.transformer.wte(input_ids)
+        past_length = 0
+        past_key_values = tuple([None] * len(self.layers))
+        position_ids = torch.arange(past_length, input_shape[-1] + past_length, dtype=torch.long, device=self.device)
+        position_ids = position_ids.unsqueeze(0)
+        position_embeds = self.model.transformer.wpe(position_ids)
+        hidden_states = inputs_embeds + position_embeds
+        if self.args.logs=='true':
+            logger = self.get_logger('logs/' +self.args.task_name+'/'+ self.args.model_name +'/'+self.tokenizer.decode(input_ids[0])+'_logging.log')
+            logger.info('max probability tokens are:'+ self.tokenizer.decode(label_ids)+'with ids {}'.format(label_ids))
+        for i, (block, layer_past) in enumerate(zip(self.layers, past_key_values)):
+            if layer_past is not None:
+                layer_past = tuple(past_state.to(self.device) for past_state in layer_past)
+            if attention_mask is not None:
+                attention_mask = attention_mask.to(self.device)
+            circuit_input=hidden_states
+            outputs = block(
+                hidden_states,
+                layer_past=layer_past,
+                attention_mask=attention_mask,
+                head_mask=head_mask[i],
+                encoder_hidden_states=None,
+                encoder_attention_mask=None,
+                use_cache=True,
+                output_attentions=False,
+            )
+            hidden_states = outputs[0]
+            
+            #construct space mapping matrix
+            key_length=hidden_states.size()[-2]
+            W_qkv=block.attn.c_attn.weight #R^[d,3a]=[768,2304]
+            W_qkvbias=block.attn.c_attn.bias #R^[3a]=[2304]
+            W_qkvbias=W_qkvbias.repeat(key_length,1)#R^[N,3a]=[14,2304]
+            W_q,W_k,W_v=W_qkv.split(768, dim=1)#R^[d,a]=[768,768]
+            W_qbias,W_kbias,W_vbias=W_qkvbias.split(768, dim=-1)#R^[N,a]=[14,768]
+            W_mhq=self._split_heads(W_q,12,64)#R^[num_head,d,a/num_head]=[12,768,64] simply H represents num_heads
+            W_mhk=self._split_heads(W_k,12,64)
+            W_mhv=self._split_heads(W_v,12,64)
+            W_mhqbias=self._split_heads(W_qbias,12,64)#R^[num_head,N,a/num_head]=[12,14,64]
+            W_mhkbias=self._split_heads(W_kbias,12,64)
+            W_mhvbias=self._split_heads(W_vbias,12,64)
+            W_mhqk=torch.matmul(W_mhq,W_mhk.transpose(-1,-2))#R[H, d,d]=[12,768,768]
+            W_o=block.attn.c_proj.weight#R^[a,d]=[768,768]
+            W_obias=block.attn.c_proj.bias#R^[d]=[768],but in practice, we used R=[N,768]
+            W_obias=W_obias.repeat(key_length,1)#R^[N,a]=[14,768]
+            W_mho=self._split_heads(W_o.transpose(-1,-2),12,64).transpose(-1,-2)#because a is first dim, so need transpose, R^[H,a/H,D]=[12,64,768]
+            W_mhov=torch.matmul(W_mhv,W_mho)#R^[H,d,d]=[12,768,768]
+            W_mlp1=block.mlp.c_fc.weight #R^[d,m]=[768,3072]
+            W_mlp1bias=block.mlp.c_fc.bias #R^[m]=[3072]
+            W_mlp1bias=W_mlp1bias.repeat(key_length,1)#R^[N,m]=[14,3072]
+            W_mlp2=block.mlp.c_proj.weight #R^[m,d]=[3072,768]
+            W_mlp2bias=block.mlp.c_proj.bias #R^[d]=[768] 
+            W_mlp2bias=W_mlp2bias.repeat(key_length,1)#R^[N,m]=[14,3072]
+            W_mlp=torch.mm(W_mlp1,W_mlp2)# mlp space mapping, R^[d,d]=[768,768]
+            Act_mlp=block.mlp.act #activation of mlp, and activation of attention omitted is softmax
+            
+            
+            
+            #circuit_1 is the self path, only include itself
+            circuit_1=circuit_input
+
+            
+            
+            
+            
+            #circuit_2 is the attention only path, only include attention, 
+            circuit2_input_ln = block.ln_1(circuit_input)# make representation matrix get normed R^[N,d]=[14,768]
+            circuit2_input_ln=circuit2_input_ln.repeat(12,1,1)#get multi-head representation matrix, R^[H,N,d]=[12,14,768]
+            
+                #get raw attention weight A (raw compression matrix), actually A consists of 4 items
+            Output_mhqk=torch.matmul(circuit2_input_ln,W_mhqk)#X*Wqk
+            Output_mhqk=torch.matmul(Output_mhqk,circuit2_input_ln.transpose(-1,-2))#X*Wqk*XT, R^[H,N,N]=[12,14,14]
+            
+            Output_mhqkb1=torch.matmul(W_mhqbias,W_mhk.transpose(-1,-2))#bq*WkT
+            Output_mhqkb1=torch.matmul(Output_mhqkb1,circuit2_input_ln.transpose(-1,-2))#bq*WkT*XT, R[H,N,N]
+            
+            Output_mhqkb2=torch.matmul(circuit2_input_ln,W_mhq)#X*Wq
+            Output_mhqkb2=torch.matmul(Output_mhqkb2,W_mhkbias.transpose(-1,-2))#X*Wq*bkT, R[H,N,N]
+            
+            Output_mhqkb3=torch.matmul(W_mhqbias,W_mhkbias.transpose(-1,-2))#bq*bkT, R[H,N,N]
+            
+            Output_mhqk=Output_mhqk+Output_mhqkb1+Output_mhqkb2+Output_mhqkb3
+            Output_mhqk = Output_mhqk / torch.full(
+                [], 64 ** 0.5, dtype=Output_mhqk.dtype, device=Output_mhqk.device)
+            
+                #get compression matrix 
+            # if only "normal" attention layer implements causal mask
+            query_length, key_length = circuit2_input_ln.size(-2), circuit2_input_ln.size(-2)
+            causal_mask = torch.tril(torch.ones((key_length, key_length), dtype=torch.bool)).view(
+                 1, key_length, key_length).to(self.device)
+            mask_value = torch.finfo(Output_mhqk.dtype).min
+            # Need to be a tensor, otherwise we get error: `RuntimeError: expected scalar type float but found double`.
+            # Need to be on the same device, otherwise `RuntimeError: ..., x and y to be on the same device`
+            mask_value = torch.full([], mask_value, dtype=Output_mhqk.dtype, device=Output_mhqk.device)
+            Output_mhqk = torch.where(causal_mask, Output_mhqk.to(Output_mhqk.dtype), mask_value)
+            attn_weights=nn.functional.softmax(Output_mhqk, dim=-1) #R^[H,N,N] but R^[H,-1,N]represents the next token prediction, so the valid dim is R^[H,1,N]
+            
+                #get output of OV path (representation matrix)
+            Output_mhov=torch.matmul(circuit2_input_ln,W_mhov)#X*Wov, R^[H,N,d]=[12,14,768]
+            # value=torch.matmul(circuit2_input_ln,W_mhv)+W_mhvbias
+            # attn_output=torch.matmul(attn_weights,value)
+            # attn_output_mapping=torch.matmul(attn_output,W_mho)
+                #get production of each head and sum of all heads
+            bv_Wo=torch.matmul(W_mhvbias,W_mho)#R[H,N,D]=[12,14,768]
+            Output_mh=torch.matmul(attn_weights,Output_mhov)+torch.matmul(attn_weights,bv_Wo)#AxWvWo+A*bv*Wo
+            # R^[H,N,d], but R^[H,-1,d]represents the next token prediction, so the valid dim is R^[H,1,d]
+            head1_attn,head2_attn,head3_attn,head4_attn,head5_attn,head6_attn,head7_attn,head8_attn,\
+                head9_attn,head10_attn,head11_attn,head12_attn=Output_mh.split(1,dim=0)
+            circuit_2=head1_attn+head2_attn+head3_attn+head4_attn+head5_attn+head6_attn+head7_attn+head8_attn+head9_attn+head10_attn+head11_attn+head12_attn
+            #finally add the bias of Wo, because Wo is conducted after merging the head
+            
+            
+            #get the activation mapping 
+            residual_stream=circuit_1+circuit_2
+            circuit3_input_ln = block.ln_2(residual_stream)# make representation matrix get normed R^[N,d]=[14,768]
+            Output_mlp1_all=torch.matmul(circuit3_input_ln,W_mlp1)+W_mlp1bias #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_all_act_steam=Act_mlp(Output_mlp1_all) #activated
+            circuit_stream_all=torch.matmul(Output_mlp1_all_act_steam,W_mlp2)#R^[B,N,d]=[1,14,768]
+            # Output_mlp1_act_steam=Act_mlp(Output_mlp1_all-W_mlp1bias) #activated
+            # circuit_stream=torch.matmul(Output_mlp1_act_steam,W_mlp2)#R^[B,N,d]=[1,14,768]
+            # circuit_Wmlp1bias=circuit_stream_all-circuit_stream
+            # Output_mlp1_bias=Act_mlp(W_mlp1bias) #activated
+            # circuit_uni_wmlp1bias=torch.matmul(Output_mlp1_bias,W_mlp2)#R^[B,N,d]=[1,14,768]
+            # circuit_syn_bias=circuit_Wmlp1bias-circuit_uni_wmlp1bias
+            
+            
+            
+            
+            #circuit_3 is the mlp only path, 
+            circuit3_input_ln = block.ln_1(circuit_input)# make representation matrix get normed R^[N,d]=[14,768]
+            circuit3_input_ln = block.ln_2(circuit3_input_ln)# make representation matrix get normed R^[N,d]=[14,768]
+            Output_mlp1=torch.matmul(circuit3_input_ln,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_3=Act_mlp(Output_mlp1) #activated
+            circuit_3=torch.matmul(Output_mlp1_act_3,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            
+            
+            #circuit_4 is the attention+mlp path, attention_weight is as the same as one in circuit_2, but OVpath differs 
+            circuit4_input_ln = block.ln_2(circuit_2)# make representation matrix get normed R^[N,d]=[14,768]
+            Output_mlp1=torch.matmul(circuit4_input_ln,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4=Act_mlp(Output_mlp1) #activated
+            circuit_4=torch.matmul(Output_mlp1_act_4,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            #get subcircuit of each head and compensation circuit
+            #head1
+            head1_c4in=block.ln_2(head1_attn)
+            Output_mlp1_h1=torch.matmul(head1_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h1=Act_mlp(Output_mlp1_h1) #activated
+            circuit_4_h1=torch.matmul(Output_mlp1_act_4_h1,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head2
+            head2_c4in=block.ln_2(head2_attn)
+            Output_mlp1_h2=torch.matmul(head2_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h2=Act_mlp(Output_mlp1_h2) #activated
+            circuit_4_h2=torch.matmul(Output_mlp1_act_4_h2,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head3 
+            head3_c4in=block.ln_2(head3_attn)
+            Output_mlp1_h3=torch.matmul(head3_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h3=Act_mlp(Output_mlp1_h3) #activated
+            circuit_4_h3=torch.matmul(Output_mlp1_act_4_h3,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head4
+            head4_c4in=block.ln_2(head4_attn)
+            Output_mlp1_h4=torch.matmul(head4_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h4=Act_mlp(Output_mlp1_h4) #activated
+            circuit_4_h4=torch.matmul(Output_mlp1_act_4_h4,W_mlp2)#R^[B,N,d]=[1,14,768]
+    
+            
+            #head5
+            head5_c4in=block.ln_2(head5_attn)
+            Output_mlp1_h5=torch.matmul(head5_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h5=Act_mlp(Output_mlp1_h5) #activated
+            circuit_4_h5=torch.matmul(Output_mlp1_act_4_h5,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head6
+            head6_c4in=block.ln_2(head6_attn)
+            Output_mlp1_h6=torch.matmul(head6_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h6=Act_mlp(Output_mlp1_h6) #activated
+            circuit_4_h6=torch.matmul(Output_mlp1_act_4_h6,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head7
+            head7_c4in=block.ln_2(head7_attn)
+            Output_mlp1_h7=torch.matmul(head7_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h7=Act_mlp(Output_mlp1_h7) #activated
+            circuit_4_h7=torch.matmul(Output_mlp1_act_4_h7,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head8
+            head8_c4in=block.ln_2(head8_attn)
+            Output_mlp1_h8=torch.matmul(head8_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h8=Act_mlp(Output_mlp1_h8) #activated
+            circuit_4_h8=torch.matmul(Output_mlp1_act_4_h8,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head9
+            head9_c4in=block.ln_2(head9_attn)
+            Output_mlp1_h9=torch.matmul(head9_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h9=Act_mlp(Output_mlp1_h9) #activated
+            circuit_4_h9=torch.matmul(Output_mlp1_act_4_h9,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head10
+            head10_c4in=block.ln_2(head10_attn)
+            Output_mlp1_h10=torch.matmul(head10_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h10=Act_mlp(Output_mlp1_h10) #activated
+            circuit_4_h10=torch.matmul(Output_mlp1_act_4_h10,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head11
+            head11_c4in=block.ln_2(head11_attn)
+            Output_mlp1_h11=torch.matmul(head11_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h11=Act_mlp(Output_mlp1_h11) #activated
+            circuit_4_h11=torch.matmul(Output_mlp1_act_4_h11,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+            
+            #head12
+            head12_c4in=block.ln_2(head12_attn)
+            Output_mlp1_h12=torch.matmul(head12_c4in,W_mlp1) #R^[B,N,m]=[1,14,3072]
+            Output_mlp1_act_4_h12=Act_mlp(Output_mlp1_h12) #activated
+            circuit_4_h12=torch.matmul(Output_mlp1_act_4_h12,W_mlp2)#R^[B,N,d]=[1,14,768]
+            
+        
+            
+            #conpensation circuit for multi-heads, include the effects of bias in mlp1 and synergistic from interaction of multi-heads 
+            circuit_4_compst=circuit_4-circuit_4_h1-circuit_4_h2-circuit_4_h3-circuit_4_h4-circuit_4_h5-circuit_4_h6-circuit_4_h7-circuit_4_h8-\
+                circuit_4_h9-circuit_4_h10-circuit_4_h11-circuit_4_h12
+            
+            
+            
+            # circuit_5, the effect of addition of circuit_1 and circuit_2 caused by NewGeLU activation, also, 
+            # meaning that the synergistic of residual stream (syn(A,B), and syn((A+B),Wmlp1bias))
+            circuit_5=(circuit_stream_all-circuit_3-circuit_4)
+            
+            #circuit_6, i.e.,circuit_Wmlp1bias, the movement of bias in Wo,Wmlp1
+            circuit_6=W_obias+W_mlp2bias
+            
+            #get circuit sum 
+            circuit_sum=circuit_1+circuit_2+circuit_3+circuit_4+circuit_5+circuit_6 #R^[B,N,D]=[1,14,768]
+            
+            
+            #get Inspiration of each cirucit
+            #C3 inspiration
+            Inspire_c3=self.get_inspiration(circuit3_input_ln,circuit_3,label_ids)
+            
+            #C4 inspiration 
+            Inspire_c4=self.get_inspiration(circuit4_input_ln,circuit_4,label_ids)
+            
+            #c4h1 inspiration
+            Inspire_c4h1=self.get_inspiration(head1_c4in,circuit_4_h1,label_ids)
+            
+            #c4h2 inspiration
+            Inspire_c4h2=self.get_inspiration(head2_c4in,circuit_4_h2,label_ids)
+            
+            #c4h3 inspiration
+            Inspire_c4h3=self.get_inspiration(head3_c4in,circuit_4_h3,label_ids)
+            
+            #c4h4 inspiration
+            Inspire_c4h4=self.get_inspiration(head4_c4in,circuit_4_h4,label_ids)
+            
+            #c4h5 inspiration
+            Inspire_c4h5=self.get_inspiration(head5_c4in,circuit_4_h5,label_ids)
+            
+            #c4h6 inspiration
+            Inspire_c4h6=self.get_inspiration(head6_c4in,circuit_4_h6,label_ids)
+            
+            #c4h7 inspiration
+            Inspire_c4h7=self.get_inspiration(head7_c4in,circuit_4_h7,label_ids)
+            
+            #c4h8 inspiration
+            Inspire_c4h8=self.get_inspiration(head8_c4in,circuit_4_h8,label_ids)
+            
+            #c4h9 inspiration
+            Inspire_c4h9=self.get_inspiration(head9_c4in,circuit_4_h9,label_ids)
+            
+            #c4h10 inspiration
+            Inspire_c4h10=self.get_inspiration(head10_c4in,circuit_4_h10,label_ids)
+            
+            #c4h11 inspiration
+            Inspire_c4h11=self.get_inspiration(head11_c4in,circuit_4_h11,label_ids)
+            
+            #c4h12 inspiration
+            Inspire_c4h12=self.get_inspiration(head12_c4in,circuit_4_h12,label_ids)
+            
+            #c4compt inspiration
+            logits_c4=self.get_logits(circuit4_input_ln)
+            logits_c4_h1=self.get_logits(head1_c4in)
+            logits_c4_h2=self.get_logits(head2_c4in)
+            logits_c4_h3=self.get_logits(head3_c4in)
+            logits_c4_h4=self.get_logits(head4_c4in)
+            logits_c4_h5=self.get_logits(head5_c4in)
+            logits_c4_h6=self.get_logits(head6_c4in)
+            logits_c4_h7=self.get_logits(head7_c4in)
+            logits_c4_h8=self.get_logits(head8_c4in)
+            logits_c4_h9=self.get_logits(head9_c4in)
+            logits_c4_h10=self.get_logits(head10_c4in)
+            logits_c4_h11=self.get_logits(head11_c4in)
+            logits_c4_h12=self.get_logits(head12_c4in)
+            logits_headall=logits_c4_h1+logits_c4_h2+logits_c4_h3+logits_c4_h4+logits_c4_h5+logits_c4_h6+logits_c4_h7+logits_c4_h8+\
+                logits_c4_h9+logits_c4_h10+logits_c4_h11+logits_c4_h12
+                
+            label_logits_c4=F.softmax(logits_c4,dim=-1).index_select(-1,label_ids)#[1,N,1]
+            label_logit_headall=F.softmax(logits_headall,dim=-1).index_select(-1,label_ids)#[1,N,1]
+            Inspire_c4compt=torch.where(label_logits_c4>label_logit_headall,1,0)
+            
+            #circuit 5
+            logits_stream_all=self.get_logits(circuit_stream_all)
+            logits_c3=self.get_logits(circuit3_input_ln)
+            Output_mlp1_bias=Act_mlp(W_mlp1bias) #activated
+            circuit_uni_wmlp1bias=torch.matmul(Output_mlp1_bias,W_mlp2)#R^[B,N,d]=[1,14,768]
+            logits_wmlp1bias=self.get_logits(circuit_uni_wmlp1bias)
+            logits_sub_all=logits_c3+logits_c4+logits_wmlp1bias
+            label_logits_stream_all=F.softmax(logits_stream_all,dim=-1).index_select(-1,label_ids)#[1,N,1]
+            label_logits_sub_all=F.softmax(logits_sub_all,dim=-1).index_select(-1,label_ids)#[1,N,1]
+            Inspire_c5=torch.where(label_logits_stream_all>label_logits_sub_all,1,0)
+            
+            
+            
+            if self.args.logs=='true':
+                logger.info('################{}-th layer#################'.format(i))
+                logger.info('##{}-th layer ##Inspire##: The circuit3 Inspire status of source tokens is \n {}'.format(i,Inspire_c3))
+                logger.info('##{}-th layer ##Inspire##: The circuit4 Inspire status of source tokens is \n {}'.format(i,Inspire_c4))
+                
+                logger.info('##{}-th layer ##Inspire##: The c4head1 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h1))
+                logger.info('##{}-th layer ##Inspire##: The c4head2 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h2))
+                logger.info('##{}-th layer ##Inspire##: The c4head3 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h3))
+                logger.info('##{}-th layer ##Inspire##: The c4head4 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h4))
+                logger.info('##{}-th layer ##Inspire##: The c4head5 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h5))
+                logger.info('##{}-th layer ##Inspire##: The c4head6 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h6))
+                logger.info('##{}-th layer ##Inspire##: The c4head7 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h7))
+                logger.info('##{}-th layer ##Inspire##: The c4head8 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h8))
+                logger.info('##{}-th layer ##Inspire##: The c4head9 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h9))
+                logger.info('##{}-th layer ##Inspire##: The c4head10 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h10))
+                logger.info('##{}-th layer ##Inspire##: The c4head11 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h11))
+                logger.info('##{}-th layer ##Inspire##: The c4head12 Inspire status of source tokens is \n {}'.format(i,Inspire_c4h12))
+        
+                logger.info('##{}-th layer ##Inspire##: The Inspire_c4compt status of source tokens is \n {}'.format(i,Inspire_c4compt))
+                logger.info('##{}-th layer ##Inspire##: The circuit5 Inspire status of source tokens is \n {}'.format(i,Inspire_c5))
+        
+        logging.shutdown()
+            
+            
+            
+    def _split_heads(self, tensor, num_heads, attn_head_size):
+        """
+        Splits hidden_size dim into attn_head_size and num_heads
+        """
+        new_shape = tensor.size()[:-1] + (num_heads, attn_head_size)
+        tensor = tensor.view(new_shape)
+        return tensor.permute(1, 0, 2)  # (batch, head, seq_length, head_features)
+    
+    def get_inspiration(self,input,output,label_ids):
+        ln_hidden_state_in=self.model.transformer.ln_f(input)
+        logits_in=self.model.lm_head(ln_hidden_state_in)[0].unsqueeze(0)
+        label_logits_in=F.softmax(logits_in,dim=-1).index_select(-1,label_ids)#[1,N,1]
+        
+        ln_hidden_state=self.model.transformer.ln_f(output)
+        logits_out=self.model.lm_head(ln_hidden_state)[0].unsqueeze(0)
+        label_logits=F.softmax(logits_out,dim=-1).index_select(-1,label_ids)#[1,N,1]
+        Inspire=torch.where(label_logits>label_logits_in,1,0)
+        return Inspire
+    
+    def get_logits(self,input):
+        ln_hidden_state_in=self.model.transformer.ln_f(input)
+        logits_in=self.model.lm_head(ln_hidden_state_in)[0].unsqueeze(0)
+        
+        return logits_in
                        
+    def get_logger(self,filename, verbosity=1, name=None):
+        level_dict = {0: logging.DEBUG, 1: logging.INFO, 2: logging.WARNING}
+        formatter = logging.Formatter(
+            "[%(asctime)s][%(filename)s][line:%(lineno)d][%(levelname)s] %(message)s"
+        )
+        logger = logging.getLogger(name)
+        logger.setLevel(level_dict[verbosity])
+
+        fh = logging.FileHandler(filename, "w")
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+
+        # sh = logging.StreamHandler()
+        # sh.setFormatter(formatter)
+        # logger.addHandler(sh)
+
+        return logger                   
