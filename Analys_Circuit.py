@@ -3,7 +3,7 @@ from args import DeepArgs
 from utils import set_gpu,get_datasets,generate_figure
 from transformers import HfArgumentParser,AutoTokenizer,GPT2LMHeadModel
 from circuit_into_ebeddingspace import attention_circuit_check,ioi_attention_circuit,circuit_analysis,tokens_extraction,residual_analysis,\
-    bias_analysis,attention_analysis,mlp_analysis
+    bias_analysis,attention_analysis,mlp_analysis,distribution_analysis
 import logging
 import json
 
@@ -284,3 +284,15 @@ if args.task_name=='mlp_analysis':
                     # if args.logs=='true':
                     #     logger.info('max probability tokens are:'+ tokenizer.decode(predicted_indices))
                     model(inputs,predicted_indices)
+                    
+                    
+                    
+if args.task_name=='distribution_analysis':
+    if args.model_name=='gpt2xl':
+        tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        if args.case_type=='srodataset':
+            model=distribution_analysis(args)
+        
+            with torch.no_grad():
+                model()
+               

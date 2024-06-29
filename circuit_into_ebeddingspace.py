@@ -2808,3 +2808,184 @@ class mlp_analysis(nn.Module):
         # logger.addHandler(sh)
 
         return logger                   
+    
+    
+    
+    
+class distribution_analysis(nn.Module):
+    def __init__(self,args):
+        super().__init__()
+        self.args=args
+        self.model_name=args.model_name
+        self.task_name=args.task_name
+        self.model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
+        self.tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        self.Unembedding=self.model.lm_head.weight#[E,D]
+        self.layers=self.model.transformer.h
+        self.device=args.device
+            
+    @property
+    def device(self):
+        return self.model.device
+
+    @device.setter
+    def device(self, device):
+        print(f'Model: set device to {device}')
+        self.model = self.model.to(device)
+        self.layers = self.layers.to(device)
+
+
+        
+    
+            
+    def forward(self):
+        
+        past_key_values = tuple([None] * len(self.layers))
+        
+        
+        if self.args.logs=='true':
+                logger = self.get_logger('logs/' +self.args.task_name+'/'+ self.args.model_name +'/'+'logging.log')
+        for i, (block, layer_past) in enumerate(zip(self.layers, past_key_values)):
+            
+            W_qkv=block.attn.c_attn.weight #R^[d,3a]=[768,2304]
+            W_q,W_k,W_v=W_qkv.split(768, dim=1)#R^[d,a]=[768,768]
+            W_mhv=self._split_heads(W_v,12,64)
+            W_o=block.attn.c_proj.weight#R^[a,d]=[768,768]
+            W_mho=self._split_heads(W_o.transpose(-1,-2),12,64).transpose(-1,-2)#because a is first dim, so need transpose, R^[H,a/H,D]=[12,64,768]
+            W_mhov=torch.matmul(W_mhv,W_mho)#R^[H,d,d]=[12,768,768]
+            
+            W_mlp2=block.mlp.c_proj.weight #R^[m,d]=[3072,768]
+            
+            
+            #get the Wov of each head 
+            Wov_h1,Wov_h2,Wov_h3,Wov_h4,Wov_h5,Wov_h6,Wov_h7,Wov_h8,Wov_h9,Wov_h10,Wov_h11,Wov_h12=W_mhov.split(1,dim=0)
+            
+           #get each memory's distribution
+           
+            circuit_logits_h1,predicted_indices_h1=self.get_logits_top(Wov_h1)
+            circuit_logits_h2,predicted_indices_h2=self.get_logits_top(Wov_h2)
+            circuit_logits_h3,predicted_indices_h3=self.get_logits_top(Wov_h3)
+            circuit_logits_h4,predicted_indices_h4=self.get_logits_top(Wov_h4)
+            circuit_logits_h5,predicted_indices_h5=self.get_logits_top(Wov_h5)
+            circuit_logits_h6,predicted_indices_h6=self.get_logits_top(Wov_h6)
+            circuit_logits_h7,predicted_indices_h7=self.get_logits_top(Wov_h7)
+            circuit_logits_h8,predicted_indices_h8=self.get_logits_top(Wov_h8)
+            circuit_logits_h9,predicted_indices_h9=self.get_logits_top(Wov_h9)
+            circuit_logits_h10,predicted_indices_h10=self.get_logits_top(Wov_h10)
+            circuit_logits_h11,predicted_indices_h11=self.get_logits_top(Wov_h11)
+            circuit_logits_h12,predicted_indices_h12=self.get_logits_top(Wov_h12)
+            
+            circuit_logits_mlp,predicted_indices_mlp=self.get_logits_top(W_mlp2)
+            top_tokens_h1,top_tokens_h2,top_tokens_h3,top_tokens_h4,top_tokens_h5,top_tokens_h6,\
+                top_tokens_h7,top_tokens_h8,top_tokens_h9,top_tokens_h10,top_tokens_h11,top_tokens_h12,top_tokens_mlp,=\
+                    [],[],[],[],[],[],[],[],[],[],[],[],[]
+                    
+            for m in range(predicted_indices_h2.size()[-2]):
+                top_tokens_h1.append(self.get_tokens(predicted_indices_h1[0][m]))
+                top_tokens_h2.append(self.get_tokens(predicted_indices_h2[0][m]))
+                top_tokens_h3.append(self.get_tokens(predicted_indices_h3[0][m]))
+                top_tokens_h4.append(self.get_tokens(predicted_indices_h4[0][m]))
+                top_tokens_h5.append(self.get_tokens(predicted_indices_h5[0][m]))
+                top_tokens_h6.append(self.get_tokens(predicted_indices_h6[0][m]))
+                top_tokens_h7.append(self.get_tokens(predicted_indices_h7[0][m]))
+                top_tokens_h8.append(self.get_tokens(predicted_indices_h8[0][m]))
+                top_tokens_h9.append(self.get_tokens(predicted_indices_h9[0][m]))
+                top_tokens_h10.append(self.get_tokens(predicted_indices_h10[0][m]))
+                top_tokens_h11.append(self.get_tokens(predicted_indices_h11[0][m]))
+                top_tokens_h12.append(self.get_tokens(predicted_indices_h12[0][m]))
+                
+            for m in range(predicted_indices_mlp.size()[0]):
+                top_tokens_mlp.append(self.get_tokens(predicted_indices_mlp[m]))
+            
+            if self.args.logs=='true':
+                
+                logger.info('########## For the {}-th layer##########'.format(i))
+                
+                logger.info('For Head1 logits: {}'.format(circuit_logits_h1[0][:10][:50]))
+                logger.info('For Head2 logits: {}'.format(circuit_logits_h2[0][:10][:50]))
+                logger.info('For Head3 logits: {}'.format(circuit_logits_h3[0][:10][:50]))
+                logger.info('For Head4 logits: {}'.format(circuit_logits_h4[0][:10][:50]))
+                logger.info('For Head5 logits: {}'.format(circuit_logits_h5[0][:10][:50]))
+                logger.info('For Head6 logits: {}'.format(circuit_logits_h6[0][:10][:50]))
+                logger.info('For Head7 logits: {}'.format(circuit_logits_h7[0][:10][:50]))
+                logger.info('For Head8 logits: {}'.format(circuit_logits_h8[0][:10][:50]))
+                logger.info('For Head9 logits: {}'.format(circuit_logits_h9[0][:10][:50]))
+                logger.info('For Head10 logits: {}'.format(circuit_logits_h10[0][:10][:50]))
+                logger.info('For Head11 logits: {}'.format(circuit_logits_h11[0][:10][:50]))
+                logger.info('For Head12 logits: {}'.format(circuit_logits_h12[0][:10][:50]))
+                logger.info('For MLP logits: {}'.format(circuit_logits_mlp[:10][:50]))
+                
+                logger.info('For Head1 token distribution: {}'.format(top_tokens_h1))
+                logger.info('For Head2 token distribution: {}'.format(top_tokens_h2))
+                logger.info('For Head3 token distribution: {}'.format(top_tokens_h3))
+                logger.info('For Head4 token distribution: {}'.format(top_tokens_h4))
+                logger.info('For Head5 token distribution: {}'.format(top_tokens_h5))
+                logger.info('For Head6 token distribution: {}'.format(top_tokens_h6))
+                logger.info('For Head7 token distribution: {}'.format(top_tokens_h7))
+                logger.info('For Head8 token distribution: {}'.format(top_tokens_h8))
+                logger.info('For Head9 token distribution: {}'.format(top_tokens_h9))
+                logger.info('For Head10 token distribution: {}'.format(top_tokens_h10))
+                logger.info('For Head11 token distribution: {}'.format(top_tokens_h11))
+                logger.info('For Head12 token distribution: {}'.format(top_tokens_h12))
+                logger.info('For MLP token distribution: {}'.format(top_tokens_mlp))
+                
+            
+            
+            
+        
+            
+            
+        
+            
+            
+            
+    def _split_heads(self, tensor, num_heads, attn_head_size):
+        """
+        Splits hidden_size dim into attn_head_size and num_heads
+        """
+        new_shape = tensor.size()[:-1] + (num_heads, attn_head_size)
+        tensor = tensor.view(new_shape)
+        return tensor.permute(1, 0, 2)  # (batch, head, seq_length, head_features)
+    
+    def token_split(self,top_token_matrix):
+        initial_token=top_token_matrix[0].int()
+        predicted_token=top_token_matrix[-1].int()
+        all_token=top_token_matrix[1:-1].view(-1)
+        emerge_token=torch.tensor([999999999])
+        for i in range(all_token.size()[0]):
+            if torch.any(initial_token.eq(all_token[i])).item() or torch.any(predicted_token.eq(all_token[i])).item() or torch.any(emerge_token.eq(all_token[i])).item(): 
+                continue
+            else:
+                emerge_token=torch.cat((emerge_token,all_token[i:i+1]))
+        return initial_token,emerge_token[1:].int(),predicted_token
+    
+    def get_tokens(self,predicted_indices):
+        token_list=[]
+        for i in range(50):
+            ids=predicted_indices[i]
+            token_list.append(self.tokenizer.decode(ids))
+        return token_list  
+    
+    def get_logits_top(self,W):
+        ln_hidden_state=self.model.transformer.ln_f(W)
+        circuit_logits=self.model.lm_head(ln_hidden_state)
+        _,predicted_indices=torch.topk(circuit_logits,50)
+        return circuit_logits,predicted_indices
+    
+    def get_logger(self,filename, verbosity=1, name=None):
+        level_dict = {0: logging.DEBUG, 1: logging.INFO, 2: logging.WARNING}
+        formatter = logging.Formatter(
+            "[%(asctime)s][%(filename)s][line:%(lineno)d][%(levelname)s] %(message)s"
+        )
+        logger = logging.getLogger(name)
+        logger.setLevel(level_dict[verbosity])
+
+        fh = logging.FileHandler(filename, "w")
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+
+        # sh = logging.StreamHandler()
+        # sh.setFormatter(formatter)
+        # logger.addHandler(sh)
+
+        return logger    
