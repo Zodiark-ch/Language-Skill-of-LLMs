@@ -1,15 +1,17 @@
-import torch
+import torch,os
 from args import DeepArgs
 from utils import set_gpu,get_datasets,generate_figure
 from transformers import HfArgumentParser,AutoTokenizer,GPT2LMHeadModel
 from circuit_into_ebeddingspace import attention_circuit_check,ioi_attention_circuit,circuit_analysis,tokens_extraction,residual_analysis,\
-    bias_analysis,attention_analysis,mlp_analysis,distribution_analysis
+    bias_analysis,attention_analysis,mlp_analysis,distribution_analysis,satisfiability_analysis
 import logging
 import json
+from demo_representation_vocb import assert_circuits_equal_output,show_each_layer_vocb
 
 hf_parser = HfArgumentParser((DeepArgs,))
 args: DeepArgs = hf_parser.parse_args_into_dataclasses()[0]
-
+torch.cuda.empty_cache()
+os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 set_gpu(args.gpu)
 
 def get_logger(filename, verbosity=1, name=None):
@@ -296,3 +298,31 @@ if args.task_name=='distribution_analysis':
             with torch.no_grad():
                 model()
                
+               
+               
+if args.task_name=='satisfiability_analysis':
+    if args.model_name=='gpt2xl':
+        tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        if args.case_type=='srodataset':
+            #assert_model=show_each_layer_vocb(args)
+            model=satisfiability_analysis(args)
+            with open('dataset/srodataset.json','r') as f: 
+                data=json.load(f)
+            i=0
+            
+            for case in data:
+                i=i+1
+                print('To record {}-th case'.format(i))
+                input_text=case['prompt']
+                inputs = tokenizer(input_text, return_tensors="pt")
+                # if args.logs=='true':
+                #     logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+input_text+'_logging.log')
+        
+                with torch.no_grad():
+                    orig_model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
+                    outputs = orig_model(**inputs, labels=inputs["input_ids"])
+                    _,predicted_indices=torch.topk(outputs.logits[0][-1],1)
+                    # if args.logs=='true':
+                    #     logger.info('max probability tokens are:'+ tokenizer.decode(predicted_indices))
+                    #assert_model(inputs)
+                    model(inputs,predicted_indices)

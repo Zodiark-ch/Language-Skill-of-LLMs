@@ -413,12 +413,12 @@ class assert_circuits_equal_output(nn.Module):
             # R^[H,N,d], but R^[H,-1,d]represents the next token prediction, so the valid dim is R^[H,1,d]
             head1_attn,head2_attn,head3_attn,head4_attn,head5_attn,head6_attn,head7_attn,head8_attn,\
                 head9_attn,head10_attn,head11_attn,head12_attn=Output_mh.split(1,dim=0)
-            circuit_2=head1_attn+head2_attn+head3_attn+head4_attn+head5_attn+head6_attn+head7_attn+head8_attn+head9_attn+head10_attn+head11_attn+head12_attn+W_obias
+            circuit_2=head1_attn+head2_attn+head3_attn+head4_attn+head5_attn+head6_attn+head7_attn+head8_attn+head9_attn+head10_attn+head11_attn+head12_attn
             #finally add the bias of Wo, because Wo is conducted after merging the head
             
             
             #get the activation mapping 
-            residual_stream=circuit_1+circuit_2
+            residual_stream=circuit_1+circuit_2+W_obias
             circuit3_input_ln = block.ln_2(residual_stream)# make representation matrix get normed R^[N,d]=[14,768]
             Output_mlp1_all=torch.matmul(circuit3_input_ln,W_mlp1)+W_mlp1bias #R^[B,N,m]=[1,14,3072]
             Output_mlp1_all_act_steam=Act_mlp(Output_mlp1_all) #activated
@@ -444,7 +444,7 @@ class assert_circuits_equal_output(nn.Module):
             
             
             #circuit_4 is the attention+mlp path, attention_weight is as the same as one in circuit_2, but OVpath differs 
-            circuit4_input_ln = block.ln_2(circuit_2)# make representation matrix get normed R^[N,d]=[14,768]
+            circuit4_input_ln = block.ln_2(circuit_2+W_obias)# make representation matrix get normed R^[N,d]=[14,768]
             Output_mlp1=torch.matmul(circuit4_input_ln,W_mlp1) #R^[B,N,m]=[1,14,3072]
             Output_mlp1_act_4=Act_mlp(Output_mlp1) #activated
             circuit_4=torch.matmul(Output_mlp1_act_4,W_mlp2)#R^[B,N,d]=[1,14,768]
@@ -467,7 +467,7 @@ class assert_circuits_equal_output(nn.Module):
             circuit_5=(circuit_stream-circuit_3-circuit_4)+circuit_syn_bias
             
             #circuit_6, i.e.,circuit_Wmlp1bias, the movement of bias in Wmlp1 and bias in Wmlp2
-            circuit_6=circuit_uni_wmlp1bias+W_mlp2bias
+            circuit_6=circuit_uni_wmlp1bias+W_mlp2bias+W_obias
             
             #get circuit sum 
             circuit_sum=circuit_1+circuit_2+circuit_3+circuit_4+circuit_5+circuit_6 #R^[B,N,D]=[1,14,768]
