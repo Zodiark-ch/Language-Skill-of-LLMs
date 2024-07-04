@@ -61,7 +61,7 @@ if args.task_name=='satisfiability_discovery':
                     assert top_token[0].item()==label_ids.item()
                     for m in tqdm(range(circuit_num)):
                         for n in range(circuit_num):
-                            if n//circuit_layer > m//circuit_layer and m%26!=0 and m%27!=0 and m%28!=0:
+                            if n//circuit_layer > m//circuit_layer and (n+1)%29!=27 and (n+1)%29!=28 and (n+1)%29!=0:
                                 temp_branch=branch_cut
                                 temp_branch[n][m]=1
                                 top_token=model(inputs,label_ids,temp_branch)
@@ -71,7 +71,21 @@ if args.task_name=='satisfiability_discovery':
                                 
                                     
                 
-                logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+args.case_type+'/'+input_text+'_logging.log')  
-                logger.info(branch_cut)  
+                logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+input_text+'_logging.log')  
+                for id in range(29,348):
+                        branch_cut_id=branch_cut[id].split(29,dim=-1)
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 0 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[0]))
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 1 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[1])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 2 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[2])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 3 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[3])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 4 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[4])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 5 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[5])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 6 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[6])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 7 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[7])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 8 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[8])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 9 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[9])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 10 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[10])) 
+                        logger.info('### for layer {} and circuit {}, the cut list of layer 11 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[11]))   
+                logging.shutdown() 
                                 
                     
