@@ -6,7 +6,7 @@ from circuit_model import trunk_model
 import logging
 import json
 from tqdm import tqdm
-
+import copy
 
 
 hf_parser = HfArgumentParser((DeepArgs,))
@@ -37,55 +37,65 @@ if args.task_name=='satisfiability_discovery':
     if args.model_name=='gpt2xl':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
         model=trunk_model(args)
+        orig_model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
         layer=12
         circuit_layer=29
         circuit_num=12*29
         if args.case_type=='srodataset':
             with open('dataset/srodataset.json','r') as f: 
-                data=json.load(f)
-            i=0
-            
-            for case in data:
-                i=i+1
-                print('To record {}-th case'.format(i))
-                input_text=case['prompt']
-                inputs = tokenizer(input_text, return_tensors="pt")
+                input_text=json.load(f)
+        if args.case_type=='ioidataset':
+            _,dataset_orig=get_datasets()
+            input_text=dataset_orig.sentences
         
-                with torch.no_grad():
-                    orig_model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
-                    outputs = orig_model(**inputs, labels=inputs["input_ids"])
-                    _,label_ids=torch.topk(outputs.logits[0][-1],1)
-                    token_length=inputs['input_ids'].size()[-1]
-                    branch_cut=torch.zeros((circuit_num,circuit_num))
-                    top_token=model(inputs,label_ids,branch_cut)
-                    assert top_token[0].item()==label_ids.item()
-                    for m in tqdm(range(circuit_num)):
-                        for n in range(circuit_num):
-                            if n//circuit_layer > m//circuit_layer and (n+1)%29!=27 and (n+1)%29!=28 and (n+1)%29!=0:
-                                temp_branch=branch_cut
-                                temp_branch[n][m]=1
-                                top_token=model(inputs,label_ids,temp_branch)
-                                if top_token[0].item()==label_ids.item():
-                                    
-                                    branch_cut=temp_branch
-                                
-                                    
+            
+        for i in range (len(input_text)):
+            if args.case_type=='srodataset':
+                input_case=input_text[i]['prompt']
+            if args.case_type=='ioidataset':
+                input_case=input_text[i]
+            print('To record {}-th case'.format(i))
+            inputs = tokenizer(input_case, return_tensors="pt")
+    
+            with torch.no_grad():
                 
-                logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+input_text+'_logging.log')  
-                for id in range(29,348):
-                        branch_cut_id=branch_cut[id].split(29,dim=-1)
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 0 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[0]))
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 1 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[1])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 2 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[2])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 3 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[3])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 4 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[4])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 5 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[5])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 6 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[6])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 7 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[7])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 8 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[8])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 9 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[9])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 10 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[10])) 
-                        logger.info('### for layer {} and circuit {}, the cut list of layer 11 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[11]))   
-                logging.shutdown() 
+                outputs = orig_model(**inputs, labels=inputs["input_ids"])
+                _,label_ids=torch.topk(outputs.logits[0][-1],1)
+                token_length=inputs['input_ids'].size()[-1]
+                branch_cut=torch.zeros((circuit_num,circuit_num))
+                
+                #init the input matrix 
+                token_num=inputs['input_ids'].size()[-1]
+                input_matrix=torch.zeros((12,29,token_num,768)).cuda()
+                top_token,input_matrix=model(inputs,label_ids,0,0,input_matrix)
+                assert top_token[0].item()==label_ids.item()
+                for m in tqdm(range(circuit_num)):
+                    for n in range(circuit_num):
+                        if m//circuit_layer > n//circuit_layer and (m+1)%29!=27 and (m+1)%29!=28 and (m+1)%29!=0 and branch_cut[m][n]!=1:
+                            
+                            branch_cut[m][n]=1
+                            top_token,input_matrix_new=model(inputs,label_ids,m,n,input_matrix)
+                            if top_token[0].item()!=label_ids.item():
+                                branch_cut[m][n]=0
+                            else:
+                                input_matrix=input_matrix_new
+                            torch.cuda.empty_cache()
+                            
                                 
+            
+            logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+input_case+'_logging.log')  
+            for id in range(29,348):
+                    branch_cut_id=branch_cut[id].split(29,dim=-1)
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 0 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[0]))
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 1 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[1])) 
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 2 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[2])) 
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 3 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[3])) 
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 4 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[4])) 
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 5 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[5])) 
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 6 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[6])) 
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 7 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[7])) 
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 8 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[8])) 
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 9 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[9])) 
+                    logger.info('### for layer {} and circuit {}, the cut list of layer 10 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[10]))  
+            logging.shutdown()                       
                     

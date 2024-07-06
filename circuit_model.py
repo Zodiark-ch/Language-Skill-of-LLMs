@@ -34,18 +34,13 @@ class trunk_model(nn.Module):
         
     
             
-    def forward(self,inputs,label_ids,branch):
-        cut=branch.nonzero()
-        to_cut=[]
-        cut_circuit=[]
-        to_cut_layer=[]
-        cut_circuit_layer=[]
-        cut_circuit_tensor=[]
-        for pair in range(cut.size()[0]):
-            to_cut.append(int(cut[pair][0].item()))
-            to_cut_layer.append(int(cut[pair][0].item()//29))
-            cut_circuit.append(int(cut[pair][1].item()))
-            cut_circuit_layer.append(int(cut[pair][1].item()//29))
+    def forward(self,inputs,label_ids,m,n,input_matrix):
+        input_matrix_new=input_matrix.clone()
+        to_cut=m
+        cut_circuit=n
+        to_cut_layer=m//29
+        cut_circuit_layer=n//29
+        
         inputs=inputs.to(self.device)
         label_ids=label_ids.to(self.device)
         
@@ -62,8 +57,7 @@ class trunk_model(nn.Module):
         circuit_input=hidden_states
         
         for i, (block, layer_past) in enumerate(zip(self.layers, past_key_values)):
-            if i in to_cut_layer:
-                to_cut_list=[p for p, x in enumerate(to_cut_layer) if x==i]
+
             
             #construct space mapping matrix
             key_length=circuit_input.size()[-2]
@@ -94,37 +88,57 @@ class trunk_model(nn.Module):
             
             
             #circuit_1 is the self path, only include itself
-            circuit_1_in=circuit_input
-            if i in to_cut_layer:
-                circuit_1_in=self.check_representation(circuit_1_in,0,i,to_cut,to_cut_list,cut_circuit_tensor)
+            if i<=to_cut_layer and m!=0:
+                circuit_1_in=input_matrix[i][0].unsqueeze(0)
+            else: circuit_1_in=circuit_input
+            if i == to_cut_layer and to_cut%29==0 and i!=0:
+                circuit_1_in=self.check_representation(circuit_1_in,cut_circuit_tensor)
             circuit_1=circuit_1_in
+            if m==0  or i==to_cut_layer :
+                input_matrix_new[i][0]=circuit_1_in[0]
+            
 
             
             
             
             
             #circuit_2 is the attention only path, only include attention, 
-            circuit_2_in=circuit_input
-            circuit_2_in=circuit_2_in.repeat(12,1,1)#get multi-head representation matrix, R^[H,N,d]=[12,14,768]
+            if i<=to_cut_layer and m!=0:
+                circuit_2_in=input_matrix[i][1:13]
+            else: 
+                circuit_2_in=circuit_input
+                circuit_2_in=circuit_2_in.repeat(12,1,1)#get multi-head representation matrix, R^[H,N,d]=[12,14,768]
             circuit_2_in_h1,circuit_2_in_h2,circuit_2_in_h3,circuit_2_in_h4,circuit_2_in_h5,circuit_2_in_h6,circuit_2_in_h7,\
                 circuit_2_in_h8,circuit_2_in_h9,circuit_2_in_h10,circuit_2_in_h11,circuit_2_in_h12=circuit_2_in.split(1,dim=0)
-            if i in to_cut_layer:
-                circuit_2_in_h1=self.check_representation(circuit_2_in_h1,1,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h2=self.check_representation(circuit_2_in_h2,2,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h3=self.check_representation(circuit_2_in_h3,3,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h4=self.check_representation(circuit_2_in_h4,4,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h5=self.check_representation(circuit_2_in_h5,5,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h6=self.check_representation(circuit_2_in_h6,6,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h7=self.check_representation(circuit_2_in_h7,7,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h8=self.check_representation(circuit_2_in_h8,8,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h9=self.check_representation(circuit_2_in_h9,9,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h10=self.check_representation(circuit_2_in_h10,10,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h11=self.check_representation(circuit_2_in_h11,11,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h12=self.check_representation(circuit_2_in_h12,12,i,to_cut,to_cut_list,cut_circuit_tensor)
-            
+            if i == to_cut_layer and to_cut%29==1:
+                circuit_2_in_h1=self.check_representation(circuit_2_in_h1,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==2:
+                circuit_2_in_h2=self.check_representation(circuit_2_in_h2,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==3:
+                circuit_2_in_h3=self.check_representation(circuit_2_in_h3,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==4:
+                circuit_2_in_h4=self.check_representation(circuit_2_in_h4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==5:
+                circuit_2_in_h5=self.check_representation(circuit_2_in_h5,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==6:
+                circuit_2_in_h6=self.check_representation(circuit_2_in_h6,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==7:
+                circuit_2_in_h7=self.check_representation(circuit_2_in_h7,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==8:
+                circuit_2_in_h8=self.check_representation(circuit_2_in_h8,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==9:
+                circuit_2_in_h9=self.check_representation(circuit_2_in_h9,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==10:
+                circuit_2_in_h10=self.check_representation(circuit_2_in_h10,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==11:
+                circuit_2_in_h11=self.check_representation(circuit_2_in_h11,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==12:
+                circuit_2_in_h12=self.check_representation(circuit_2_in_h12,cut_circuit_tensor)
+                
             circuit_2_in=torch.cat((circuit_2_in_h1,circuit_2_in_h2,circuit_2_in_h3,circuit_2_in_h4,circuit_2_in_h5,circuit_2_in_h6,circuit_2_in_h7,\
                 circuit_2_in_h8,circuit_2_in_h9,circuit_2_in_h10,circuit_2_in_h11,circuit_2_in_h12),dim=0)
-                
+            if m==0   or i==to_cut_layer :
+                input_matrix_new[i][1:13]=circuit_2_in    
             circuit2_input_ln = block.ln_1(circuit_2_in)# make representation matrix get normed 
             
                 #get raw attention weight A (raw compression matrix), actually A consists of 4 items
@@ -177,9 +191,14 @@ class trunk_model(nn.Module):
             
             
             #circuit_3 is the mlp only path, 
-            circuit_3_in=circuit_input
-            if i in to_cut_layer:
-                circuit_3_in=self.check_representation(circuit_3_in,13,i,to_cut,to_cut_list,cut_circuit_tensor)
+            if i<=to_cut_layer and m!=0:
+                circuit_3_in=input_matrix[i][13].unsqueeze(0)
+            else: 
+                circuit_3_in=circuit_input
+            if i == to_cut_layer and to_cut%29==13:
+                circuit_3_in=self.check_representation(circuit_3_in,cut_circuit_tensor)
+            if m==0   or i>=to_cut_layer :
+                input_matrix_new[i][13]=circuit_3_in[0]
             circuit3_input_ln = block.ln_1(circuit_3_in)# make representation matrix get normed R^[N,d]=[14,768]
             circuit3_input_ln = block.ln_2(circuit3_input_ln)# make representation matrix get normed R^[N,d]=[14,768]
             Output_mlp1=torch.matmul(circuit3_input_ln,W_mlp1) #R^[B,N,m]=[1,14,3072]
@@ -189,29 +208,46 @@ class trunk_model(nn.Module):
             
             
             #new circuit_2 for circuit_4 
-            circuit_2_in_forc4=circuit_input
-            circuit_2_in_forc4=circuit_2_in_forc4.repeat(12,1,1)#get multi-head representation matrix, R^[H,N,d]=[12,14,768]
+            if i<=to_cut_layer and m!=0:
+                circuit_2_in_forc4=input_matrix[i][14:26]
+            else: 
+                
+                circuit_2_in_forc4=circuit_input
+                circuit_2_in_forc4=circuit_2_in_forc4.repeat(12,1,1)#get multi-head representation matrix, R^[H,N,d]=[12,14,768]
             
             circuit_2_in_h1_forc4,circuit_2_in_h2_forc4,circuit_2_in_h3_forc4,circuit_2_in_h4_forc4,circuit_2_in_h5_forc4,circuit_2_in_h6_forc4,\
             circuit_2_in_h7_forc4,circuit_2_in_h8_forc4,circuit_2_in_h9_forc4,circuit_2_in_h10_forc4,circuit_2_in_h11_forc4,circuit_2_in_h12_forc4=\
                 circuit_2_in_forc4.split(1,dim=0)
-            if i in to_cut_layer:
-                circuit_2_in_h1_forc4=self.check_representation(circuit_2_in_h1_forc4,14,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h2_forc4=self.check_representation(circuit_2_in_h2_forc4,15,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h3_forc4=self.check_representation(circuit_2_in_h3_forc4,16,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h4_forc4=self.check_representation(circuit_2_in_h4_forc4,17,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h5_forc4=self.check_representation(circuit_2_in_h5_forc4,18,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h6_forc4=self.check_representation(circuit_2_in_h6_forc4,19,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h7_forc4=self.check_representation(circuit_2_in_h7_forc4,20,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h8_forc4=self.check_representation(circuit_2_in_h8_forc4,21,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h9_forc4=self.check_representation(circuit_2_in_h9_forc4,22,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h10_forc4=self.check_representation(circuit_2_in_h10_forc4,23,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h11_forc4=self.check_representation(circuit_2_in_h11_forc4,24,i,to_cut,to_cut_list,cut_circuit_tensor)
-                circuit_2_in_h12_forc4=self.check_representation(circuit_2_in_h12_forc4,25,i,to_cut,to_cut_list,cut_circuit_tensor)
+    
+            if i == to_cut_layer and to_cut%29==14:
+                circuit_2_in_h1_forc4=self.check_representation(circuit_2_in_h1_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==15:
+                circuit_2_in_h2_forc4=self.check_representation(circuit_2_in_h2_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==16:
+                circuit_2_in_h3_forc4=self.check_representation(circuit_2_in_h3_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==17:
+                circuit_2_in_h4_forc4=self.check_representation(circuit_2_in_h4_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==18:
+                circuit_2_in_h5_forc4=self.check_representation(circuit_2_in_h5_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==19:
+                circuit_2_in_h6_forc4=self.check_representation(circuit_2_in_h6_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==20:
+                circuit_2_in_h7_forc4=self.check_representation(circuit_2_in_h7_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==21:
+                circuit_2_in_h8_forc4=self.check_representation(circuit_2_in_h8_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==22:
+                circuit_2_in_h9_forc4=self.check_representation(circuit_2_in_h9_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==23:
+                circuit_2_in_h10_forc4=self.check_representation(circuit_2_in_h10_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==24:
+                circuit_2_in_h11_forc4=self.check_representation(circuit_2_in_h11_forc4,cut_circuit_tensor)
+            if i == to_cut_layer and to_cut%29==25:
+                circuit_2_in_h12_forc4=self.check_representation(circuit_2_in_h12_forc4,cut_circuit_tensor)
             
             circuit_2_in_forc4=torch.cat(( circuit_2_in_h1_forc4,circuit_2_in_h2_forc4,circuit_2_in_h3_forc4,circuit_2_in_h4_forc4,circuit_2_in_h5_forc4,circuit_2_in_h6_forc4,\
             circuit_2_in_h7_forc4,circuit_2_in_h8_forc4,circuit_2_in_h9_forc4,circuit_2_in_h10_forc4,circuit_2_in_h11_forc4,circuit_2_in_h12_forc4),dim=0)
-            
+            if m==0   or i==to_cut_layer :
+                input_matrix_new[i][14:26]=circuit_2_in_forc4
             circuit2_input_ln_forc4 = block.ln_1(circuit_2_in_forc4)# make representation matrix get normed 
             
                 #get raw attention weight A (raw compression matrix), actually A consists of 4 items
@@ -366,18 +402,32 @@ class trunk_model(nn.Module):
         
             
             #conpensation circuit for multi-heads, include the effects of bias in mlp1 and synergistic from interaction of multi-heads 
-            circuit_4_compst=circuit_4-circuit_4_h1-circuit_4_h2-circuit_4_h3-circuit_4_h4-circuit_4_h5-circuit_4_h6-circuit_4_h7-circuit_4_h8-\
+            if i<to_cut_layer and m!=0:
+                circuit_4_compst=input_matrix[i][26].unsqueeze(0)
+            else: 
+                circuit_4_compst=circuit_4-circuit_4_h1-circuit_4_h2-circuit_4_h3-circuit_4_h4-circuit_4_h5-circuit_4_h6-circuit_4_h7-circuit_4_h8-\
                 circuit_4_h9-circuit_4_h10-circuit_4_h11-circuit_4_h12
             
-            
+            if m==0   or i==to_cut_layer :
+                input_matrix_new[i][26]=circuit_4_compst[0]
             
             # circuit_5, the effect of addition of circuit_1 and circuit_2 caused by NewGeLU activation, also, 
             # meaning that the synergistic of residual stream (syn(A,B), and syn((A+B),Wmlp1bias))
-            circuit_5=(circuit_stream_all-circuit_3-circuit_4)
+            if i<to_cut_layer and m!=0:
+                circuit_5=input_matrix[i][27].unsqueeze(0)
+            else: 
+                circuit_5=(circuit_stream_all-circuit_3-circuit_4)
+            if m==0   or i==to_cut_layer :
+                input_matrix_new[i][27]=circuit_5[0]
             
             #circuit_6, i.e.,circuit_Wmlp1bias, the movement of bias in Wo,Wmlp1
-            circuit_6=W_obias+W_mlp2bias
-            circuit_6=circuit_6.unsqueeze(0)
+            if i<to_cut_layer and m!=0:
+                circuit_6=input_matrix[i][28].unsqueeze(0)
+            else: 
+                circuit_6=W_obias+W_mlp2bias
+                circuit_6=circuit_6.unsqueeze(0)
+            if m==0   or i==to_cut_layer :
+                input_matrix_new[i][28]=circuit_6[0]
             
             #get circuit sum 
             #circuit_sum=circuit_1+circuit_2+circuit_3+circuit_4+circuit_5+circuit_6 #R^[B,N,D]=[1,14,768]
@@ -391,20 +441,14 @@ class trunk_model(nn.Module):
                     circuit_4_h4,circuit_4_h5,circuit_4_h6,circuit_4_h7,circuit_4_h8,circuit_4_h9,circuit_4_h10,circuit_4_h11,circuit_4_h12,\
                         circuit_4_compst,circuit_5,circuit_6),dim=0)#[29,N,768]
             circuit_input=circuit_sum
-            if i in cut_circuit_layer:
-                cut_list=[p for p, x in enumerate(cut_circuit_layer) if x==i]
-                for cut_index in range(len(cut_list)):
-                    cut_circuit_id=cut_list[cut_index]
-                    cut_id_layer=cut_circuit[cut_circuit_id]//29
-                    assert cut_id_layer==i
-                    cut_id=cut_circuit[cut_circuit_id]%29
-
-                    cut_circuit_tensor.append(circuit_sum_cat[cut_id])
+            if i == cut_circuit_layer:
+                cut_id=cut_circuit%29
+                cut_circuit_tensor=circuit_sum_cat[cut_id]
                     
             
         final_logits=self.get_logits(circuit_sum)
         _,predicted_indices=torch.topk(final_logits[0][-1],10)
-        return predicted_indices
+        return predicted_indices,input_matrix_new
             
             
     def _split_heads(self, tensor, num_heads, attn_head_size):
@@ -429,12 +473,5 @@ class trunk_model(nn.Module):
         
         return logits_in
     
-    def check_representation(self,input,input_id,i,to_cut,to_cut_list,cut_circuit_tensor):
-
-        for to_cut_index in range(len(to_cut_list)):
-            to_cut_circuit_id=to_cut[to_cut_list[to_cut_index]]
-            assert i==to_cut_circuit_id//29
-            to_cut_id=to_cut_circuit_id%29
-            if to_cut_id==input_id:
-                input=input-cut_circuit_tensor[to_cut_list[to_cut_index]]
-        return input
+    def check_representation(self,input,cut_circuit_tensor):
+        return input-cut_circuit_tensor
