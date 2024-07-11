@@ -34,7 +34,7 @@ class trunk_model(nn.Module):
         
     
             
-    def forward(self,inputs,label_ids,m,n,input_matrix):
+    def forward(self,inputs,label_ids,m,n,input_matrix,cut_circuit_tensor_all):
         input_matrix_new=input_matrix.clone()
         to_cut=m
         cut_circuit=n
@@ -55,10 +55,12 @@ class trunk_model(nn.Module):
         position_embeds = self.model.transformer.wpe(position_ids)
         hidden_states = inputs_embeds + position_embeds
         circuit_input=hidden_states
-        
+        if cut_circuit_tensor_all is not None:
+            cut_circuit_tensor=cut_circuit_tensor_all[cut_circuit%29]
         for i, (block, layer_past) in enumerate(zip(self.layers, past_key_values)):
 
-            
+            if m!=0 and to_cut_layer>i and (i!=cut_circuit_layer or n%29!=0):
+                continue
             #construct space mapping matrix
             key_length=circuit_input.size()[-2]
             W_qkv=block.attn.c_attn.weight #R^[d,3a]=[768,2304]
@@ -436,19 +438,21 @@ class trunk_model(nn.Module):
                     circuit_4_h4+circuit_4_h5+circuit_4_h6+circuit_4_h7+circuit_4_h8+circuit_4_h9+circuit_4_h10+circuit_4_h11+circuit_4_h12+\
                         circuit_4_compst+circuit_5+circuit_6
                         
-            circuit_sum_cat=torch.cat((circuit_1,circuit_2_h1,circuit_2_h2,circuit_2_h3,circuit_2_h4,circuit_2_h5,circuit_2_h6,circuit_2_h7,circuit_2_h8,\
+            
+            circuit_input=circuit_sum
+            if i == cut_circuit_layer:
+                circuit_sum_cat=torch.cat((circuit_1,circuit_2_h1,circuit_2_h2,circuit_2_h3,circuit_2_h4,circuit_2_h5,circuit_2_h6,circuit_2_h7,circuit_2_h8,\
                 circuit_2_h9,circuit_2_h10,circuit_2_h11,circuit_2_h12,circuit_3,circuit_4_h1,circuit_4_h2,circuit_4_h3,\
                     circuit_4_h4,circuit_4_h5,circuit_4_h6,circuit_4_h7,circuit_4_h8,circuit_4_h9,circuit_4_h10,circuit_4_h11,circuit_4_h12,\
                         circuit_4_compst,circuit_5,circuit_6),dim=0)#[29,N,768]
-            circuit_input=circuit_sum
-            if i == cut_circuit_layer:
                 cut_id=cut_circuit%29
-                cut_circuit_tensor=circuit_sum_cat[cut_id]
+                cut_circuit_tensor_all=circuit_sum_cat
+                cut_circuit_tensor=cut_circuit_tensor_all[cut_id]
                     
             
         final_logits=self.get_logits(circuit_sum)
         _,predicted_indices=torch.topk(final_logits[0][-1],10)
-        return predicted_indices,input_matrix_new
+        return predicted_indices,input_matrix_new,cut_circuit_tensor_all
             
             
     def _split_heads(self, tensor, num_heads, attn_head_size):

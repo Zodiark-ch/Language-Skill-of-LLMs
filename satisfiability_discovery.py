@@ -67,14 +67,15 @@ if args.task_name=='satisfiability_discovery':
                 #init the input matrix 
                 token_num=inputs['input_ids'].size()[-1]
                 input_matrix=torch.zeros((12,29,token_num,768)).cuda()
-                top_token,input_matrix=model(inputs,label_ids,0,0,input_matrix)
+                cut_circuit_tensor_all=None
+                top_token,input_matrix,cut_circuit_tensor_all=model(inputs,label_ids,0,0,input_matrix,cut_circuit_tensor_all)
                 assert top_token[0].item()==label_ids.item()
                 for m in tqdm(range(circuit_num)):
                     for n in range(circuit_num):
                         if m//circuit_layer > n//circuit_layer and (m+1)%29!=27 and (m+1)%29!=28 and (m+1)%29!=0 and branch_cut[m][n]!=1:
-                            
                             branch_cut[m][n]=1
-                            top_token,input_matrix_new=model(inputs,label_ids,m,n,input_matrix)
+                            
+                            top_token,input_matrix_new,cut_circuit_tensor_all=model(inputs,label_ids,m,n,input_matrix,cut_circuit_tensor_all)
                             if top_token[0].item()!=label_ids.item():
                                 branch_cut[m][n]=0
                             else:
@@ -84,9 +85,12 @@ if args.task_name=='satisfiability_discovery':
                                 
             
             logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+input_case+'_logging.log')  
+            all_branch_cut=[]
             for id in range(29,348):
+                    all_branch_cut_dict={}
                     branch_cut_id=branch_cut[id].split(29,dim=-1)
                     logger.info('### for layer {} and circuit {}, the cut list of layer 0 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[0]))
+
                     logger.info('### for layer {} and circuit {}, the cut list of layer 1 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[1])) 
                     logger.info('### for layer {} and circuit {}, the cut list of layer 2 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[2])) 
                     logger.info('### for layer {} and circuit {}, the cut list of layer 3 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[3])) 
@@ -97,5 +101,9 @@ if args.task_name=='satisfiability_discovery':
                     logger.info('### for layer {} and circuit {}, the cut list of layer 8 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[8])) 
                     logger.info('### for layer {} and circuit {}, the cut list of layer 9 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[9])) 
                     logger.info('### for layer {} and circuit {}, the cut list of layer 10 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[10]))  
+                    all_branch_cut_dict['layer {} and circuit {}'.format(id//circuit_layer,id%circuit_layer)]=branch_cut[id].tolist()
+                    all_branch_cut.append(all_branch_cut_dict)
+            with open('json_logs/satisfiability/gpt2xl'+input_case+'.json','w',encoding='utf-8') as data:
+                json.dump(all_branch_cut,data,ensure_ascii=False,sort_keys=True)
             logging.shutdown()                       
                     
