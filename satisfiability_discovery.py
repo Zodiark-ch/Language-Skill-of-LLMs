@@ -2,7 +2,7 @@ import torch,os
 from args import DeepArgs
 from utils import set_gpu,get_datasets,generate_figure
 from transformers import HfArgumentParser,AutoTokenizer,GPT2LMHeadModel
-from circuit_model import trunk_model
+from circuit_model import trunk_model,assert_model
 import logging
 import json
 from tqdm import tqdm
@@ -38,6 +38,7 @@ if args.task_name=='satisfiability_discovery':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
         model=trunk_model(args)
         orig_model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
+        #assert_model=refine_explain_model(args)
         layer=12
         circuit_layer=29
         circuit_num=12*29
@@ -79,12 +80,13 @@ if args.task_name=='satisfiability_discovery':
                             if top_token[0].item()!=label_ids.item():
                                 branch_cut[m][n]=0
                             else:
+                                #assert_model(inputs,label_ids,branch_cut)
                                 input_matrix=input_matrix_new
                             torch.cuda.empty_cache()
                             
                                 
             
-            logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+input_case+'_logging.log')  
+            logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+args.case_type+'/'+input_case+'_logging.log')  
             all_branch_cut=[]
             for id in range(29,348):
                     all_branch_cut_dict={}
@@ -103,7 +105,7 @@ if args.task_name=='satisfiability_discovery':
                     logger.info('### for layer {} and circuit {}, the cut list of layer 10 is \n{}'.format(id//circuit_layer,id%circuit_layer,branch_cut_id[10]))  
                     all_branch_cut_dict['layer {} and circuit {}'.format(id//circuit_layer,id%circuit_layer)]=branch_cut[id].tolist()
                     all_branch_cut.append(all_branch_cut_dict)
-            with open('json_logs/satisfiability/gpt2xl'+input_case+'.json','w',encoding='utf-8') as data:
+            with open('json_logs/satisfiability/gpt2xl/'+args.case_type+'/'+input_case+'.json','w',encoding='utf-8') as data:
                 json.dump(all_branch_cut,data,ensure_ascii=False,sort_keys=True)
             logging.shutdown()                       
                     

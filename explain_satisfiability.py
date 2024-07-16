@@ -2,7 +2,7 @@ import torch,os
 from args import DeepArgs
 from utils import set_gpu,get_datasets,generate_figure
 from transformers import HfArgumentParser,AutoTokenizer,GPT2LMHeadModel
-from circuit_model import trunk_model
+from circuit_model import assert_model,refined_explain_model
 import logging
 import json
 from tqdm import tqdm
@@ -38,8 +38,9 @@ def get_logger(filename, verbosity=1, name=None):
 if args.task_name=='satisfiability_explain':
     if args.model_name=='gpt2xl':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
-        model=trunk_model(args)
+        check_model=assert_model(args)
         orig_model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
+        explain_model=refined_explain_model(args)
         layer=12
         circuit_layer=29
         circuit_num=12*29
@@ -50,17 +51,18 @@ if args.task_name=='satisfiability_explain':
             with open('dataset/srodataset.json','r') as f: 
                 input_text=json.load(f)
         if args.case_type=='ioidataset':
-            _,dataset_orig=get_datasets()
-            input_text=dataset_orig.sentences
+            with open('dataset/ioidataset.json','r') as f: 
+                input_text=json.load(f)
         
             
         for i in range (len(input_text)):
             if args.case_type=='srodataset':
                 input_case=input_text[i]['prompt']
             if args.case_type=='ioidataset':
-                input_case=input_text[i]
+                input_case=input_text[i]['text']
             print('To record {}-th case'.format(i))
             inputs = tokenizer(input_case, return_tensors="pt")
+            
     
             with torch.no_grad():
                 
@@ -69,12 +71,29 @@ if args.task_name=='satisfiability_explain':
                 token_length=inputs['input_ids'].size()[-1]
                 with open ('json_logs/satisfiability/gpt2xl/'+input_case+'.json','r') as file:
                     case=json.load(file)
+                refined_matrix=torch.zeros((circuit_num,circuit_num))
                 logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+input_case+'_logging.log')  
                 logger.info('############ CASE TEXT is'+input_case)
                 logger.info('############ CASE Prediction is {}'.format(tokenizer.decode(label_ids)))
                 logger.info('############ Refined Forward Graph')
                 logger.info('****** Layer 1')
                 for cn in range(circuit_layer,circuit_num):
-                    circuit_one_satisfiability=torch.IntTensor(case['layer {} and circuit {}'.format(cn//circuit_layer,cn%circuit_layer)]).split(29,dim=-1)
-                    
-                logger.info()
+                    circuit_one_listtype=case[cn-29]['layer {} and circuit {}'.format(cn//circuit_layer,cn%circuit_layer)]
+                    circuit_one_satisfiability=torch.IntTensor(circuit_one_listtype).split(29,dim=-1)
+                    refined_matrix[cn]=torch.IntTensor(circuit_one_listtype)
+                    cn_layer=cn//circuit_layer
+                    logger.info('Layer {} and circuit {}'.format(cn_layer,cn%circuit_layer))
+                    for cnl in range(cn_layer):
+                        reserve_list=[]
+                        for cinx in range(29):
+                            if circuit_one_satisfiability[cnl][cinx].item()==0:
+                                reserve_list.append(circuit_name[cinx])
+                        logger.info('for Layer {}, the reserve circuits are {}'.format(cnl,reserve_list))
+                        
+                
+                #check the final label is top1
+                check_model(inputs,label_ids,refined_matrix)
+                
+                #get the circuit logits rank
+                explain_model(inputs,label_ids,refined_matrix,logger)
+                logging.shutdown() 

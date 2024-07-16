@@ -9,11 +9,11 @@ FOLDER_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))+'/XAIo
 
 @dataclass
 class DeepArgs:
-    task_name: str = "satisfiability_discovery"#['general_discovery','attention_analysis'，'circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery']
-    case_type: str='srodataset'#'case', or 'ioidataset','srodataset'
+    task_name: str = "satisfiability_discovery"#['general_discovery','attention_analysis'，'circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery','satisfiability_explain']
+    case_type: str='ioidataset'#'case', or 'ioidataset','srodataset'
     model_name: str = "gpt2xl"#"gptj""gpt2lmheadmodel","gpt1","gptneox"
     device: str = 'cuda:0'
-    logs: str='false'
+    logs: str='true'
     save_folder: str = os.path.join(FOLDER_ROOT, task_name,model_name)
 
 
@@ -21,7 +21,7 @@ class DeepArgs:
 
     def __post_init__(self):
         
-        assert self.task_name in ['general_discovery','attention_analysis','circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery']
+        assert self.task_name in ['general_discovery','attention_analysis','circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery','satisfiability_explain']
         assert self.model_name in ["gpt2xl"]
         assert 'cuda:' in self.device
         self.gpu = int(self.device.split(':')[-1])
