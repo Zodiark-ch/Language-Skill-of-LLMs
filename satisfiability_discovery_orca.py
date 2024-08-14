@@ -7,7 +7,6 @@ import logging
 import json
 from tqdm import tqdm
 import copy
-from demo_representation_vocb import assert_circuits_equal_output
 
 
 hf_parser = HfArgumentParser((DeepArgs,))
@@ -39,8 +38,7 @@ if args.task_name=='satisfiability_discovery':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
         model=trunk_model(args)
         orig_model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
-        #check_model=assert_model(args)
-        #equal_model=assert_circuits_equal_output(args)
+        #assert_model=refine_explain_model(args)
         layer=12
         circuit_layer=29
         circuit_num=12*29
@@ -76,7 +74,6 @@ if args.task_name=='satisfiability_discovery':
                 token_num=inputs['input_ids'].size()[-1]
                 input_matrix=torch.zeros((12,29,token_num,768)).cuda()
                 cut_circuit_tensor_all=None
-                #equal_model(inputs)
                 top_token,input_matrix,cut_circuit_tensor_all=model(inputs,label_ids,0,0,input_matrix,cut_circuit_tensor_all)
                 assert top_token[0].item()==label_ids.item()
                 for m in tqdm(range(circuit_num)):
@@ -88,7 +85,7 @@ if args.task_name=='satisfiability_discovery':
                             if top_token[0].item()!=label_ids.item():
                                 branch_cut[m][n]=0
                             else:
-                                #check_model(inputs,label_ids,branch_cut)
+                                #assert_model(inputs,label_ids,branch_cut)
                                 input_matrix=input_matrix_new
                             torch.cuda.empty_cache()
                             

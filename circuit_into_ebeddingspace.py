@@ -467,7 +467,7 @@ class ioi_attention_circuit(nn.Module):
         
     
             
-    def forward(self,inputs,input_text,word_idx,IO,IOm1,IOa1,S,Sm1,Sa1,S2):
+    def forward(self,inputs,input_text,word_idx,IO,IO_m1,IO_a1,S,S_m1,S_a1,S2,end):
         inputs=inputs.to(self.device)
         attention_mask=inputs["attention_mask"]
         input_ids=inputs['input_ids']
@@ -494,8 +494,11 @@ class ioi_attention_circuit(nn.Module):
         
         duplicate_weight=torch.zeros((len(self.layers),12))
         induction_weight=torch.zeros((len(self.layers),12))
+        induction_weight2=torch.zeros((len(self.layers),12))
         previous_weight=torch.zeros((len(self.layers),12))
+        previous_weight2=torch.zeros((len(self.layers),12))
         Name_weight=torch.zeros((len(self.layers),12))
+        Name_weight2=torch.zeros((len(self.layers),12))
         for i, (block, layer_past) in enumerate(zip(self.layers, past_key_values)):
 
             if layer_past is not None:
@@ -628,50 +631,90 @@ class ioi_attention_circuit(nn.Module):
             duplicate_weight[i][11]=head12_weight[0][S2][S]
             
             #find induction heads
-            induction_weight[i][0]=head1_weight[0][S2][Sa1]
-            induction_weight[i][1]=head2_weight[0][S2][Sa1]
-            induction_weight[i][2]=head3_weight[0][S2][Sa1]
-            induction_weight[i][3]=head4_weight[0][S2][Sa1]
-            induction_weight[i][4]=head5_weight[0][S2][Sa1]
-            induction_weight[i][5]=head6_weight[0][S2][Sa1]
-            induction_weight[i][6]=head7_weight[0][S2][Sa1]
-            induction_weight[i][7]=head8_weight[0][S2][Sa1]
-            induction_weight[i][8]=head9_weight[0][S2][Sa1]
-            induction_weight[i][9]=head10_weight[0][S2][Sa1]
-            induction_weight[i][10]=head11_weight[0][S2][Sa1]
-            induction_weight[i][11]=head12_weight[0][S2][Sa1]
+            induction_weight[i][0]=head1_weight[0][S2+1][S_a1]
+            induction_weight[i][1]=head2_weight[0][S2+1][S_a1]
+            induction_weight[i][2]=head3_weight[0][S2+1][S_a1]
+            induction_weight[i][3]=head4_weight[0][S2+1][S_a1]
+            induction_weight[i][4]=head5_weight[0][S2+1][S_a1]
+            induction_weight[i][5]=head6_weight[0][S2+1][S_a1]
+            induction_weight[i][6]=head7_weight[0][S2+1][S_a1]
+            induction_weight[i][7]=head8_weight[0][S2+1][S_a1]
+            induction_weight[i][8]=head9_weight[0][S2+1][S_a1]
+            induction_weight[i][9]=head10_weight[0][S2+1][S_a1]
+            induction_weight[i][10]=head11_weight[0][S2+1][S_a1]
+            induction_weight[i][11]=head12_weight[0][S2+1][S_a1]
+            
+            induction_weight2[i][0]=head1_weight[0][S2+1][IO_a1]
+            induction_weight2[i][1]=head2_weight[0][S2+1][IO_a1]
+            induction_weight2[i][2]=head3_weight[0][S2+1][IO_a1]
+            induction_weight2[i][3]=head4_weight[0][S2+1][IO_a1]
+            induction_weight2[i][4]=head5_weight[0][S2+1][IO_a1]
+            induction_weight2[i][5]=head6_weight[0][S2+1][IO_a1]
+            induction_weight2[i][6]=head7_weight[0][S2+1][IO_a1]
+            induction_weight2[i][7]=head8_weight[0][S2+1][IO_a1]
+            induction_weight2[i][8]=head9_weight[0][S2+1][IO_a1]
+            induction_weight2[i][9]=head10_weight[0][S2+1][IO_a1]
+            induction_weight2[i][10]=head11_weight[0][S2+1][IO_a1]
+            induction_weight2[i][11]=head12_weight[0][S2+1][IO_a1]
             
             #find previous heads
-            previous_weight[i][0]=head1_weight[0][-1][S2]
-            previous_weight[i][1]=head2_weight[0][-1][S2]
-            previous_weight[i][2]=head3_weight[0][-1][S2]
-            previous_weight[i][3]=head4_weight[0][-1][S2]
-            previous_weight[i][4]=head5_weight[0][-1][S2]
-            previous_weight[i][5]=head6_weight[0][-1][S2]
-            previous_weight[i][6]=head7_weight[0][-1][S2]
-            previous_weight[i][7]=head8_weight[0][-1][S2]
-            previous_weight[i][8]=head9_weight[0][-1][S2]
-            previous_weight[i][9]=head10_weight[0][-1][S2]
-            previous_weight[i][10]=head11_weight[0][-1][S2]
-            previous_weight[i][11]=head12_weight[0][-1][S2]
+            previous_weight[i][0]=head1_weight[0][S_a1][S]
+            previous_weight[i][1]=head2_weight[0][S_a1][S]
+            previous_weight[i][2]=head3_weight[0][S_a1][S]
+            previous_weight[i][3]=head4_weight[0][S_a1][S]
+            previous_weight[i][4]=head5_weight[0][S_a1][S]
+            previous_weight[i][5]=head6_weight[0][S_a1][S]
+            previous_weight[i][6]=head7_weight[0][S_a1][S]
+            previous_weight[i][7]=head8_weight[0][S_a1][S]
+            previous_weight[i][8]=head9_weight[0][S_a1][S]
+            previous_weight[i][9]=head10_weight[0][S_a1][S]
+            previous_weight[i][10]=head11_weight[0][S_a1][S]
+            previous_weight[i][11]=head12_weight[0][S_a1][S]
+            
+            previous_weight2[i][0]=head1_weight[0][IO_a1][IO]
+            previous_weight2[i][1]=head2_weight[0][IO_a1][IO]
+            previous_weight2[i][2]=head3_weight[0][IO_a1][IO]
+            previous_weight2[i][3]=head4_weight[0][IO_a1][IO]
+            previous_weight2[i][4]=head5_weight[0][IO_a1][IO]
+            previous_weight2[i][5]=head6_weight[0][IO_a1][IO]
+            previous_weight2[i][6]=head7_weight[0][IO_a1][IO]
+            previous_weight2[i][7]=head8_weight[0][IO_a1][IO]
+            previous_weight2[i][8]=head9_weight[0][IO_a1][IO]
+            previous_weight2[i][9]=head10_weight[0][IO_a1][IO]
+            previous_weight2[i][10]=head11_weight[0][IO_a1][IO]
+            previous_weight2[i][11]=head12_weight[0][IO_a1][IO]
             
             #find name heads
-            Name_weight[i][0]=head1_weight[0][-1][S2]
-            Name_weight[i][1]=head2_weight[0][-1][S2]
-            Name_weight[i][2]=head3_weight[0][-1][S2]
-            Name_weight[i][3]=head4_weight[0][-1][S2]
-            Name_weight[i][4]=head5_weight[0][-1][S2]
-            Name_weight[i][5]=head6_weight[0][-1][S2]
-            Name_weight[i][6]=head7_weight[0][-1][S2]
-            Name_weight[i][7]=head8_weight[0][-1][S2]
-            Name_weight[i][8]=head9_weight[0][-1][S2]
-            Name_weight[i][9]=head10_weight[0][-1][S2]
-            Name_weight[i][10]=head11_weight[0][-1][S2]
-            Name_weight[i][11]=head12_weight[0][-1][S2]
+            Name_weight[i][0]=head1_weight[0][end][S2]
+            Name_weight[i][1]=head2_weight[0][end][S2]
+            Name_weight[i][2]=head3_weight[0][end][S2]
+            Name_weight[i][3]=head4_weight[0][end][S2]
+            Name_weight[i][4]=head5_weight[0][end][S2]
+            Name_weight[i][5]=head6_weight[0][end][S2]
+            Name_weight[i][6]=head7_weight[0][end][S2]
+            Name_weight[i][7]=head8_weight[0][end][S2]
+            Name_weight[i][8]=head9_weight[0][end][S2]
+            Name_weight[i][9]=head10_weight[0][end][S2]
+            Name_weight[i][10]=head11_weight[0][end][S2]
+            Name_weight[i][11]=head12_weight[0][end][S2]
+            
+            #find name heads
+            Name_weight2[i][0]=head1_weight[0][end][IO]
+            Name_weight2[i][1]=head2_weight[0][end][IO]
+            Name_weight2[i][2]=head3_weight[0][end][IO]
+            Name_weight2[i][3]=head4_weight[0][end][IO]
+            Name_weight2[i][4]=head5_weight[0][end][IO]
+            Name_weight2[i][5]=head6_weight[0][end][IO]
+            Name_weight2[i][6]=head7_weight[0][end][IO]
+            Name_weight2[i][7]=head8_weight[0][end][IO]
+            Name_weight2[i][8]=head9_weight[0][end][IO]
+            Name_weight2[i][9]=head10_weight[0][end][IO]
+            Name_weight2[i][10]=head11_weight[0][end][IO]
+            Name_weight2[i][11]=head12_weight[0][end][IO]
             
             
             
-        return duplicate_weight,induction_weight,previous_weight,Name_weight
+        return duplicate_weight,induction_weight,induction_weight2,previous_weight,previous_weight2,Name_weight,Name_weight2
             
             
     def _split_heads(self, tensor, num_heads, attn_head_size):

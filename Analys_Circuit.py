@@ -51,6 +51,9 @@ if args.task_name=='ioi_check':
             induction_weight_all=torch.zeros((12,12))
             previous_weight_all=torch.zeros((12,12))
             Name_weight_all=torch.zeros((12,12))
+            induction_weight2_all=torch.zeros((12,12))
+            previous_weight2_all=torch.zeros((12,12))
+            Name_weight2_all=torch.zeros((12,12))
             for i in range (len(input_text)):
                 input_case=input_text[i]
                 inputs = tokenizer(input_case, return_tensors="pt")
@@ -61,21 +64,31 @@ if args.task_name=='ioi_check':
                 Sm1=word_idx['S-1'][i]
                 Sa1=word_idx['S+1'][i]
                 S2=word_idx['S2'][i]
+                end=word_idx['end'][i]
                 with torch.no_grad():
-                    duplicate_weight,induction_weight,previous_weight,Name_weight=model(inputs,input_text[i],word_idx,IO,IOm1,IOa1,S,Sm1,Sa1,S2)
+                    duplicate_weight,induction_weight,induction_weight2,previous_weight,previous_weight2,Name_weight,Name_weight2=model(inputs,input_text[i],word_idx,IO,IOm1,IOa1,S,Sm1,Sa1,S2,end)
                 duplicate_weight_all=duplicate_weight_all+duplicate_weight
                 induction_weight_all=induction_weight_all+induction_weight
                 previous_weight_all=previous_weight_all+previous_weight
                 Name_weight_all=Name_weight_all+Name_weight
+                induction_weight2_all=induction_weight2_all+induction_weight2
+                previous_weight2_all=previous_weight2_all+previous_weight2
+                Name_weight2_all=Name_weight2_all+Name_weight2
             duplicate_weight_all=duplicate_weight_all/500
             induction_weight_all=induction_weight_all/500
             previous_weight_all=previous_weight_all/500
             Name_weight_all=Name_weight_all/500
+            induction_weight2_all=induction_weight2_all/500
+            previous_weight2_all=previous_weight2_all/500
+            Name_weight2_all=Name_weight2_all/500
             logger = get_logger('logs/' +args.task_name+'/'+ args.model_name +'/'+args.case_type+'_logging.log')
             logger.info('The duplicate_weight matrix is {}'.format(duplicate_weight_all))
             logger.info('The induction_weight matrix is {}'.format(induction_weight_all))
             logger.info('The previous_weight matrix is {}'.format(previous_weight_all))
-            logger.info('The name_weight matrix is {}'.format(Name_weight_all))
+            logger.info('The name_weight matrix is {}'.format(Name_weight_all))    
+            logger.info('The induction_weight2 matrix is {}'.format(induction_weight2_all))
+            logger.info('The previous_weight2 matrix is {}'.format(previous_weight2_all))
+            logger.info('The name_weight2 matrix is {}'.format(Name_weight2_all))
             
 
 if args.task_name=='circuit_analysis':

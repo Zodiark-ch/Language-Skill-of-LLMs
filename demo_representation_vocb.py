@@ -423,12 +423,12 @@ class assert_circuits_equal_output(nn.Module):
             Output_mlp1_all=torch.matmul(circuit3_input_ln,W_mlp1)+W_mlp1bias #R^[B,N,m]=[1,14,3072]
             Output_mlp1_all_act_steam=Act_mlp(Output_mlp1_all) #activated
             circuit_stream_all=torch.matmul(Output_mlp1_all_act_steam,W_mlp2)#R^[B,N,d]=[1,14,768]
-            Output_mlp1_act_steam=Act_mlp(Output_mlp1_all-W_mlp1bias) #activated
-            circuit_stream=torch.matmul(Output_mlp1_act_steam,W_mlp2)#R^[B,N,d]=[1,14,768]
-            circuit_Wmlp1bias=circuit_stream_all-circuit_stream
-            Output_mlp1_bias=Act_mlp(W_mlp1bias) #activated
-            circuit_uni_wmlp1bias=torch.matmul(Output_mlp1_bias,W_mlp2)#R^[B,N,d]=[1,14,768]
-            circuit_syn_bias=circuit_Wmlp1bias-circuit_uni_wmlp1bias
+            # Output_mlp1_act_steam=Act_mlp(Output_mlp1_all-W_mlp1bias) #activated
+            # circuit_stream=torch.matmul(Output_mlp1_act_steam,W_mlp2)#R^[B,N,d]=[1,14,768]
+            # circuit_Wmlp1bias=circuit_stream_all-circuit_stream
+            # Output_mlp1_bias=Act_mlp(W_mlp1bias) #activated
+            # circuit_uni_wmlp1bias=torch.matmul(Output_mlp1_bias,W_mlp2)#R^[B,N,d]=[1,14,768]
+            # circuit_syn_bias=circuit_Wmlp1bias-circuit_uni_wmlp1bias
             
             
             
@@ -464,10 +464,10 @@ class assert_circuits_equal_output(nn.Module):
             
             # circuit_5, the effect of addition of circuit_1 and circuit_2 caused by NewGeLU activation, also, 
             # meaning that the synergistic of residual stream (syn(A,B), and syn((A+B),Wmlp1bias))
-            circuit_5=(circuit_stream-circuit_3-circuit_4)+circuit_syn_bias
+            circuit_5=(circuit_stream_all-circuit_3-circuit_4)
             
             #circuit_6, i.e.,circuit_Wmlp1bias, the movement of bias in Wmlp1 and bias in Wmlp2
-            circuit_6=circuit_uni_wmlp1bias+W_mlp2bias+W_obias
+            circuit_6=W_mlp2bias+W_obias
             
             #get circuit sum 
             circuit_sum=circuit_1+circuit_2+circuit_3+circuit_4+circuit_5+circuit_6 #R^[B,N,D]=[1,14,768]

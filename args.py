@@ -9,8 +9,8 @@ FOLDER_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))+'/XAIo
 
 @dataclass
 class DeepArgs:
-    task_name: str = "satisfiability_discovery"#['general_discovery','attention_analysis'，'circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery','satisfiability_explain']
-    case_type: str='ioidataset'#'case', or 'ioidataset','srodataset'
+    task_name: str = "token_by_token"#['general_discovery','attention_analysis'，'circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery','satisfiability_explain','task_analysis','ioi_satisfiability','distillation','token_by_token','language_skill']
+    case_type: str='orca1wc'#'case', or 'ioidataset','srodataset','orcadataset','previous_token_2t','openorca1wc'
     model_name: str = "gpt2xl"#"gptj""gpt2lmheadmodel","gpt1","gptneox"
     device: str = 'cuda:0'
     logs: str='true'
@@ -21,7 +21,7 @@ class DeepArgs:
 
     def __post_init__(self):
         
-        assert self.task_name in ['general_discovery','attention_analysis','circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery','satisfiability_explain']
+        assert self.task_name in ['general_discovery','attention_analysis','circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery','satisfiability_explain','task_analysis','ioi_satisfiability','distillation','token_by_token','language_skill']
         assert self.model_name in ["gpt2xl"]
         assert 'cuda:' in self.device
         self.gpu = int(self.device.split(':')[-1])
