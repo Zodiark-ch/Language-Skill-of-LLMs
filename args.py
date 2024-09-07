@@ -9,8 +9,8 @@ FOLDER_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))+'/XAIo
 
 @dataclass
 class DeepArgs:
-    task_name: str = "token_by_token"#['general_discovery','attention_analysis'，'circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery','satisfiability_explain','task_analysis','ioi_satisfiability','distillation','token_by_token','language_skill']
-    case_type: str='orca1wc'#'case', or 'ioidataset','srodataset','orcadataset','previous_token_2t','openorca1wc'
+    task_name: str = "language_skill"#['general_discovery','attention_analysis'，'circuit_analysis','residual_analysis','bias_analysis','ioi_check','mlp_analysis','distribution_analysis','satisfiability_analysis','satisfiability_discovery','satisfiability_explain','task_analysis','ioi_satisfiability','distillation','token_by_token','language_skill']
+    case_type: str='previous_token_2t'#'case', or 'ioidataset','srodataset','orcadataset','previous_token_2t','orca1wc','icl_sst2'
     model_name: str = "gpt2xl"#"gptj""gpt2lmheadmodel","gpt1","gptneox"
     device: str = 'cuda:0'
     logs: str='true'

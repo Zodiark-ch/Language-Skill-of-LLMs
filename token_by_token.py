@@ -14,8 +14,8 @@ hf_parser = HfArgumentParser((DeepArgs,))
 args: DeepArgs = hf_parser.parse_args_into_dataclasses()[0]
 torch.cuda.empty_cache()
 set_gpu(args.gpu)
-os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
-os.environ['CUDA_LAUNCH_BLOCKING'] = '1' 
+os.environ["CUDA_VISIBLE_DEVICES"] = '0,1,2,3,4'
+# os.environ['CUDA_LAUNCH_BLOCKING'] = '1' 
 
 def get_logger(filename, verbosity=1, name=None):
         level_dict = {0: logging.DEBUG, 1: logging.INFO, 2: logging.WARNING}
@@ -40,7 +40,7 @@ if args.task_name=='token_by_token':
         tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
         model=trunk_model(args)
         orig_model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
-        check_model=assert_model(args)
+        #check_model=assert_model(args)
         #equal_model=assert_circuits_equal_output(args)
         layer=12
         circuit_layer=29
@@ -66,15 +66,21 @@ if args.task_name=='token_by_token':
         if args.case_type=='orca2wm': 
             with open('dataset/OpenOrca2wordmixture.json','r') as f: 
                 input_text=json.load(f)
+        if args.case_type=='orcaduplicate':
+            with open('dataset/OpenOrcaduplicate.json','r') as f: 
+                input_text=json.load(f)
+        if args.case_type=='orcainductive':
+            with open('dataset/OpenOrcainductive.json','r') as f: 
+                input_text=json.load(f)
         
             
         for i in range (len(input_text)):
             if args.case_type=='srodataset':
                 input_case=input_text[i]['prompt']
                 #input_case='Vietnam belongs to the continent of'
-            if args.case_type=='ioidataset':
+            elif args.case_type=='ioidataset':
                 input_case=input_text[i]['text']
-            if args.case_type=='orcadataset':
+            elif args.case_type=='orcadataset':
                 input_case=input_text[i]['text']
             else: 
                 input_case=input_text[i]['text']
@@ -83,10 +89,14 @@ if args.task_name=='token_by_token':
             input_ids_ori=copy.deepcopy(inputs['input_ids'])
             attention_mask_ori=copy.deepcopy(inputs['attention_mask'])
             token_length=input_ids_ori.size()[-1]
-            all_branch_token=[]
-            for t in range(token_length):
-                inputs['input_ids']=input_ids_ori[:,:t+1]
-                inputs['attention_mask']=attention_mask_ori[:,:t+1]
+            
+            for t in range(0,3):
+                if t<2:
+                    inputs['input_ids']=input_ids_ori[:,:t+1]
+                    inputs['attention_mask']=attention_mask_ori[:,:t+1]
+                if t==2:
+                    inputs['input_ids']=input_ids_ori[:,t-1].unsqueeze(0)
+                    inputs['attention_mask']=attention_mask_ori[:,t-1]
                 with torch.no_grad():
                     
                     outputs = orig_model(**inputs, labels=inputs["input_ids"])
@@ -103,7 +113,7 @@ if args.task_name=='token_by_token':
                     assert top_token[0].item()==label_ids.item()
                     for m in tqdm(range(circuit_num)):
                         for n in range(circuit_num):
-                            if m//circuit_layer > n//circuit_layer and (m+1)%29!=27 and (m+1)%29!=28 and (m+1)%29!=0 and branch_cut[m][n]!=1:
+                            if m//circuit_layer > n//circuit_layer and (m+1)%29!=27 and (m+1)%29!=28 and (m+1)%29!=0 and (m+1)%29!=1 and (n+1)%29!=27 and (n+1)%29!=28 and (n+1)%29!=0 and (n+1)%29!=1 and branch_cut[m][n]!=1:
                                 branch_cut[m][n]=1
                                 
                                 top_token,input_matrix_new,cut_circuit_tensor_all=model(inputs,label_ids,m,n,input_matrix,cut_circuit_tensor_all)
@@ -121,9 +131,22 @@ if args.task_name=='token_by_token':
                     all_branch_cut_dict={}          
                     all_branch_cut_dict['layer {} and circuit {}'.format(id//circuit_layer,id%circuit_layer)]=branch_cut[id].tolist()
                     all_branch_cut.append(all_branch_cut_dict)
+                
                     
-                all_branch_token.append(all_branch_cut)
-            with open('json_logs/token_by_token/gpt2xl/'+args.case_type+'/'+input_case+'.json','w',encoding='utf-8') as data:
-                json.dump(all_branch_token,data,ensure_ascii=False,sort_keys=True)
+                if t>0:
+                    with open('json_logs/token_by_token/gpt2xl/'+args.case_type+'/'+input_case+'.json') as read_data:
+                        old_data=json.load(read_data)
+                        old_data.append(all_branch_cut)
+                
+                else:
+                    old_data=[]
+                    old_data.append(all_branch_cut)
+                with open('json_logs/token_by_token/gpt2xl/'+args.case_type+'/'+input_case+'.json','w',encoding='utf-8') as data:
+                    json.dump(old_data,data,ensure_ascii=False,sort_keys=True)
+                    
+                    
+                    
+                
+                    
                            
                     

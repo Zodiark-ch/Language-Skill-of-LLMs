@@ -1,0 +1,1549 @@
+[2024-06-28 12:25:50,453][circuit_into_ebeddingspace.py][line:2429][INFO] max probability tokens are: thewith ids tensor([262], device='cuda:0')
+[2024-06-28 12:25:50,459][circuit_into_ebeddingspace.py][line:2745][INFO] ################0-th layer#################
+[2024-06-28 12:25:50,467][circuit_into_ebeddingspace.py][line:2746][INFO] ##0-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,467][circuit_into_ebeddingspace.py][line:2747][INFO] ##0-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,467][circuit_into_ebeddingspace.py][line:2749][INFO] ##0-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,468][circuit_into_ebeddingspace.py][line:2750][INFO] ##0-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,468][circuit_into_ebeddingspace.py][line:2751][INFO] ##0-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [1],
+         [1],
+         [1],
+         [0],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,468][circuit_into_ebeddingspace.py][line:2752][INFO] ##0-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,469][circuit_into_ebeddingspace.py][line:2753][INFO] ##0-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,469][circuit_into_ebeddingspace.py][line:2754][INFO] ##0-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,469][circuit_into_ebeddingspace.py][line:2755][INFO] ##0-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,469][circuit_into_ebeddingspace.py][line:2756][INFO] ##0-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,470][circuit_into_ebeddingspace.py][line:2757][INFO] ##0-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,470][circuit_into_ebeddingspace.py][line:2758][INFO] ##0-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,470][circuit_into_ebeddingspace.py][line:2759][INFO] ##0-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,470][circuit_into_ebeddingspace.py][line:2760][INFO] ##0-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,471][circuit_into_ebeddingspace.py][line:2762][INFO] ##0-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,471][circuit_into_ebeddingspace.py][line:2763][INFO] ##0-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,477][circuit_into_ebeddingspace.py][line:2745][INFO] ################1-th layer#################
+[2024-06-28 12:25:50,484][circuit_into_ebeddingspace.py][line:2746][INFO] ##1-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,485][circuit_into_ebeddingspace.py][line:2747][INFO] ##1-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,485][circuit_into_ebeddingspace.py][line:2749][INFO] ##1-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,485][circuit_into_ebeddingspace.py][line:2750][INFO] ##1-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,486][circuit_into_ebeddingspace.py][line:2751][INFO] ##1-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,486][circuit_into_ebeddingspace.py][line:2752][INFO] ##1-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,486][circuit_into_ebeddingspace.py][line:2753][INFO] ##1-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,486][circuit_into_ebeddingspace.py][line:2754][INFO] ##1-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,487][circuit_into_ebeddingspace.py][line:2755][INFO] ##1-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,487][circuit_into_ebeddingspace.py][line:2756][INFO] ##1-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,487][circuit_into_ebeddingspace.py][line:2757][INFO] ##1-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,487][circuit_into_ebeddingspace.py][line:2758][INFO] ##1-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,488][circuit_into_ebeddingspace.py][line:2759][INFO] ##1-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,488][circuit_into_ebeddingspace.py][line:2760][INFO] ##1-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,488][circuit_into_ebeddingspace.py][line:2762][INFO] ##1-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[1],
+         [1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,489][circuit_into_ebeddingspace.py][line:2763][INFO] ##1-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,494][circuit_into_ebeddingspace.py][line:2745][INFO] ################2-th layer#################
+[2024-06-28 12:25:50,502][circuit_into_ebeddingspace.py][line:2746][INFO] ##2-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [0],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,502][circuit_into_ebeddingspace.py][line:2747][INFO] ##2-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,502][circuit_into_ebeddingspace.py][line:2749][INFO] ##2-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,503][circuit_into_ebeddingspace.py][line:2750][INFO] ##2-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,503][circuit_into_ebeddingspace.py][line:2751][INFO] ##2-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,503][circuit_into_ebeddingspace.py][line:2752][INFO] ##2-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,503][circuit_into_ebeddingspace.py][line:2753][INFO] ##2-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,504][circuit_into_ebeddingspace.py][line:2754][INFO] ##2-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,504][circuit_into_ebeddingspace.py][line:2755][INFO] ##2-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,505][circuit_into_ebeddingspace.py][line:2756][INFO] ##2-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,505][circuit_into_ebeddingspace.py][line:2757][INFO] ##2-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,505][circuit_into_ebeddingspace.py][line:2758][INFO] ##2-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,505][circuit_into_ebeddingspace.py][line:2759][INFO] ##2-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,506][circuit_into_ebeddingspace.py][line:2760][INFO] ##2-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,506][circuit_into_ebeddingspace.py][line:2762][INFO] ##2-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,506][circuit_into_ebeddingspace.py][line:2763][INFO] ##2-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,512][circuit_into_ebeddingspace.py][line:2745][INFO] ################3-th layer#################
+[2024-06-28 12:25:50,519][circuit_into_ebeddingspace.py][line:2746][INFO] ##3-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [0],
+         [1],
+         [1],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,520][circuit_into_ebeddingspace.py][line:2747][INFO] ##3-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,520][circuit_into_ebeddingspace.py][line:2749][INFO] ##3-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,520][circuit_into_ebeddingspace.py][line:2750][INFO] ##3-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,521][circuit_into_ebeddingspace.py][line:2751][INFO] ##3-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,521][circuit_into_ebeddingspace.py][line:2752][INFO] ##3-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [1],
+         [1],
+         [0],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,521][circuit_into_ebeddingspace.py][line:2753][INFO] ##3-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,521][circuit_into_ebeddingspace.py][line:2754][INFO] ##3-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,522][circuit_into_ebeddingspace.py][line:2755][INFO] ##3-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,522][circuit_into_ebeddingspace.py][line:2756][INFO] ##3-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,522][circuit_into_ebeddingspace.py][line:2757][INFO] ##3-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,523][circuit_into_ebeddingspace.py][line:2758][INFO] ##3-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,523][circuit_into_ebeddingspace.py][line:2759][INFO] ##3-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,523][circuit_into_ebeddingspace.py][line:2760][INFO] ##3-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,523][circuit_into_ebeddingspace.py][line:2762][INFO] ##3-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,524][circuit_into_ebeddingspace.py][line:2763][INFO] ##3-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [0],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,529][circuit_into_ebeddingspace.py][line:2745][INFO] ################4-th layer#################
+[2024-06-28 12:25:50,537][circuit_into_ebeddingspace.py][line:2746][INFO] ##4-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,537][circuit_into_ebeddingspace.py][line:2747][INFO] ##4-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,537][circuit_into_ebeddingspace.py][line:2749][INFO] ##4-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,538][circuit_into_ebeddingspace.py][line:2750][INFO] ##4-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,538][circuit_into_ebeddingspace.py][line:2751][INFO] ##4-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,538][circuit_into_ebeddingspace.py][line:2752][INFO] ##4-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,539][circuit_into_ebeddingspace.py][line:2753][INFO] ##4-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,539][circuit_into_ebeddingspace.py][line:2754][INFO] ##4-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,539][circuit_into_ebeddingspace.py][line:2755][INFO] ##4-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,539][circuit_into_ebeddingspace.py][line:2756][INFO] ##4-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,540][circuit_into_ebeddingspace.py][line:2757][INFO] ##4-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,540][circuit_into_ebeddingspace.py][line:2758][INFO] ##4-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,540][circuit_into_ebeddingspace.py][line:2759][INFO] ##4-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,541][circuit_into_ebeddingspace.py][line:2760][INFO] ##4-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,541][circuit_into_ebeddingspace.py][line:2762][INFO] ##4-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [1],
+         [0],
+         [1],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,541][circuit_into_ebeddingspace.py][line:2763][INFO] ##4-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [0],
+         [1],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,546][circuit_into_ebeddingspace.py][line:2745][INFO] ################5-th layer#################
+[2024-06-28 12:25:50,554][circuit_into_ebeddingspace.py][line:2746][INFO] ##5-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,554][circuit_into_ebeddingspace.py][line:2747][INFO] ##5-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,555][circuit_into_ebeddingspace.py][line:2749][INFO] ##5-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,555][circuit_into_ebeddingspace.py][line:2750][INFO] ##5-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,555][circuit_into_ebeddingspace.py][line:2751][INFO] ##5-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,556][circuit_into_ebeddingspace.py][line:2752][INFO] ##5-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,556][circuit_into_ebeddingspace.py][line:2753][INFO] ##5-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,556][circuit_into_ebeddingspace.py][line:2754][INFO] ##5-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,556][circuit_into_ebeddingspace.py][line:2755][INFO] ##5-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [0],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,557][circuit_into_ebeddingspace.py][line:2756][INFO] ##5-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,557][circuit_into_ebeddingspace.py][line:2757][INFO] ##5-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,557][circuit_into_ebeddingspace.py][line:2758][INFO] ##5-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,558][circuit_into_ebeddingspace.py][line:2759][INFO] ##5-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,558][circuit_into_ebeddingspace.py][line:2760][INFO] ##5-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,558][circuit_into_ebeddingspace.py][line:2762][INFO] ##5-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,558][circuit_into_ebeddingspace.py][line:2763][INFO] ##5-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [0],
+         [0],
+         [1],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,564][circuit_into_ebeddingspace.py][line:2745][INFO] ################6-th layer#################
+[2024-06-28 12:25:50,571][circuit_into_ebeddingspace.py][line:2746][INFO] ##6-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,572][circuit_into_ebeddingspace.py][line:2747][INFO] ##6-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,572][circuit_into_ebeddingspace.py][line:2749][INFO] ##6-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,572][circuit_into_ebeddingspace.py][line:2750][INFO] ##6-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,573][circuit_into_ebeddingspace.py][line:2751][INFO] ##6-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,573][circuit_into_ebeddingspace.py][line:2752][INFO] ##6-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,573][circuit_into_ebeddingspace.py][line:2753][INFO] ##6-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,574][circuit_into_ebeddingspace.py][line:2754][INFO] ##6-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,574][circuit_into_ebeddingspace.py][line:2755][INFO] ##6-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,574][circuit_into_ebeddingspace.py][line:2756][INFO] ##6-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,574][circuit_into_ebeddingspace.py][line:2757][INFO] ##6-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [1],
+         [1],
+         [1],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,575][circuit_into_ebeddingspace.py][line:2758][INFO] ##6-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,575][circuit_into_ebeddingspace.py][line:2759][INFO] ##6-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,575][circuit_into_ebeddingspace.py][line:2760][INFO] ##6-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,575][circuit_into_ebeddingspace.py][line:2762][INFO] ##6-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,576][circuit_into_ebeddingspace.py][line:2763][INFO] ##6-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,581][circuit_into_ebeddingspace.py][line:2745][INFO] ################7-th layer#################
+[2024-06-28 12:25:50,589][circuit_into_ebeddingspace.py][line:2746][INFO] ##7-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[0],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,589][circuit_into_ebeddingspace.py][line:2747][INFO] ##7-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,590][circuit_into_ebeddingspace.py][line:2749][INFO] ##7-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,590][circuit_into_ebeddingspace.py][line:2750][INFO] ##7-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,590][circuit_into_ebeddingspace.py][line:2751][INFO] ##7-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,590][circuit_into_ebeddingspace.py][line:2752][INFO] ##7-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,591][circuit_into_ebeddingspace.py][line:2753][INFO] ##7-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,591][circuit_into_ebeddingspace.py][line:2754][INFO] ##7-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,591][circuit_into_ebeddingspace.py][line:2755][INFO] ##7-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,592][circuit_into_ebeddingspace.py][line:2756][INFO] ##7-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,592][circuit_into_ebeddingspace.py][line:2757][INFO] ##7-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,592][circuit_into_ebeddingspace.py][line:2758][INFO] ##7-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,592][circuit_into_ebeddingspace.py][line:2759][INFO] ##7-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,593][circuit_into_ebeddingspace.py][line:2760][INFO] ##7-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,593][circuit_into_ebeddingspace.py][line:2762][INFO] ##7-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[1],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,593][circuit_into_ebeddingspace.py][line:2763][INFO] ##7-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,598][circuit_into_ebeddingspace.py][line:2745][INFO] ################8-th layer#################
+[2024-06-28 12:25:50,606][circuit_into_ebeddingspace.py][line:2746][INFO] ##8-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,607][circuit_into_ebeddingspace.py][line:2747][INFO] ##8-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,607][circuit_into_ebeddingspace.py][line:2749][INFO] ##8-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,607][circuit_into_ebeddingspace.py][line:2750][INFO] ##8-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,607][circuit_into_ebeddingspace.py][line:2751][INFO] ##8-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,608][circuit_into_ebeddingspace.py][line:2752][INFO] ##8-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,608][circuit_into_ebeddingspace.py][line:2753][INFO] ##8-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,608][circuit_into_ebeddingspace.py][line:2754][INFO] ##8-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,609][circuit_into_ebeddingspace.py][line:2755][INFO] ##8-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[0],
+         [1],
+         [1],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,609][circuit_into_ebeddingspace.py][line:2756][INFO] ##8-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,609][circuit_into_ebeddingspace.py][line:2757][INFO] ##8-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,609][circuit_into_ebeddingspace.py][line:2758][INFO] ##8-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[0],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,610][circuit_into_ebeddingspace.py][line:2759][INFO] ##8-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,610][circuit_into_ebeddingspace.py][line:2760][INFO] ##8-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,610][circuit_into_ebeddingspace.py][line:2762][INFO] ##8-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [1],
+         [1],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,611][circuit_into_ebeddingspace.py][line:2763][INFO] ##8-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,616][circuit_into_ebeddingspace.py][line:2745][INFO] ################9-th layer#################
+[2024-06-28 12:25:50,624][circuit_into_ebeddingspace.py][line:2746][INFO] ##9-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,624][circuit_into_ebeddingspace.py][line:2747][INFO] ##9-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,624][circuit_into_ebeddingspace.py][line:2749][INFO] ##9-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,625][circuit_into_ebeddingspace.py][line:2750][INFO] ##9-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,625][circuit_into_ebeddingspace.py][line:2751][INFO] ##9-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,625][circuit_into_ebeddingspace.py][line:2752][INFO] ##9-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,625][circuit_into_ebeddingspace.py][line:2753][INFO] ##9-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,626][circuit_into_ebeddingspace.py][line:2754][INFO] ##9-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,626][circuit_into_ebeddingspace.py][line:2755][INFO] ##9-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,626][circuit_into_ebeddingspace.py][line:2756][INFO] ##9-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,627][circuit_into_ebeddingspace.py][line:2757][INFO] ##9-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,627][circuit_into_ebeddingspace.py][line:2758][INFO] ##9-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,627][circuit_into_ebeddingspace.py][line:2759][INFO] ##9-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [1],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,627][circuit_into_ebeddingspace.py][line:2760][INFO] ##9-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,628][circuit_into_ebeddingspace.py][line:2762][INFO] ##9-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,628][circuit_into_ebeddingspace.py][line:2763][INFO] ##9-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,633][circuit_into_ebeddingspace.py][line:2745][INFO] ################10-th layer#################
+[2024-06-28 12:25:50,641][circuit_into_ebeddingspace.py][line:2746][INFO] ##10-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,641][circuit_into_ebeddingspace.py][line:2747][INFO] ##10-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,642][circuit_into_ebeddingspace.py][line:2749][INFO] ##10-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,642][circuit_into_ebeddingspace.py][line:2750][INFO] ##10-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,642][circuit_into_ebeddingspace.py][line:2751][INFO] ##10-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,643][circuit_into_ebeddingspace.py][line:2752][INFO] ##10-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,643][circuit_into_ebeddingspace.py][line:2753][INFO] ##10-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,643][circuit_into_ebeddingspace.py][line:2754][INFO] ##10-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,643][circuit_into_ebeddingspace.py][line:2755][INFO] ##10-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,644][circuit_into_ebeddingspace.py][line:2756][INFO] ##10-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,644][circuit_into_ebeddingspace.py][line:2757][INFO] ##10-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,644][circuit_into_ebeddingspace.py][line:2758][INFO] ##10-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[0],
+         [1],
+         [0],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,645][circuit_into_ebeddingspace.py][line:2759][INFO] ##10-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,645][circuit_into_ebeddingspace.py][line:2760][INFO] ##10-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,645][circuit_into_ebeddingspace.py][line:2762][INFO] ##10-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,645][circuit_into_ebeddingspace.py][line:2763][INFO] ##10-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[0],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,651][circuit_into_ebeddingspace.py][line:2745][INFO] ################11-th layer#################
+[2024-06-28 12:25:50,658][circuit_into_ebeddingspace.py][line:2746][INFO] ##11-th layer ##Inspire##: The circuit3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,659][circuit_into_ebeddingspace.py][line:2747][INFO] ##11-th layer ##Inspire##: The circuit4 Inspire status of source tokens is 
+ tensor([[[0],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,659][circuit_into_ebeddingspace.py][line:2749][INFO] ##11-th layer ##Inspire##: The c4head1 Inspire status of source tokens is 
+ tensor([[[0],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,659][circuit_into_ebeddingspace.py][line:2750][INFO] ##11-th layer ##Inspire##: The c4head2 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,660][circuit_into_ebeddingspace.py][line:2751][INFO] ##11-th layer ##Inspire##: The c4head3 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,660][circuit_into_ebeddingspace.py][line:2752][INFO] ##11-th layer ##Inspire##: The c4head4 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,660][circuit_into_ebeddingspace.py][line:2753][INFO] ##11-th layer ##Inspire##: The c4head5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,661][circuit_into_ebeddingspace.py][line:2754][INFO] ##11-th layer ##Inspire##: The c4head6 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,661][circuit_into_ebeddingspace.py][line:2755][INFO] ##11-th layer ##Inspire##: The c4head7 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,661][circuit_into_ebeddingspace.py][line:2756][INFO] ##11-th layer ##Inspire##: The c4head8 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,661][circuit_into_ebeddingspace.py][line:2757][INFO] ##11-th layer ##Inspire##: The c4head9 Inspire status of source tokens is 
+ tensor([[[0],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,662][circuit_into_ebeddingspace.py][line:2758][INFO] ##11-th layer ##Inspire##: The c4head10 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,662][circuit_into_ebeddingspace.py][line:2759][INFO] ##11-th layer ##Inspire##: The c4head11 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,662][circuit_into_ebeddingspace.py][line:2760][INFO] ##11-th layer ##Inspire##: The c4head12 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')
+[2024-06-28 12:25:50,663][circuit_into_ebeddingspace.py][line:2762][INFO] ##11-th layer ##Inspire##: The Inspire_c4compt status of source tokens is 
+ tensor([[[0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0],
+         [0]]], device='cuda:0')
+[2024-06-28 12:25:50,663][circuit_into_ebeddingspace.py][line:2763][INFO] ##11-th layer ##Inspire##: The circuit5 Inspire status of source tokens is 
+ tensor([[[1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1],
+         [1]]], device='cuda:0')

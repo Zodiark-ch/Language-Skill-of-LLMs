@@ -79,17 +79,18 @@ if args.task_name=='satisfiability_discovery':
                 #equal_model(inputs)
                 top_token,input_matrix,cut_circuit_tensor_all=model(inputs,label_ids,0,0,input_matrix,cut_circuit_tensor_all)
                 assert top_token[0].item()==label_ids.item()
+                
                 for m in tqdm(range(circuit_num)):
                     for n in range(circuit_num):
-                        if m//circuit_layer > n//circuit_layer and (m+1)%29!=27 and (m+1)%29!=28 and (m+1)%29!=0 and branch_cut[m][n]!=1:
+                        if m//circuit_layer > n//circuit_layer and (m+1)%29!=27 and (m+1)%29!=28 and (m+1)%29!=0 and (m+1)%29!=1 and (n+1)%29!=27 and (n+1)%29!=28 and (n+1)%29!=0 and (n+1)%29!=1 and branch_cut[m][n]!=1:
                             branch_cut[m][n]=1
                             
                             top_token,input_matrix_new,cut_circuit_tensor_all=model(inputs,label_ids,m,n,input_matrix,cut_circuit_tensor_all)
                             if top_token[0].item()!=label_ids.item():
                                 branch_cut[m][n]=0
                             else:
-                                #check_model(inputs,label_ids,branch_cut)
                                 input_matrix=input_matrix_new
+                            #check_model(inputs,label_ids,branch_cut)
                             torch.cuda.empty_cache()
                             
                                 
