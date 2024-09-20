@@ -1,39 +1,85 @@
-# XAIofLLMs 
+# Detecting any language skills of LLMs  
 
-The first step: finish and observe the vocabulary mapping of output in each layer 
-    1, How to construct a vocabulary len from logits to token? 
-        _,predicted_indices=torch.topk(outputs.logits[0][-1],10)
-        print('max probability token_ids are:', predicted_indices)
-        print('max probability tokens are:', tokenizer.decode(predicted_indices))
+This is a demo with implementation on GPT2-XL, mastering the paper "Unveiling Language Skills under Cirucits" 
 
-    2, How to map the representation to logits? 
-        lm_logits = self.lm_head(hidden_states) (modeling_gpt2.py) from [B, N, D] to [B, N, E] (in gpt2, D is 768 and E is 50257) 
+## Skill Graph 
+```
+Previous Token Skill  
+![sorry](previous_token_skill_graph.jpg "Previous Token Skill")
 
-    3, Is there different between FFN(original forward in one transformer layer, not only the mlp) and matrix producting? 
-        Yes, we design a class 'assert_FFNandproduction_gpt2xl' to show how similar or even the same between these two operations 
+Induction Token Skill  
+![sorry](induction_skill_graph.jpg "Induction Skill")
 
-    4, How to get the vocabulary distribution of output representation in each layer? 
-        we design a class 'show_each_layer_vocb' to show the vocab space of output representation, breifly, let the hidden_state to be layer_normed and unembedded. and we found that ln_f is necessary. 
+ICL1 Skill  
+![sorry](icl_sst2_skill_graph.jpg "ICL1 Skill")
 
-    5, Are logits of stream equal to the original output logits in each layer? 
-        Yes, we design a class 'assert_attentionmlp_equal_output' to show the vocab space of stream logits, which corresponds the logits from original representation from FFN. 
+ICL2 Skill  
+![sorry](icl_object_counting_graph.jpg "ICL2 Skill")
+
+ICL3 Skill  
+![sorry](icl_qa_skill_graph.jpg "ICL3 Skill")
+
+ICL4 Skill  
+![sorry](icl_raco_graph.jpg "ICL3 Skill")
+```
+
+## requirements
+just some common packages 
+```
+torch  
+transformers  
+tqdm  
+matplotlib  
+sklearn  
+```
+(from my side, requirement.text is not good as install when no-package and I'm lazy )
+## quick start
+To get previous token skill: 
+```
+python language_skill_pt.py --task_name language_skill --case_type previous_token_2t
+```
+
+To get Induction skill:  
+(not recommondate, there are many source files of induction skill failing to upload) 
+```
+python language_skill_inductive.py --task_name language_skill
+```
+
+To get ICL1 skill: 
+```
+python language_skill_icl.py --task_name language_skill 
+```
+
+To get other ICL skills, please edit the directory (line 20, 51, 81, 196 in language_skill_icl.py)
+
+## If you want to start from collect G*
+the greedy search is in token_by_token.py 
+to get G* from samples of previous token skill
+```
+python token_by_token_pt.py --task_name token_by_token --case_type orca1wc [or orca2wc]
+```
+Sure, you can create data samples as json file as you like (we created it by orca_dataset_to_json.py)
+
+to get G* from samples of Induction skill
+```
+python token_by_token_pt.py --task_name token_by_token --case_type orcainductive
+```
+Sure, you can create data samples as you like  
+
+to get G* from samples of ICL skill 
+```
+python token_by_token_icl.py --task_name token_by_token --case_type [icl_sst2, icl_oc, icl_qawiki, icl_raco]
+```
+
+We encourage you create data samples by yourselves 
+
+after you finish collect G*, you can use language_skill.py again
+
+## Other files
+FYI, the other files either perform some small functions or are some small experiments of my own.  
+
+## citation 
+moment no
 
 
-    6, Are all circuits' addtion equal to the original output representation? 
-        We design a class 'assert_circuits_equal_output' to show the decouplement of forward.  
-        All consists of 6 circuits, 
-        c1 represents the input self. 
-        c2 represents the attention-only circuits, showing the contribution of unique attention. 
-        c3 represents the MLP-only circuits, showing the contribution of unique MLP. 
-        c4 represents the attention+MLP circuits, showing the contribution of path through attention followed by mlp. 
-        c5 represents the synergistic circuits, showing the synergistic contribution of bias(Wmlp1) to residual and attention to mlp. 
-            It means when residual stream was decoupled into several circuits, the loss distribution caused by activation. 
-        c6 represents the translation circuits, it add a bias to vocabulary distribution. 
-
-        Their sum is equal to the original output representation. 
-
-    7, How does each circuit perform in vocabulary space?
-        Some has clear senmantic, showed in class show_vocabulary_circuit in details. 
-
-    8, A dataset-wise analysis for attention circuit (circuit 1 and 2):
         

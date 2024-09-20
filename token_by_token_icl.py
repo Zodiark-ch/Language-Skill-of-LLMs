@@ -48,6 +48,15 @@ if args.task_name=='token_by_token':
         if args.case_type=='icl_sst2':
             with open('dataset/icl_sst2.json','r') as f: 
                 input_text=json.load(f)
+        if args.case_type=='icl_oc':
+            with open('dataset/icl_object_counting.json','r') as f: 
+                input_text=json.load(f)
+        if args.case_type=='icl_raco':
+            with open('dataset/icl_reasoning_about_colored_objects.json','r') as f: 
+                input_text=json.load(f)
+        if args.case_type=='icl_qawiki':
+            with open('dataset/icl_qa_wikidata.json','r') as f: 
+                input_text=json.load(f)
         
         input_self_text=':'
         inputs_self = tokenizer(input_self_text, return_tensors="pt")
@@ -89,7 +98,8 @@ if args.task_name=='token_by_token':
         with open('json_logs/token_by_token/gpt2xl/'+args.case_type+'/'+'self.json','w',encoding='utf-8') as data:
             json.dump(old_data,data,ensure_ascii=False,sort_keys=True)
             
-        for i in range (141,len(input_text)):
+        for i in range (0,len(input_text)):
+            #sst2 571
             case_idx=input_text[i]['id']
             print('To record {}-th case'.format(i))
             

@@ -18,7 +18,7 @@ import shutil
 import seaborn as sns
 import torch.nn.functional as F
 # specify the directory you want to read files from
-directory = 'json_logs/token_by_token/gpt2xl/icl_sst2_cluster0'
+directory = 'json_logs/token_by_token/gpt2xl/icl_qawiki'
 filter_weight=0.6
 
     
@@ -79,7 +79,7 @@ if args.task_name=='language_skill':
             with open(fullpath) as f:
                 data = json.load(f)
         
-            with open('dataset/icl_sst2.json') as icldataset:
+            with open('dataset/icl_qa_wikidata.json') as icldataset:
                 icl_data=json.load(icldataset)
             if filename=='self.json':
                 continue
@@ -199,12 +199,12 @@ if args.task_name=='language_skill':
     sample08=sample08.numpy()
     
     #fig, ax1 = plt.subplots(3,1,sharex=True)
-    sns.kdeplot(x=sample08[:,1],y=sample08[:,0],fill=True, cmap='Oranges',levels=[0.35,0.5,0.6,0.7,0.8,0.9,1],shade_lowest=False)
-    sns.kdeplot(x=sample05[:,1],y=sample05[:,0],fill=True, cmap='Reds',levels=[0.35,0.5,0.6,0.7,0.8,0.9,1],shade_lowest=False)
-    sns.kdeplot(x=sample06[:,1],y=sample06[:,0],fill=True, cmap='Greens',levels=[0.35,0.5,0.6,0.7,0.8,0.9,1],shade_lowest=False)
-    sns.kdeplot(x=sample07[:,1],y=sample07[:,0],fill=True, cmap='Blues',levels=[0.35,0.5,0.6,0.7,0.8,0.9,1],shade_lowest=False,cbar=True)
+    sns.kdeplot(x=sample08[:,1],y=sample08[:,2],fill=True, cmap='Oranges',levels=[0.35,0.5,0.6,0.7,0.8,0.9,1],shade_lowest=False)
+    sns.kdeplot(x=sample05[:,1],y=sample05[:,2],fill=True, cmap='Reds',levels=[0.35,0.5,0.6,0.7,0.8,0.9,1],shade_lowest=False)
+    sns.kdeplot(x=sample06[:,1],y=sample06[:,2],fill=True, cmap='Greens',levels=[0.35,0.5,0.6,0.7,0.8,0.9,1],shade_lowest=False)
+    sns.kdeplot(x=sample07[:,1],y=sample07[:,2],fill=True, cmap='Blues',levels=[0.35,0.5,0.6,0.7,0.8,0.9,1],shade_lowest=False,cbar=True)
     
     
     
     plt.legend()
-    plt.savefig('paper_figure/icl_sst2_token_distribution.jpg')
+    plt.savefig('paper_figure/icl_qawiki_token_distribution_withself.jpg')

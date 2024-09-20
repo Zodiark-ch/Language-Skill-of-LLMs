@@ -19,7 +19,7 @@ from matplotlib import pyplot
 import shutil
 
 # specify the directory you want to read files from
-directory = 'json_logs/token_by_token/gpt2xl/icl_sst2_cluster0'
+directory = 'json_logs/token_by_token/gpt2xl/icl_qawiki'
 filter_weight=0.6
 
     
@@ -83,7 +83,7 @@ for filename in tqdm(os.listdir(directory)):
         with open(fullpath) as f:
             data = json.load(f)
     
-        with open('dataset/icl_sst2.json') as icldataset:
+        with open('dataset/icl_qa_wikidata.json') as icldataset:
             icl_data=json.load(icldataset)
         if filename=='self.json':
             continue
@@ -196,7 +196,7 @@ for filename in tqdm(os.listdir(directory)):
         true_table=[0 for i in range(len(chain_all))]
         with open(fullpath) as f:
             data = json.load(f)
-        with open('dataset/icl_sst2.json') as icldataset:
+        with open('dataset/icl_qa_wikidata.json') as icldataset:
             icl_data=json.load(icldataset)
         if filename=='self.json':
             continue
@@ -311,7 +311,7 @@ for filename in tqdm(os.listdir(directory)):
             with open(fullpath) as f:
                 data = json.load(f)
         
-            with open('dataset/icl_sst2.json') as icldataset:
+            with open('dataset/icl_qa_wikidata.json') as icldataset:
                 icl_data=json.load(icldataset)
             if filename=='self.json':
                 continue
@@ -418,5 +418,5 @@ plt.scatter(tsne_a[:, 0], tsne_a[:, 1], color=colors['a'])
 plt.scatter(tsne_b[:, 0], tsne_b[:, 1], color=colors['b'])
 plt.scatter(tsne_c[:, 0], tsne_c[:, 1], color=colors['c'])
 plt.show()
-plt.savefig('paper_figure/t_sne.jpg')
+plt.savefig('paper_figure/t_sne_icl_qa.jpg')
 

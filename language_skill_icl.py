@@ -17,7 +17,7 @@ from matplotlib import pyplot
 import shutil
 
 # specify the directory you want to read files from
-directory = 'json_logs/token_by_token/gpt2xl/icl_sst2_cluster0'
+directory = 'json_logs/token_by_token/gpt2xl/icl_sst2'
 circuit_layer=29
 circuit_num=12*29    
 
@@ -48,6 +48,8 @@ def get_logger(filename, verbosity=1, name=None):
     
     
 if args.task_name=='language_skill':
+    logger = get_logger('logs/' +'icl_sst2_logging.log')
+        
     tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
     check_model=assert_model(args)
     orig_model = GPT2LMHeadModel.from_pretrained("openai-community/gpt2")
@@ -284,6 +286,7 @@ if args.task_name=='language_skill':
     chain_weight_all=[x/real_case_num for x in chain_weight_all]
     chain_neg_weight_all=[x/real_case_num for x in chain_neg_weight_all]
     chain_self_weight_all=[x/real_case_num for x in chain_self_weight_all]
+    chain_recoder=[]
     for chain in range(len(chain_all)):
         print_text=''
         for jump in range(len(chain_all[chain])):
@@ -291,7 +294,12 @@ if args.task_name=='language_skill':
             print_text=print_text+node_text
         if chain_weight_all[chain]-chain_neg_weight_all[chain]-chain_self_weight_all[chain]>0.7:
             print('The chain is ',print_text, 'with positive weight {}, negative weight {}, self weight {} and pure weight {}'.format(chain_weight_all[chain],chain_neg_weight_all[chain],chain_self_weight_all[chain],chain_weight_all[chain]-chain_neg_weight_all[chain]-chain_self_weight_all[chain]))        
-                        
+            logger.info(print_text+ 'with effect {}'.format(round(chain_weight_all[chain]-chain_neg_weight_all[chain]-chain_self_weight_all[chain],2)))
+            chain_recoder_one=chain_all[chain]
+            chain_recoder_one.append(chain_weight_all[chain]-chain_neg_weight_all[chain]-chain_self_weight_all[chain])
+            chain_recoder.append(chain_recoder_one)
+    with open('json_logs/token_by_token/gpt2xl/'+'language_skill.json','w',encoding='utf-8') as data:
+            json.dump(chain_recoder,data,ensure_ascii=False,sort_keys=True)            
                             
     
                 

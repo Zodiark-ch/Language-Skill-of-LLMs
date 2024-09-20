@@ -19,9 +19,9 @@ import shutil
 from plot import matrix_plot
 
 # specify the directory you want to read files from
-positive_directory = 'json_logs/token_by_token/gpt2xl/srodataset_cluster0_cluster0'
-negative_directory = 'json_logs/token_by_token/gpt2xl/srodataset_cluster0_cluster0'
-filter_weight=0.4
+positive_directory = 'json_logs/token_by_token/gpt2xl/all_mix_cluster1_cluster0'
+
+filter_weight=0.6
 
     
 circuit_layer=29
@@ -74,10 +74,10 @@ for i in range(circuit_num):
     
 #attention weight analysis
     # positive sample: two tokens with skill path, negative sample: one token samples
-attn_weight_check=torch.tensor([[1,7],[1,8],[1,18],[1,19],[1,20],[1,21],[2,1],[2,7],[2,14],[2,18],[2,20],[11,1],[11,14]])
+attn_weight_check=torch.tensor([[1,8],[1,18],[1,19],[1,20],[1,21],[2,1],[2,7],[2,14],[2,18],[2,20],[11,1],[11,14]])
 x_label=attn_weight_check.numpy().tolist()
-m=1
-n=[0,1]
+m=0
+n=[0]
 attn_matrix=[]
 for n_idx in range(len(n)):
     #positive sample
@@ -109,7 +109,8 @@ for n_idx in range(len(n)):
     attn_weight_positive=attn_weight_positive/case_num   
     row_attn_weight=attn_weight_positive.numpy()
     attn_matrix.append(row_attn_weight)
-
+    attn_matrix=[np.round(i,2) for i in attn_matrix]
+print(attn_matrix)
 x_length=len(x_label)
 y_length=len(n)
 assert len(attn_matrix)==y_length
@@ -119,7 +120,7 @@ for idx in range(len(x_label)):
 y_label=[]
 for idx in range(len(n)):
     y_label.append('token'+str(n[idx]))
-save_path='paper_figure/attn_weight_previous_token_m=1.jpg'
+save_path='paper_figure/previous_b.jpg'
 matrix_plot(attn_matrix,x_label,y_label,save_path)
 
 
