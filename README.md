@@ -1,12 +1,13 @@
 # Detecting any language skills of LLMs  
 
-This is a demo with implementation on GPT2-XL, mastering the paper "Unveiling Language Skills under Cirucits" 
+This is a demo with implementation on GPT2-XL, mastering the paper "Unveiling Language Skills under Circuits" 
 
 ## Skill Graph 
 ```
 Previous Token Skill  
-![sorry](previous_token_skill_graph.jpg "Previous Token Skill")
-
+![sorry](previous_token_skill_graph.jpg)
+```
+```
 Induction Token Skill  
 ![sorry](induction_skill_graph.jpg "Induction Skill")
 
@@ -71,7 +72,7 @@ to get G* from samples of ICL skill
 python token_by_token_icl.py --task_name token_by_token --case_type [icl_sst2, icl_oc, icl_qawiki, icl_raco]
 ```
 
-We encourage you create data samples by yourselves 
+We encourage you to create data samples by yourselves 
 
 after you finish collect G*, you can use language_skill.py again
 
