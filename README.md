@@ -5,7 +5,7 @@ This is a demo with implementation on GPT2-XL, mastering the paper "Unveiling La
 ## Skill Graph 
 ```
 Previous Token Skill  
-![sorry](previous_token_skill_graph.jpg)
+![image](https://github.com/Zodiark-ch/Language-Skill-of-LLMs/blob/main/previous_token_skill_graph.jpg)
 ```
 ```
 Induction Token Skill  
