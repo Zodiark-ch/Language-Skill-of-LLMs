@@ -3,11 +3,11 @@
 This is a demo with implementation on GPT2-XL, mastering the paper "Unveiling Language Skills under Circuits" 
 
 ## Skill Graph 
-```
+
 Previous Token Skill  
 ![image](https://github.com/Zodiark-ch/Language-Skill-of-LLMs/blob/main/previous_token_skill_graph.jpg)
-```
-```
+
+
 Induction Token Skill  
 ![sorry](induction_skill_graph.jpg "Induction Skill")
 
@@ -22,7 +22,7 @@ ICL3 Skill
 
 ICL4 Skill  
 ![sorry](icl_raco_graph.jpg "ICL3 Skill")
-```
+
 
 ## requirements
 just some common packages 
