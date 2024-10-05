@@ -94,7 +94,7 @@ after you finish collect G*, you can use language_skill.py again
 ## Other files
 FYI, the other files either perform some small functions or are some small experiments of my own.  
 
-## citation 
+## publication 
 moment no
 
 
