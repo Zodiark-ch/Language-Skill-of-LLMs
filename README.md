@@ -2,6 +2,21 @@
 
 This is a demo with implementation on GPT2-XL, mastering the paper "Unveiling Language Skills under Circuits" 
 
+## citation
+our paper: "Unveiling Language Skills under Circuits" and preprint: https://arxiv.org/abs/2410.01334
+```
+@misc{chen2024unveilinglanguageskillscircuits,
+      title={Unveiling Language Skills under Circuits}, 
+      author={Hang Chen and Jiaying Zhu and Xinyu Yang and Wenya Wang},
+      year={2024},
+      eprint={2410.01334},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2410.01334}, 
+}
+```
+
+
 ## Skill Graph 
 
 Previous Token Skill  
